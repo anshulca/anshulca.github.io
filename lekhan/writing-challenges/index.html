@@ -1,0 +1,93 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Writing Challenges â€” Naam Jap Â· à¤²à¥‡à¤–à¤¨</title>
+  <meta name="description" content="Writing challenges for Naam Lekhan â€” 40 days, 21 days, 108 pages. Track streaks, daily targets and completion on your device.">
+  <link rel="canonical" href="https://naamjap.in/lekhan/writing-challenges/">
+  <meta name="theme-color" content="#f6f3ec">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Naam Jap">
+  <meta property="og:title" content="Writing Challenges â€” Naam Jap">
+  <meta property="og:description" content="Challenge-based Naam Lekhan practice â€” 40 days, 21 days, 108 pages. Private, on your device.">
+  <meta property="og:url" content="https://naamjap.in/lekhan/writing-challenges/">
+  <meta property="og:image" content="https://naamjap.in/assets/og-image.svg">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..520&family=Inter:wght@400..600&family=Tiro+Devanagari+Hindi&display=swap">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <link rel="stylesheet" href="/css/lekhan.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header data-chrome="header"></header>
+
+  <main class="site-main" id="main">
+    <div class="container gutter-y">
+      <div class="page-hero" style="text-align:center;max-width:680px;margin-inline:auto">
+        <p class="eyebrow">Lekhan Â· à¤²à¥‡à¤–à¤¨ â€” Writing Challenges</p>
+        <h1>Write, day after day</h1>
+        <p class="lead muted" style="margin-inline:auto">Pick a steady challenge and watch your practice grow. Each day auto-completes when your Naam Lekhan reaches the daily target â€” no checkmarks to fake, just honest progress.</p>
+      </div>
+
+      <section class="chall-stage" style="margin-top:var(--space-7)" aria-label="Writing challenges">
+        <p class="mod-stage__kicker">Pick a challenge</p>
+        <div class="chall-predefined" id="chall-predefined" role="group" aria-label="Predefined challenges"></div>
+
+        <p class="mod-stage__kicker">Or build your own</p>
+        <button type="button" class="btn btn--ghost btn--sm" id="chall-custom-toggle">Custom challenge</button>
+        <div class="chall-custom" id="chall-create-zone" hidden>
+          <div class="field">
+            <label class="field__label" for="chall-name">Challenge name</label>
+            <input class="input" id="chall-name" type="text" placeholder="e.g. 7 Days of Shiv">
+          </div>
+          <div class="field">
+            <label class="field__label" for="chall-type">Type</label>
+            <select class="input" id="chall-type" aria-label="Challenge type">
+              <option value="days">Days (daily writing)</option>
+              <option value="pages">Pages (completed pages)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="chall-total">Duration / target</label>
+            <input class="input" id="chall-total" type="number" min="1" placeholder="e.g. 40 or 108">
+          </div>
+          <div class="field">
+            <label class="field__label" for="chall-daily">Daily target (naam)</label>
+            <input class="input" id="chall-daily" type="number" min="1" value="108">
+          </div>
+          <button type="button" class="btn btn--primary" id="chall-create">Create challenge</button>
+        </div>
+
+        <p class="mod-stage__kicker">Your challenges</p>
+        <div id="chall-list" class="chall-list"></div>
+
+        <p class="mod-stage__kicker">
+          <a href="/lekhan/naam-lekhan/" class="btn btn--soft">â† Back to Naam Lekhan</a>
+        </p>
+      </section>
+
+      <p class="lekhan-privacy">Your challenge progress stays on this device â€” never synced, never shared.</p>
+      <p style="text-align:center;margin-top:var(--space-4)" data-credit></p>
+    </div>
+  </main>
+
+  <footer data-chrome="footer"></footer>
+
+  <script src="/js/site.config.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/store.js"></script>
+  <script src="/js/db.js"></script>
+  <script src="/js/shared.js"></script>
+  <script src="/js/core.js"></script>
+  <script src="/js/challenges.js"></script>
+</body>
+</html>

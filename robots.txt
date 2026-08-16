@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /assets/og-image.svg
+
+Sitemap: https://naamjap.in/sitemap.xml

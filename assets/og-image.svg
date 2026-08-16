@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f6f3ec"/>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <defs>
+    <radialGradient id="g" cx="0.72" cy="0.35" r="0.6">
+      <stop offset="0" stop-color="#b5852f" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#b5852f" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <text x="120" y="300" font-family="Georgia, serif" font-size="72" fill="#2b2620">Naam Jap</text>
+  <text x="120" y="368" font-family="'Nirmala UI', sans-serif" font-size="48" fill="#b5852f">नाम जप</text>
+  <text x="122" y="430" font-family="Georgia, serif" font-size="30" fill="#6d675c">Pause. Remember. Repeat.</text>
+  <g fill="none" stroke="#b5852f" stroke-width="6" transform="translate(1010,215)">
+    <circle cx="70" cy="70" r="56"/>
+    <path d="M70 14 A56 56 0 0 1 119.5 70" opacity=".45"/>
+    <circle cx="70" cy="14" r="12" fill="#b5852f"/>
+  </g>
+</svg>

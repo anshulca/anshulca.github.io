@@ -1,0 +1,98 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Custom Naam Lekhan â€” Naam Jap Â· à¤²à¥‡à¤–à¤¨</title>
+  <meta name="description" content="Write any naam or mantra, choose repetitions per page, and keep your pages in the Digital Jap Notebook. Fully local and private.">
+  <link rel="canonical" href="https://naamjap.in/lekhan/custom-naam-lekhan/">
+  <meta name="theme-color" content="#f6f3ec">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Naam Jap">
+  <meta property="og:title" content="Custom Naam Lekhan â€” Naam Jap">
+  <meta property="og:url" content="https://naamjap.in/lekhan/custom-naam-lekhan/">
+  <meta property="og:image" content="https://naamjap.in/assets/og-image.svg">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..520&family=Inter:wght@400..600&family=Tiro+Devanagari+Hindi&display=swap">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <link rel="stylesheet" href="/css/lekhan.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header data-chrome="header"></header>
+
+  <main class="site-main" id="main">
+    <div class="container gutter-y">
+      <div class="page-hero" style="text-align:center;max-width:680px;margin-inline:auto">
+        <p class="eyebrow">Lekhan Â· à¤²à¥‡à¤–à¤¨ â€” Custom Naam Lekhan</p>
+        <h1>Your naam, your pages</h1>
+        <p class="lead muted" style="margin-inline:auto">Enter any naam or mantra, choose repetitions per page, and save completed pages to your notebook. Everything stays on your device.</p>
+      </div>
+
+      <section class="lekhan-stage" style="margin-top:var(--space-7)" aria-label="Custom Naam Lekhan writing pad">
+        <p class="mod-stage__kicker" style="text-align:center">Choose your naam</p>
+        <div class="naam-select" id="clk-naams" role="group" aria-label="Choose a naam to write"></div>
+        <div class="naam-custom" id="clk-custom" hidden>
+          <div class="field">
+            <label class="field__label" for="clk-custom-input">Your naam</label>
+            <input class="input" id="clk-custom-input" type="text" inputmode="text" autocomplete="off" placeholder="e.g. à¤¶à¤®à¥à¤­ à¤¸à¤¦à¤¾à¤¶à¤¿à¤µ" style="font-family:var(--font-dev)">
+          </div>
+        </div>
+
+        <p class="mod-stage__kicker" style="margin-top:var(--space-3);text-align:center">Target per page</p>
+        <div class="target-select" id="clk-targets" role="group" aria-label="Target repetitions per page"></div>
+        <div class="timer-custom">
+          <input class="input" id="clk-target-custom-input" type="number" inputmode="numeric" min="1" placeholder="custom target" aria-label="Custom target per page">
+        </div>
+
+        <div class="lekhan-head" style="margin-top:var(--space-6)">
+          <span class="count" id="clk-count">0 <small>/ 108</small></span>
+          <span class="page" id="clk-page">Page 1</span>
+        </div>
+        <div class="lekhan-naam" id="clk-naam">Ram à¤°à¤¾à¤®</div>
+
+        <div class="page-wrap">
+          <div class="canvas-sheet page-sheet" id="clk-sheet">
+            <span class="page-sheet__yat" aria-hidden="true">à¥¥ 108</span>
+            <canvas class="canvas page-sheet__ruled" id="clk-canvas" aria-label="Writing canvas for the naam"></canvas>
+          </div>
+        </div>
+
+        <div class="canvas-toolbar">
+          <div class="group">
+            <button type="button" class="btn btn--ghost btn--sm" id="clk-und">Undo</button>
+            <button type="button" class="btn btn--ghost btn--sm" id="clk-clr">Clear</button>
+          </div>
+          <button type="button" class="btn btn--primary" id="clk-done">Done</button>
+        </div>
+
+        <p class="canvas-hint">Write the naam once, then press Done. Keyboard and stylus work too â€” the pad never scrolls while you write.</p>
+        <div id="clk-done-area" style="margin-top:var(--space-5)"></div>
+      </section>
+
+      <p class="lekhan-privacy">Your practice stays on this device. Completed pages are saved to your Digital Jap Notebook â€” locally, never uploaded.</p>
+      <p style="text-align:center;margin-top:var(--space-4)" data-credit></p>
+    </div>
+  </main>
+
+  <footer data-chrome="footer"></footer>
+
+  <script src="/js/site.config.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/store.js"></script>
+  <script src="/js/db.js"></script>
+  <script src="/js/shared.js"></script>
+  <script src="/js/writing-engine.js"></script>
+  <script src="/js/core.js"></script>
+  <script src="/js/challenges.js"></script>
+  <script src="/js/custom-lekhan.js"></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+/* =========================================================================
+   NAAM JAP · COMPONENTS — reusable UI primitives
+   ========================================================================= */
+
+/* ---- Buttons ------------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  height: var(--btn-h); padding-inline: var(--space-5);
+  border-radius: var(--radius-pill); border: 1px solid transparent;
+  font: var(--label-weight) var(--text-sm) / 1 var(--font-body);
+  letter-spacing: 0.01em; cursor: pointer; white-space: nowrap;
+  transition: var(--transition);
+}
+.btn:active { transform: translateY(1px); }
+.btn--primary { background: var(--accent); color: var(--on-accent); box-shadow: var(--shadow-sm); }
+.btn--primary:hover { background: var(--accent-strong); color: var(--on-accent); box-shadow: var(--shadow-md); }
+.btn--ink { background: var(--ink); color: var(--bg); }
+.btn--ink:hover { background: var(--primary-ink); color: var(--bg); }
+.btn--ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+.btn--ghost:hover { border-color: var(--accent); color: var(--accent-strong); background: var(--accent-soft); }
+.btn--soft { background: var(--accent-soft); color: var(--accent-strong); }
+.btn--soft:hover { background: var(--accent); color: var(--on-accent); }
+.btn--lg { height: var(--btn-h-lg); padding-inline: var(--space-6); font-size: var(--text-base); }
+.btn--sm { height: var(--tap-min); padding-inline: var(--space-4); font-size: var(--text-xs); }
+.btn--block { width: 100%; }
+.btn .dev-caret { font-family: var(--font-dev); font-size: 15px; }
+
+.btn-group { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+/* ---- Chip / palm-button (practice tiles) ---------------------------------- */
+.chip {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  min-height: var(--tap-min); padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill); border: 1px solid var(--line);
+  background: var(--surface); color: var(--ink-muted); font-size: var(--text-sm);
+  cursor: pointer; transition: var(--transition);
+}
+.chip:hover { border-color: var(--accent); color: var(--ink); background: var(--accent-soft); }
+.chip .dev-caret { font-family: var(--font-dev); }
+
+/* ---- Cards ---------------------------------------------------------------- */
+.card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius-lg); padding: var(--space-6);
+  box-shadow: var(--shadow-xs); transition: var(--transition);
+}
+.card--link { display: block; color: inherit; text-decoration: none; }
+.card--link:hover { color: inherit; transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--line-strong); }
+.card--tint { background: var(--accent-soft); border-color: transparent; }
+.card--ink { background: var(--ink); color: var(--bg); border-color: transparent; }
+.card--ink h3, .card--ink .card__kicker { color: var(--bg); }
+
+.card__kicker { font-size: var(--text-xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); font-weight: var(--label-weight); }
+.card h3 { margin-top: var(--space-2); }
+.card p { margin-top: var(--space-3); color: var(--ink-muted); font-size: var(--text-sm); }
+.card .dev-glyph { font-family: var(--font-dev); font-size: var(--mantra-size); line-height: 1; color: var(--accent-strong); }
+.card__foot { margin-top: var(--space-5); }
+
+/* Soft-measure card (progress) */
+.stat-card { display: flex; flex-direction: column; gap: var(--space-3); }
+.stat-card .stat { font-family: var(--font-display); font-size: var(--text-2xl); }
+
+/* ---- Linear progress ------------------------------------------------------ */
+.progress { height: 8px; border-radius: var(--radius-pill); background: var(--surface-sunken); overflow: hidden; }
+.progress__bar { height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, var(--accent-soft), var(--accent)); transition: width var(--dur-slow) var(--ease-inout); }
+
+/* ---- Pill / status -------------------------------------------------------- */
+.pill { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-1) var(--space-3); border-radius: var(--radius-pill); font-size: var(--text-xs); font-weight: var(--label-weight); background: var(--accent-soft); color: var(--accent-strong); }
+.pill--soon { background: var(--surface-sunken); color: var(--ink-muted); }
+.pill--good { background: var(--success-soft); color: var(--success); }
+
+/* ---- Divider -------------------------------------------------------------- */
+.rule { height: 1px; background: var(--line); border: 0; margin-block: var(--space-7); }
+/* ---- Modal + Bottom sheet + Confirm (overlay primitives) ------------------- */
+.overlay { position: fixed; inset: 0; z-index: var(--z-overlay); display: none; align-items: center; justify-content: center; padding: var(--space-5); }
+.overlay.is-open { display: flex; }
+.overlay__scrim { position: absolute; inset: 0; background: var(--scrim); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+
+.modal, .sheet {
+  position: relative; background: var(--surface-raised); border: 1px solid var(--line);
+  box-shadow: var(--shadow-pop); transform: translateY(12px) scale(0.98); opacity: 0;
+  transition: transform var(--dur) var(--ease-out), opacity var(--dur) var(--ease-out);
+}
+.overlay.is-open .modal, .overlay.is-open .sheet { transform: none; opacity: 1; }
+.modal { width: min(92vw, 520px); border-radius: var(--radius-xl); padding: var(--space-6); max-height: 86vh; overflow-y: auto; }
+.modal__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-4); }
+.modal__head h3 { font-size: var(--text-xl); }
+
+.sheet {
+  position: absolute; left: 0; right: 0; bottom: 0; margin: 0 auto;
+  width: min(100%, 620px); border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  border-bottom: 0; padding: var(--space-6); max-height: 82vh; overflow-y: auto;
+  align-self: flex-end; transform: translateY(40px);
+}
+.sheet::before { content: ''; display: block; width: 44px; height: 5px; border-radius: var(--radius-pill); background: var(--line-strong); margin: 0 auto var(--space-5); }
+
+/* ---- Confirm dialog -------------------------------------------------------- */
+.confirm { max-width: 400px; }
+.confirm__body { padding: var(--space-2) 0 var(--space-5); color: var(--ink-muted); }
+
+/* ---- Toast ----------------------------------------------------------------- */
+.toast-root { position: fixed; left: 0; right: 0; bottom: var(--space-5); z-index: var(--z-toast); display: flex; flex-direction: column; align-items: center; gap: var(--space-2); pointer-events: none; padding-inline: var(--space-5); }
+.toast { max-width: 420px; background: var(--ink); color: var(--bg); font-size: var(--text-sm); padding: var(--space-3) var(--space-5); border-radius: var(--radius-pill); box-shadow: var(--shadow-lg); opacity: 0; transform: translateY(12px); transition: var(--transition); pointer-events: auto; }
+.toast.is-in { opacity: 1; transform: none; }
+.toast--success { background: var(--success); color: #fff; }
+
+/* ---- Tooltip ---------------------------------------------------------------- */
+[data-tip] { position: relative; }
+[data-tip]::after {
+  content: attr(data-tip); position: absolute; bottom: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) translateY(2px); background: var(--ink); color: var(--bg);
+  font-size: var(--text-xs); padding: var(--space-1) var(--space-3); border-radius: var(--radius-sm);
+  white-space: nowrap; opacity: 0; pointer-events: none; transition: var(--transition);
+}
+[data-tip]:hover::after, [data-tip]:focus-visible::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+/* ---- Tabs ------------------------------------------------------------------ */
+.tabs { display: flex; gap: var(--space-1); border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tabs__tab { padding: var(--space-3) var(--space-4); background: none; border: 0; border-bottom: 2px solid transparent; color: var(--ink-muted); font: var(--label-weight) var(--text-sm) / 1 var(--font-body); cursor: pointer; white-space: nowrap; }
+.tabs__tab:hover { color: var(--ink); }
+.tabs__tab.is-active { color: var(--accent-strong); border-bottom-color: var(--accent); }
+.tabs__panel { margin-top: var(--space-6); }
+.tabs__panel[hidden] { display: none; }
+
+/* ---- Segmented control ----------------------------------------------------- */
+.segmented { display: inline-flex; padding: 4px; gap: 2px; background: var(--surface-sunken); border-radius: var(--radius-pill); }
+.segmented button { padding: var(--space-2) var(--space-4); border: 0; background: transparent; border-radius: var(--radius-pill); color: var(--ink-muted); font: var(--label-weight) var(--text-sm) / 1 var(--font-body); cursor: pointer; transition: var(--transition); }
+.segmented button.is-active, .segmented button[aria-selected='true'] { background: var(--surface-raised); color: var(--ink); box-shadow: var(--shadow-sm); }
+
+/* ---- Form fields ------------------------------------------------------------ */
+.field { display: flex; flex-direction: column; gap: var(--space-2); }
+.field__label { font-size: var(--text-sm); font-weight: var(--label-weight); color: var(--ink); }
+.field__hint { font-size: var(--text-xs); color: var(--ink-faint); }
+
+.input, .select, .textarea {
+  width: 100%; height: var(--input-h); padding: 0 var(--space-4);
+  border: 1px solid var(--line-strong); border-radius: var(--radius-sm);
+  background: var(--surface-raised); color: var(--ink); font-size: var(--text-base);
+  transition: var(--transition);
+}
+.textarea { height: auto; min-height: 120px; padding-block: var(--space-3); resize: vertical; line-height: var(--lh-snug); }
+.input::placeholder, .textarea::placeholder { color: var(--ink-faint); }
+.input:focus, .select:focus, .textarea:focus { border-color: var(--accent); box-shadow: var(--ring-focus); outline: none; }
+.field.has-error .input, .field.has-error .textarea { border-color: var(--error); }
+.field__error { font-size: var(--text-xs); color: var(--error); }
+
+/* Number selector (stepper) */
+.stepper { display: inline-flex; align-items: center; gap: var(--space-1); }
+.stepper button { width: var(--tap-min); height: var(--tap-min); border-radius: var(--radius-sm); border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: var(--text-lg); line-height: 1; cursor: pointer; }
+.stepper button:hover { border-color: var(--accent); color: var(--accent-strong); }
+.stepper .stepper__value { min-width: 3.5ch; text-align: center; font-weight: var(--number-weight); font-size: var(--text-lg); }
+
+/* Native date */
+.input[type='date'] { color-scheme: light; }
+[data-theme='dark'] .input[type='date'] { color-scheme: dark; }
+
+/* ---- Empty / loading / error states ------------------------------------------ */
+.state { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-3); padding: var(--space-8) var(--space-5); color: var(--ink-muted); }
+.state__glyph { font-family: var(--font-dev); font-size: 2.4rem; color: var(--accent-strong); opacity: 0.7; line-height: 1; }
+.state h3 { font-size: var(--text-lg); }
+.state p { font-size: var(--text-sm); max-width: 40ch; }
+
+.spinner { width: 26px; height: 26px; border-radius: 50%; border: 3px solid var(--line); border-top-color: var(--accent); animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+/* ---- Circular progress (ring) ---------------------------------------------- */
+.ring { position: relative; width: 180px; height: 180px; }
+.ring__svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring__track { fill: none; stroke: var(--surface-sunken); stroke-width: 10; }
+.ring__value { fill: none; stroke: var(--accent); stroke-width: 10; stroke-linecap: round; transition: stroke-dashoffset var(--dur-slow) var(--ease-inout), stroke var(--dur) var(--ease-out); }
+.ring__center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-align: center; }
+.ring__mask { width: 150px; height: 150px; }
+
+/* ---- Mala (beads) ------------------------------------------------------------ */
+.mala { position: relative; width: min(78vw, 320px); aspect-ratio: 1; user-select: none; touch-action: manipulation; }
+.mala__svg { width: 100%; height: 100%; }
+.mala__tassel { position: absolute; top: 6%; left: 50%; transform: translateX(-50%); color: var(--accent-strong); opacity: 0.85; }
+.mala__bead { fill: transparent; stroke-width: 1; cursor: pointer; transition: fill var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out); }
+.mala__bead.is-counted { fill: var(--accent); stroke: var(--accent-strong); }
+.mala__bead.is-meru { fill: var(--accent-strong); }
+.mala__bead:active { transform: scale(1.25); }
+
+/* ---- Counter ---------------------------------------------------------------- */
+.counter { text-align: center; }
+.counter__value { font-family: var(--font-display); font-variant-numeric: tabular-nums; font-size: clamp(3rem, 10vw, 5rem); line-height: 1; }
+.counter__value.is-bump { animation: bump var(--dur-fast) var(--ease-spring); }
+@keyframes bump { 0% { transform: scale(1); } 40% { transform: scale(1.08); } 100% { transform: scale(1); } }
+.counter__meta { color: var(--ink-muted); font-size: var(--text-sm); }
+
+/* ---- Streak ---------------------------------------------------------------- */
+.streak { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-4); border-radius: var(--radius-pill); background: var(--accent-soft); color: var(--accent-strong); font-weight: var(--label-weight); }
+.streak__flame { color: var(--accent); }
+.streak b { font-variant-numeric: tabular-nums; }
+
+/* ---- Milestone card --------------------------------------------------------- */
+.milestone { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--line); background: var(--surface); }
+.milestone__seal { width: 48px; height: 48px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-strong); font-family: var(--font-dev); }
+.milestone.is-achieved .milestone__seal { background: var(--success-soft); color: var(--success); }
+
+/* ---- Notebook / page (lekhan foundation) -------------------------------------- */
+.page-sheet { position: relative; background: var(--surface-raised); border: 1px solid var(--line); border-radius: var(--radius-md); box-shadow: var(--shadow-md); padding: var(--space-6); max-width: var(--prose-max); min-height: 440px; }
+.page-sheet__ruled { background-image: repeating-linear-gradient(transparent, transparent calc(var(--lh-snug) * 1.6em - 1px), var(--line) calc(var(--lh-snug) * 1.6em - 1px), var(--line) calc(var(--lh-snug) * 1.6em)); }
+.page-sheet__yat { position: absolute; top: var(--space-4); right: var(--space-4); font-family: var(--font-dev); color: var(--ink-faint); }
+.page-sheet__count { font-variant-numeric: tabular-nums; font-family: var(--font-display); color: var(--accent-strong); }
+.page-turn { transform-origin: left center; }
+
+/* ---- Timer ------------------------------------------------------------------ */
+.timer { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+.timer__face { font-family: var(--font-display); font-variant-numeric: tabular-nums; font-size: clamp(3rem, 9vw, 4.5rem); }
+.timer__rounds { color: var(--ink-muted); font-size: var(--text-sm); }
+
+/* ---- Audio (mantra) ----------------------------------------------------------- */
+.audio-ctl { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--accent-strong); background: var(--accent-soft); border-radius: var(--radius-pill); padding: var(--space-2) var(--space-4); cursor: pointer; border: 0; font-weight: var(--label-weight); }

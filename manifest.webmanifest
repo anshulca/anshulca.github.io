@@ -1,0 +1,20 @@
+{
+  "name": "Naam Jap",
+  "short_name": "NaamJap",
+  "description": "A calm, private digital companion for Naam Jap, Naam Lekhan, mantra jap and daily sadhana.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f6f3ec",
+  "theme_color": "#f6f3ec",
+  "lang": "en-IN",
+  "dir": "ltr",
+  "categories": ["lifestyle", "health", "books"],
+  "icons": [
+    { "src": "/assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,49 @@
+/* =========================================================================
+   NAAM JAP · JAP MODULES (digital mala, jap timer, custom naam jap)
+   Reuses tokens + components; digital-mala & custom-jap also load naam-jap.css.
+   ========================================================================= */
+
+/* ---- Generic module stage -------------------------------------------------- */
+.mod-stage {
+  position: relative; max-width: 560px; margin-inline: auto;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius-xl); box-shadow: var(--shadow-md);
+  padding: var(--space-6) clamp(1.2rem, 5vw, 2.5rem); overflow: hidden;
+}
+.mod-stage > * + * { margin-top: var(--space-5); }
+.mod-stage__kicker { font-size: var(--text-xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); font-weight: var(--label-weight); text-align: center; }
+
+/* ---- Completion state ------------------------------------------------------ */
+.done-state { text-align: center; padding: var(--space-8) var(--space-4); }
+.done-state__glyph { font-family: var(--font-dev); font-size: 3.2rem; line-height: 1; color: var(--accent-strong); display: block; }
+.done-state h2 { font-family: var(--font-display); font-size: var(--text-xl); margin-top: var(--space-4); }
+.done-state .done-meta { margin-top: var(--space-2); color: var(--ink-muted); font-size: var(--text-sm); }
+.done-state .done-total { margin-top: var(--space-5); font-family: var(--font-display); font-variant-numeric: tabular-nums; font-size: var(--text-2xl); color: var(--primary-ink); }
+
+/* ---- Jap Timer ------------------------------------------------------------- */
+.timer-stage { text-align: center; }
+.timer-face { font-family: var(--font-display); font-variant-numeric: tabular-nums; font-size: clamp(3.4rem, 14vw, 6rem); line-height: 1.05; letter-spacing: -0.02em; }
+.timer-meta { color: var(--ink-muted); font-size: var(--text-sm); margin-top: var(--space-2); }
+.timer-round { margin-top: var(--space-3); color: var(--accent-strong); font-weight: var(--label-weight); }
+.timer-presets { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; }
+.timer-presets .chip.is-active { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.timer-custom { display: flex; gap: var(--space-3); align-items: center; justify-content: center; flex-wrap: wrap; }
+.timer-custom .input { width: 130px; }
+.timer-status { font-size: var(--text-sm); color: var(--ink-muted); margin-top: var(--space-3); }
+
+/* ---- Custom Naam Jap target selector --------------------------------------- */
+.target-select { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; }
+.target-select .chip.is-active { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.privacy-note { max-width: 52ch; margin: var(--space-4) auto 0; text-align: center; color: var(--ink-muted); font-size: var(--text-xs); letter-spacing: 0.03em; }
+
+/* ---- Shared big action bar -------------------------------------------------- */
+.mod-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; justify-content: center; }
+.mod-actions .btn { flex: 1; min-width: 132px; }
+
+/* ---- Progress under timers/counters ----------------------------------------- */
+.mod-progress { margin-top: var(--space-4); }
+
+/* ---- Responsive -------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .mod-stage { padding-inline: 1rem; }
+}

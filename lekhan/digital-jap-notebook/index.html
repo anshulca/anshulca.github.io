@@ -1,0 +1,74 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Digital Jap Notebook â€” Naam Jap Â· à¤²à¥‡à¤–à¤¨</title>
+  <meta name="description" content="A private, local notebook of your completed Naam Lekhan pages â€” with view, continue, delete, and export/import backup. Nothing leaves your device.">
+  <link rel="canonical" href="https://naamjap.in/lekhan/digital-jap-notebook/">
+  <meta name="theme-color" content="#f6f3ec">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Naam Jap">
+  <meta property="og:title" content="Digital Jap Notebook â€” Naam Jap">
+  <meta property="og:url" content="https://naamjap.in/lekhan/digital-jap-notebook/">
+  <meta property="og:image" content="https://naamjap.in/assets/og-image.svg">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..520&family=Inter:wght@400..600&family=Tiro+Devanagari+Hindi&display=swap">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <link rel="stylesheet" href="/css/lekhan.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header data-chrome="header"></header>
+
+  <main class="site-main" id="main">
+    <div class="container gutter-y">
+      <div class="page-hero" style="text-align:center;max-width:640px;margin-inline:auto">
+        <p class="eyebrow">Lekhan Â· à¤ªà¥à¤¸à¥à¤¤à¤• â€” Digital Jap Notebook</p>
+        <h1>Your written pages, kept close</h1>
+        <p class="lead muted" style="margin-inline:auto">Every completed page of Naam Lekhan rests here â€” privately, on this device. Export a backup whenever you like.</p>
+      </div>
+
+      <div class="nb-tools">
+        <div class="group">
+          <button type="button" class="btn btn--soft" id="nb-export">Export / Backup</button>
+          <button type="button" class="btn btn--ghost" id="nb-import">Import / Restore</button>
+          <input type="file" id="nb-import-file" accept="application/json" style="display:none" aria-hidden="true">
+        </div>
+        <a class="btn btn--ghost" href="/lekhan/naam-lekhan/">Write a page â†’</a>
+      </div>
+
+      <div id="nb-current"></div>
+
+      <div class="nb-empty" id="nb-empty">
+        <span class="dev" style="font-size:2.4rem;color:var(--accent-strong)" aria-hidden="true">à¥¥</span>
+        <p style="margin-top:var(--space-3)">No pages written yet. Your first completed page of Naam Lekhan will appear here.</p>
+        <a class="btn btn--primary" style="margin-top:var(--space-4)" href="/lekhan/naam-lekhan/">Begin Naam Lekhan</a>
+      </div>
+
+      <div class="nb-grid" id="nb-list"></div>
+
+      <p class="lekhan-privacy">Your spiritual writing stays on this device. Backups are downloaded as your own file â€” never uploaded to any server.</p>
+      <p style="text-align:center;margin-top:var(--space-4)" data-credit></p>
+    </div>
+  </main>
+
+  <footer data-chrome="footer"></footer>
+
+  <script src="/js/site.config.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/store.js"></script>
+  <script src="/js/db.js"></script>
+  <script src="/js/shared.js"></script>
+  <script src="/js/core.js"></script>
+  <script src="/js/notebook.js"></script>
+</body>
+</html>

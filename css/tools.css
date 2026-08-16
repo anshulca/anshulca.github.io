@@ -1,0 +1,49 @@
+/* =========================================================================
+   NAAM JAP · TOOLS HUB  (calculators + lakh challenge)
+   Reuses tokens + components. Loaded with css/components.css.
+   ========================================================================= */
+
+.tool-panel {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md); padding: var(--space-6) clamp(1.2rem, 5vw, 2.5rem);
+}
+.tool-panel + .tool-panel { margin-top: var(--space-8); }
+.tool-panel__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; }
+.tool-panel__head h2 { font-size: var(--text-xl); }
+.tool-panel__head .dev-glyph { font-family: var(--font-dev); color: var(--accent-strong); font-size: 1.4rem; }
+.tool-panel__body { margin-top: var(--space-5); }
+
+.calc-grid { display: grid; gap: var(--space-4); grid-template-columns: 1fr; }
+@media (min-width: 640px) { .calc-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 760px) { .calc-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.calc-cell { display: flex; flex-direction: column; gap: var(--space-2); }
+
+.calc-result {
+  margin-top: var(--space-5); padding: var(--space-5);
+  background: var(--accent-soft); border-radius: var(--radius-md);
+  text-align: center; display: none;
+}
+.calc-result.is-show { display: block; }
+.calc-result b { display: block; font-family: var(--font-display); font-variant-numeric: tabular-nums; font-size: var(--text-2xl); color: var(--primary-ink); }
+.calc-result span { color: var(--ink-muted); font-size: var(--text-sm); }
+.calc-result small { display: block; margin-top: var(--space-2); color: var(--ink-faint); font-size: var(--text-xs); }
+
+/* ---- Lakh challenge --------------------------------------------------------- */
+.lakh-face { text-align: center; padding: var(--space-6) 0 var(--space-4); }
+.lakh-face__num {
+  font-family: var(--font-display); font-variant-numeric: tabular-nums;
+  font-size: clamp(2.6rem, 10vw, 4.2rem); line-height: 1; color: var(--accent-strong);
+}
+.lakh-face__num small { font-size: 0.5em; color: var(--ink-faint); }
+.lakh-face__label { margin-top: var(--space-2); color: var(--ink-muted); font-size: var(--text-sm); }
+.lakh-remaining { margin-top: var(--space-3); color: var(--ink-faint); font-size: var(--text-xs); }
+.lakh-actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-4); }
+.lakh-pace { margin-top: var(--space-5); display: flex; gap: var(--space-3); align-items: center; justify-content: center; flex-wrap: wrap; }
+.lakh-pace .input { width: 130px; }
+.lakh-state { text-align: center; padding: var(--space-7) var(--space-4); }
+.lakh-state__glyph { font-family: var(--font-dev); font-size: 3.2rem; color: var(--accent-strong); display: block; }
+.lakh-state h3 { font-family: var(--font-display); font-size: var(--text-xl); margin-top: var(--space-3); }
+
+/* ---- Timer embed card ------------------------------------------------------- */
+.timer-quick { display: flex; gap: var(--space-4); align-items: center; justify-content: space-between; flex-wrap: wrap; padding: var(--space-5); background: var(--card--ink, var(--surface-sunken)); border-radius: var(--radius-lg); }
+@media (prefers-color-scheme: dark) { .timer-quick { background: var(--surface-sunken); } }

@@ -1,0 +1,109 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Journey â€” Naam Jap Â· à¤¯à¤¾à¤¤à¥à¤°à¤¾</title>
+  <meta name="description" content="A personal dashboard of your practice â€” today's sadhana, total jap, malas, naam written, streak, a daily heatmap and milestones. Private, on your device.">
+  <link rel="canonical" href="https://naamjap.in/journey/">
+  <meta name="theme-color" content="#f6f3ec">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Naam Jap">
+  <meta property="og:title" content="Journey â€” Naam Jap">
+  <meta property="og:url" content="https://naamjap.in/journey/">
+  <meta property="og:image" content="https://naamjap.in/assets/og-image.svg">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..520&family=Inter:wght@400..600&family=Tiro+Devanagari+Hindi&display=swap">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <link rel="stylesheet" href="/css/journey.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header data-chrome="header"></header>
+
+  <main class="site-main" id="main">
+    <div class="container gutter-y">
+      <div class="page-hero" style="text-align:center;max-width:640px;margin-inline:auto">
+        <p class="eyebrow">Journey Â· à¤¯à¤¾à¤¤à¥à¤°à¤¾</p>
+        <h1>Your quiet progress</h1>
+        <p class="lead muted" style="margin-inline:auto">A dashboard of the practice â€” today's sadhana, lifetime jap, malas, naam written, streak, and the small milestones along the way.</p>
+      </div>
+
+      <!-- First-run empty state -->
+      <div class="journey-empty" id="jrn-empty" hidden>
+        <span class="dev" style="font-size:2.4rem;color:var(--accent-strong)" aria-hidden="true">à¥¥</span>
+        <h2 style="margin-top:var(--space-3)">The dashboard begins where your practice begins</h2>
+        <p class="muted" style="margin:var(--space-3) auto 0;max-width:46ch">As soon as you make your first jap or write your first page, your journey starts to take shape here.</p>
+        <div class="btn-group" style="margin-top:var(--space-5);justify-content:center">
+          <a class="btn btn--primary" href="/jap/naam-jap/">Begin Naam Jap</a>
+          <a class="btn btn--ghost" href="/lekhan/naam-lekhan/">Begin Naam Lekhan</a>
+        </div>
+      </div>
+
+      <div id="jrn-dash" hidden>
+        <!-- Today -->
+        <section style="margin-top:var(--space-7)" aria-labelledby="jrn-today">
+          <div class="sec-head"><div><h2 id="jrn-today">Today</h2></div><span class="pill" id="jrn-today-status">Rest day</span></div>
+          <div class="journey-grid">
+            <div class="stat-card"><span class="stat-card__num accent" id="jrn-today-jap">0</span><span class="stat-card__label">Jap today</span></div>
+            <div class="stat-card"><span class="stat-card__num" id="jrn-today-malas">0</span><span class="stat-card__label">Malas today</span></div>
+            <div class="stat-card"><span class="stat-card__num" id="jrn-today-naam">0</span><span class="stat-card__label">Naam written today</span></div>
+            <div class="stat-card"><span class="stat-card__num" id="jrn-streak">0</span><span class="stat-card__label">Streak Â· days</span><span class="stat-card__sub" id="jrn-streak-today">â€”</span></div>
+          </div>
+        </section>
+
+        <!-- Totals -->
+        <section style="margin-top:var(--space-8)" aria-labelledby="jrn-totals">
+          <div class="sec-head"><div><h2 id="jrn-totals">All time</h2></div></div>
+          <div class="journey-grid">
+            <div class="stat-card"><span class="stat-card__num accent" id="jrn-total-jap">0</span><span class="stat-card__label">Total jap</span></div>
+            <div class="stat-card"><span class="stat-card__num" id="jrn-total-malas">0</span><span class="stat-card__label">Malas completed</span></div>
+            <div class="stat-card"><span class="stat-card__num" id="jrn-total-naam">0</span><span class="stat-card__label">Naam written</span></div>
+            <div class="stat-card"><span class="stat-card__num" id="jrn-total-pages">0</span><span class="stat-card__label">Pages completed</span></div>
+          </div>
+        </section>
+
+        <!-- Rhythm -->
+        <section style="margin-top:var(--space-8)" aria-labelledby="jrn-rhythm">
+          <div class="sec-head"><div><h2 id="jrn-rhythm">The rhythm of return</h2></div><span class="pill" id="jrn-streak-best">Best: 0 days</span></div>
+          <div class="card" style="padding:var(--space-6)">
+            <h3 style="font-size:var(--text-base)">Last 56 days</h3>
+            <div class="heatmap" id="jrn-heatmap"></div>
+            <div class="heatmap-meta" id="jrn-heatmap-meta"></div>
+            <h3 style="font-size:var(--text-base);margin-top:var(--space-6)">Last 14 days</h3>
+            <div class="bars" id="jrn-bars"></div>
+            <p class="faint" id="jrn-bars-meta" style="font-size:var(--text-xs);margin-top:var(--space-2)"></p>
+          </div>
+        </section>
+
+        <!-- Milestones -->
+        <section style="margin-top:var(--space-8)" aria-labelledby="jrn-milestones">
+          <div class="sec-head"><div><h2 id="jrn-milestones">Milestones</h2></div><span class="pill" id="jrn-milestones-meta">â€”</span></div>
+          <div class="milestones" id="jrn-milestones"></div>
+        </section>
+      </div>
+
+      <p class="privacy-note">Everything here is computed from your own device â€” nothing is uploaded anywhere.</p>
+      <p style="text-align:center;margin-top:var(--space-4)" data-credit></p>
+    </div>
+  </main>
+
+  <footer data-chrome="footer"></footer>
+
+  <script src="/js/site.config.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/store.js"></script>
+  <script src="/js/db.js"></script>
+  <script src="/js/shared.js"></script>
+  <script src="/js/core.js"></script>
+  <script src="/js/journey.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+/* =========================================================================
+   NAAM JAP · LAYOUT — header, nav, mobile drawer
+   ========================================================================= */
+
+/* ---- Site header -------------------------------------------------------- */
+.site-header {
+  position: sticky; top: 0; z-index: var(--z-header);
+  height: var(--header-h);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  backdrop-filter: blur(14px) saturate(1.1);
+  border-bottom: 1px solid transparent;
+  transition: height var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
+}
+.site-header.is-scrolled {
+  height: var(--header-h-scrolled);
+  border-bottom-color: var(--line);
+}
+.site-header__inner {
+  height: 100%;
+  display: flex; align-items: center; gap: var(--space-4);
+  justify-content: space-between;
+}
+
+/* Brand lockup */
+.brand {
+  display: inline-flex; align-items: center; gap: var(--space-3);
+  color: var(--ink); min-height: var(--tap-min);
+}
+.brand:hover { color: var(--ink); }
+.brand__mark { width: 34px; height: 34px; color: var(--accent-strong); flex: none; }
+.brand__text { display: flex; flex-direction: column; line-height: 1.05; }
+.brand__name { font-family: var(--font-display); font-weight: var(--display-weight); font-size: 1.08rem; letter-spacing: var(--tracking); }
+.brand__dev { font-family: var(--font-dev); font-size: var(--text-xs); color: var(--accent-strong); }
+
+/* Desktop nav */
+.site-nav { display: none; }
+.site-nav ul { display: flex; align-items: center; gap: var(--space-1); list-style: none; }
+.site-nav a {
+  display: inline-flex; align-items: center; gap: var(--space-1);
+  padding: var(--space-2) var(--space-3); border-radius: var(--radius-pill);
+  color: var(--ink-muted); font-size: var(--text-sm); font-weight: var(--label-weight);
+}
+.site-nav a .dev-caret { font-family: var(--font-dev); font-size: 12px; color: var(--ink-faint); }
+.site-nav a:hover { color: var(--ink); background: var(--accent-soft); }
+.site-nav a[aria-current='page'] { color: var(--ink); background: var(--accent-soft); }
+
+/* Header actions */
+.site-header__actions { display: flex; align-items: center; gap: var(--space-2); }
+
+/* Icon button (theme toggle, hamburger) */
+.icon-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: var(--tap-min); height: var(--tap-min); border-radius: var(--radius-sm);
+  border: 1px solid transparent; background: transparent; color: var(--ink);
+  cursor: pointer; transition: var(--transition);
+}
+.icon-btn:hover { background: var(--accent-soft); color: var(--ink); }
+.icon-btn svg { width: 20px; height: 20px; }
+
+/* Hamburger — desktop hidden */
+.hamburger { display: inline-flex; }
+
+/* Desktop layout switch */
+@media (min-width: 900px) {
+  .site-nav { display: block; }
+  .hamburger { display: none; }
+}
+
+/* ---- Mobile drawer (nav overlay) ---------------------------------------- */
+.drawer {
+  position: fixed; inset: 0; z-index: var(--z-drawer);
+  visibility: hidden; opacity: 0; transition: opacity var(--dur) var(--ease-out), visibility var(--dur);
+}
+.drawer.is-open { visibility: visible; opacity: 1; }
+.drawer__scrim {
+  position: absolute; inset: 0; background: var(--scrim);
+  -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+}
+.drawer__panel {
+  position: absolute; top: 0; right: 0; bottom: 0; width: min(86vw, 400px);
+  background: var(--surface-raised); box-shadow: var(--shadow-pop);
+  display: flex; flex-direction: column;
+  transform: translateX(100%); transition: transform var(--dur-slow) var(--ease-inout);
+}
+.drawer.is-open .drawer__panel { transform: none; }
+.drawer__head { display: flex; align-items: center; justify-content: space-between; padding: var(--space-4) var(--page-gutter); border-bottom: 1px solid var(--line); }
+.drawer__body { overflow-y: auto; padding: var(--space-4) var(--page-gutter) var(--space-8); flex: 1; }
+.drawer__group + .drawer__group { margin-top: var(--space-6); }
+.drawer__label { font-size: var(--text-xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: var(--space-3); font-weight: var(--label-weight); }
+.drawer__links { list-style: none; }
+.drawer__links li + li { margin-top: var(--space-1); }
+.drawer__links a {
+  display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3);
+  padding: var(--space-3) var(--space-2); border-radius: var(--radius-sm);
+  color: var(--ink); font-family: var(--font-display); font-size: var(--text-xl); font-weight: var(--display-weight);
+}
+.drawer__links a .dev-caret { font-family: var(--font-dev); font-size: 15px; color: var(--accent-strong); }
+.drawer__links a:hover { background: var(--accent-soft); }
+/* ---- Main shell ---------------------------------------------------------- */
+.site-main { padding-top: var(--space-6); }
+.site-main > * + * { margin-top: var(--section-gap); }
+
+/* ---- Page hero (interior pages) ----------------------------------------- */
+.page-hero { padding-block: var(--space-8) 0; }
+.page-hero__eyebrow { margin-bottom: var(--space-3); }
+.page-hero h1 { max-width: 18ch; }
+.page-hero p.lead { margin-top: var(--space-4); font-size: var(--text-lg); color: var(--ink-muted); max-width: 52ch; }
+
+/* ---- Section heading row ------------------------------------------------- */
+.sec-head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-6); }
+.sec-head h2 { max-width: 16ch; }
+.sec-head p { color: var(--ink-muted); margin-top: var(--space-2); max-width: 52ch; }
+
+/* ---- Grids --------------------------------------------------------------- */
+.grid { display: grid; gap: var(--card-gap); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+.two-col { display: grid; gap: clamp(2rem, 6vw, 4rem); align-items: start; }
+.two-col--aside { grid-template-columns: minmax(0, 1fr) var(--rail-max); }
+
+/* ---- Footer -------------------------------------------------------------- */
+.site-footer { margin-top: var(--space-10); border-top: 1px solid var(--line); background: color-mix(in srgb, var(--surface) 70%, transparent); }
+.site-footer__inner { padding-block: var(--space-8) var(--space-6); }
+.footer-grid { display: grid; gap: var(--space-7); }
+.footer-brand { max-width: 30ch; }
+.footer-brand .brand__mark { width: 40px; height: 40px; }
+.footer-brand p { margin-top: var(--space-3); color: var(--ink-muted); font-size: var(--text-sm); }
+.footer-cols { display: grid; gap: var(--space-6); grid-template-columns: repeat(2, 1fr); }
+.footer-cols h4 { font: var(--label-weight) var(--text-xs) / 1 var(--font-body); text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-faint); margin-bottom: var(--space-4); }
+.footer-cols ul { list-style: none; }
+.footer-cols li + li { margin-top: var(--space-3); }
+.footer-cols a { color: var(--ink-muted); font-size: var(--text-sm); }
+.footer-cols a:hover { color: var(--accent-strong); }
+
+.footer-meta { margin-top: var(--space-7); padding-top: var(--space-5); border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4); }
+.footer-meta p { color: var(--ink-faint); font-size: var(--text-xs); }
+.footer-social { display: flex; gap: var(--space-2); }
+.footer-social a { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--ink-muted); font-size: var(--text-sm); }
+.footer-privacy { display: flex; gap: var(--space-4); }
+.footer-privacy a { font-size: var(--text-xs); color: var(--ink-faint); }
+
+/* Mobile footer is single column; two-row cols */
+@media (min-width: 700px) {
+  .footer-grid { grid-template-columns: 1fr 2fr; gap: var(--space-8); }
+  .footer-cols { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ---- Responsive grids ---------------------------------------------------- */
+@media (max-width: 640px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .two-col--aside { grid-template-columns: 1fr; }
+}
+@media (min-width: 641px) and (max-width: 900px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+/* Header CTA is desktop-only; on mobile the CTA lives in the drawer */
+@media (max-width: 899px) {
+  .site-header .btn--primary { display: none !important; }
+}

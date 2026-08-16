@@ -1,0 +1,84 @@
+/* =========================================================================
+   NAAM JAP · SADHANA MODULE  (daily flow, sankalp, target, streak)
+   Reuses tokens + components. Loaded with css/components.css.
+   ========================================================================= */
+
+/* ---- Daily flow card ------------------------------------------------------ */
+.sadhana-stage { max-width: 720px; margin-inline: auto; }
+.sadhana-card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md); padding: var(--space-6) clamp(1.2rem, 5vw, 2.5rem);
+}
+.sadhana-card + .sadhana-card { margin-top: var(--space-6); }
+.sadhana-card__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; }
+.sadhana-card__head h2 { font-size: var(--text-xl); }
+.sadhana-card__head .pill { font-size: var(--text-xs); }
+
+/* ---- Target rows ---------------------------------------------------------- */
+.target-rows { display: grid; gap: var(--space-4); margin-top: var(--space-5); }
+.target-row {
+  display: grid; grid-template-columns: 1fr auto; gap: var(--space-4);
+  align-items: center; padding: var(--space-4);
+  background: var(--surface-sunken); border-radius: var(--radius-md);
+}
+.target-row__main { position: relative; }
+.target-row__label { font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); font-weight: var(--label-weight); }
+.target-row__value {
+  font-family: var(--font-display); font-variant-numeric: tabular-nums;
+  font-size: var(--text-2xl); color: var(--primary-ink); margin-top: var(--space-1);
+}
+.target-row__value small { font-family: var(--font-body); font-size: var(--text-sm); color: var(--ink-muted); }
+.target-row__bar { position: absolute; left: 0; right: 0; top: calc(100% + var(--space-2)); height: 4px; border-radius: var(--radius-pill); background: var(--line); overflow: hidden; }
+.target-row__bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--accent-soft), var(--accent)); transition: width var(--dur-slow) var(--ease-inout); }
+.target-row__bar.is-done i { background: var(--success); }
+.stepper { display: inline-flex; align-items: center; gap: var(--space-2); }
+.stepper button {
+  width: var(--tap-min); height: var(--tap-min); border-radius: 50%;
+  border: 1px solid var(--line-strong); background: var(--surface-raised); color: var(--ink);
+  font-size: var(--text-lg); line-height: 1; cursor: pointer; transition: var(--transition);
+}
+.stepper button:hover { border-color: var(--accent); color: var(--accent-strong); background: var(--accent-soft); }
+.stepper input {
+  width: 84px; height: var(--input-h); text-align: center; font-family: var(--font-display);
+  font-variant-numeric: tabular-nums; font-size: var(--text-lg);
+}
+.target-zero { color: var(--ink-faint); }
+
+/* ---- Sankalp -------------------------------------------------------------- */
+.sankalp-quote {
+  margin-top: var(--space-5); padding: var(--space-5) var(--space-6);
+  border-left: 3px solid var(--accent); border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: var(--accent-soft); font-family: var(--font-display); font-style: italic;
+  font-size: var(--text-lg); color: var(--primary-ink); word-break: break-word;
+}
+.sankalp-quote.is-empty { color: var(--ink-faint); font-style: italic; font-size: var(--text-base); font-family: var(--font-body); }
+.sankalp-presets { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
+.sankalp-presets .chip { max-width: 100%; white-space: normal; text-align: left; height: auto; padding-block: var(--space-2); }
+
+/* ---- Streak --------------------------------------------------------------- */
+.streak-hero { display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; }
+.streak-hero__num {
+  font-family: var(--font-display); font-variant-numeric: tabular-nums;
+  font-size: clamp(3rem, 10vw, 4.6rem); line-height: 1; color: var(--accent-strong);
+}
+.streak-hero__meta { flex: 1; min-width: 180px; }
+.streak-hero__meta b { display: block; font-size: var(--text-lg); }
+.streak-hero__meta span { color: var(--ink-muted); font-size: var(--text-sm); }
+.streak-strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(34px, 1fr)); gap: var(--space-2); margin-top: var(--space-5); }
+.streak-cell {
+  aspect-ratio: 1; display: grid; place-items: center; border-radius: var(--radius-sm);
+  background: var(--surface-sunken); border: 1px solid var(--line);
+  font-size: var(--text-xs); color: var(--ink-faint);
+}
+.streak-cell.is-on { background: var(--success); border-color: var(--success); color: #fff; }
+.streak-cell.is-today { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* ---- Sadhana links --------------------------------------------------------- */
+.sadhana-links { display: grid; gap: var(--card-gap); grid-template-columns: 1fr; }
+@media (min-width: 620px) { .sadhana-links { grid-template-columns: repeat(2, 1fr); } }
+.sadhana-link { padding: var(--space-5); display: flex; gap: var(--space-4); align-items: center; }
+.sadhana-link .dev-glyph { font-size: 2rem; color: var(--accent-strong); }
+.sadhana-link__mid { flex: 1; }
+.sadhana-link__mid h3 { margin: 0; font-size: var(--text-lg); }
+.sadhana-link__mid p { margin-top: var(--space-1); font-size: var(--text-sm); color: var(--ink-muted); }
+.sadhana-link__mid .today-num { font-family: var(--font-display); font-variant-numeric: tabular-nums; color: var(--accent-strong); }

@@ -1,0 +1,88 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Custom Naam Jap â€” Naam Jap Â· à¤œà¤ª</title>
+  <meta name="description" content="Enter any naam or mantra and count toward your own target â€” 108, 1008, 10,008 or a custom number. Fully local and private.">
+  <link rel="canonical" href="https://naamjap.in/jap/custom-naam-jap/">
+  <meta name="theme-color" content="#f6f3ec">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Naam Jap">
+  <meta property="og:title" content="Custom Naam Jap â€” Naam Jap">
+  <meta property="og:url" content="https://naamjap.in/jap/custom-naam-jap/">
+  <meta property="og:image" content="https://naamjap.in/assets/og-image.svg">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..520&family=Inter:wght@400..600&family=Tiro+Devanagari+Hindi&display=swap">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <link rel="stylesheet" href="/css/naam-jap.css">
+  <link rel="stylesheet" href="/css/jap.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header data-chrome="header"></header>
+
+  <main class="site-main" id="main">
+    <div class="container gutter-y">
+      <div class="page-hero" style="text-align:center;max-width:640px;margin-inline:auto">
+        <p class="eyebrow">Jap Â· à¤œà¤ª â€” Custom Naam Jap</p>
+        <h1>Your own naam, your own count</h1>
+        <p class="lead muted" style="margin-inline:auto">Enter any naam or mantra â€” Ram, Radha, Shamb Sadashiv, Om Namah Shivay â€” set a target, and begin.</p>
+      </div>
+
+      <section class="mod-stage" style="margin-top:var(--space-7)" aria-label="Custom Naam Jap">
+        <p class="mod-stage__kicker">Naam / Mantra</p>
+        <div class="field">
+          <label class="field__label" for="cj-naam">Your naam or mantra</label>
+          <input class="input" id="cj-naam" type="text" inputmode="text" autocomplete="off" placeholder="e.g. Shamb Sadashiv" aria-describedby="cj-hint">
+          <p class="field__hint" id="cj-hint">For example: Ram Â· Radha Â· Om Namah Shivay</p>
+        </div>
+
+        <p class="mod-stage__kicker">Target repetitions</p>
+        <div class="target-select" id="cj-targets" role="group" aria-label="Target"></div>
+        <div class="timer-custom">
+          <input class="input" id="cj-target-custom" type="number" inputmode="numeric" min="1" placeholder="custom target" aria-label="Custom target">
+          <button type="button" class="btn btn--soft" id="cj-target-apply">Set target</button>
+        </div>
+
+        <button class="tap-btn" id="cj-tap" type="button" aria-label="Tap for jap. Counts one repetition.">
+          <span class="naam-dev" id="cj-naam-dev" aria-hidden="true">Enter a naam to begin</span>
+          <span class="naam-en" id="cj-naam-en"></span>
+          <span class="tap-count" id="cj-count">0 <small>/ 108</small></span>
+          <span class="tap-mala" id="cj-target-label">Target: 108</span>
+          <span class="tap-hint">Tap to jap</span>
+        </button>
+        <div class="mod-progress"><div class="progress"><div class="progress__bar" id="cj-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progress toward target"></div></div></div>
+
+        <div id="cj-done" aria-live="polite"></div>
+
+        <div class="mod-actions">
+          <button type="button" class="btn btn--ghost" id="cj-pause">Pause</button>
+          <button type="button" class="btn btn--ink" id="cj-reset">Reset count</button>
+        </div>
+      </section>
+
+      <p class="privacy-note">Your practice stays on this device. This naam and count are never sent to any server.</p>
+      <p style="text-align:center;margin-top:var(--space-4)" data-credit></p>
+    </div>
+  </main>
+
+  <footer data-chrome="footer"></footer>
+
+  <script src="/js/site.config.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/store.js"></script>
+  <script src="/js/db.js"></script>
+  <script src="/js/shared.js"></script>
+  <script src="/js/core.js"></script>
+  <script src="/js/custom-jap.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+/* =========================================================================
+   NAAM JAP · JOURNEY DASHBOARD  (totals, heatmap, bars, milestones)
+   Reuses tokens + components. Loaded with css/components.css.
+   ========================================================================= */
+
+.journey-grid { display: grid; gap: var(--card-gap); }
+@media (min-width: 820px) { .journey-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.stat-card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6); box-shadow: var(--shadow-xs);
+}
+.stat-card__num {
+  font-family: var(--font-display); font-variant-numeric: tabular-nums;
+  font-size: clamp(2rem, 6vw, 2.8rem); line-height: 1.05; color: var(--primary-ink);
+}
+.stat-card__num.accent { color: var(--accent-strong); }
+.stat-card__label { margin-top: var(--space-1); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); font-weight: var(--label-weight); }
+.stat-card__sub { margin-top: var(--space-2); font-size: var(--text-sm); color: var(--ink-muted); }
+
+/* ---- Heatmap --------------------------------------------------------------- */
+.heatmap { display: grid; grid-template-columns: repeat(7, minmax(14px, 1fr)); gap: 5px; margin-top: var(--space-5); }
+.heatmap__cell { aspect-ratio: 1; border-radius: 4px; background: var(--surface-sunken); border: 1px solid var(--line); min-height: 14px; }
+.heatmap__cell.l1 { background: color-mix(in srgb, var(--accent-soft) 60%, transparent); border-color: transparent; }
+.heatmap__cell.l2 { background: var(--accent-soft); border-color: transparent; }
+.heatmap__cell.l3 { background: color-mix(in srgb, var(--accent) 45%, var(--accent-soft)); border-color: transparent; }
+.heatmap__cell.l4 { background: var(--accent); border-color: transparent; }
+.heatmap__cell.is-today { outline: 2px solid var(--accent); outline-offset: 1px; }
+.heatmap__cell[title] { cursor: help; }
+.heatmap-meta { margin-top: var(--space-3); display: flex; justify-content: space-between; gap: var(--space-3); color: var(--ink-faint); font-size: var(--text-xs); flex-wrap: wrap; }
+
+/* ---- 14-day bars ----------------------------------------------------------- */
+.bars { display: flex; align-items: flex-end; gap: 6px; height: 120px; margin-top: var(--space-5); }
+.bars__col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end; }
+.bars__bar { width: 100%; max-width: 26px; border-radius: var(--radius-xs) var(--radius-xs) 0 0; background: linear-gradient(180deg, var(--accent), var(--accent-soft)); min-height: 3px; }
+.bars__col.is-today .bars__bar { background: var(--accent-strong); }
+.bars__day { font-size: 10px; color: var(--ink-faint); }
+.bars__val { font-size: 10px; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+
+/* ---- Milestones ------------------------------------------------------------ */
+.milestones { display: grid; gap: var(--space-3); }
+.milestone {
+  display: flex; gap: var(--space-4); align-items: center; padding: var(--space-4) var(--space-5);
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-md);
+}
+.milestone__glyph { font-family: var(--font-dev); font-size: 1.5rem; color: var(--accent-strong); width: 44px; height: 44px; flex: none; display: grid; place-items: center; background: var(--accent-soft); border-radius: 50%; }
+.milestone__glyph.is-locked { color: var(--ink-faint); background: var(--surface-sunken); }
+.milestone__mid { flex: 1; }
+.milestone__mid b { display: block; font-family: var(--font-display); font-size: var(--text-base); font-weight: var(--display-weight); }
+.milestone__mid span { color: var(--ink-muted); font-size: var(--text-xs); }
+.milestone__state { font-size: var(--text-xs); color: var(--ink-faint); white-space: nowrap; }
+.milestone.is-done { border-color: var(--line-strong); }
+.milestone.is-done .milestone__state { color: var(--success); font-weight: var(--label-weight); }
+
+/* ---- Empty/first-run state -------------------------------------------------- */
+.journey-empty { text-align: center; padding: var(--space-9) var(--space-5); }

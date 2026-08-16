@@ -1,0 +1,169 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tools â€” Naam Jap Â· à¤‰à¤ªà¤•à¤°à¤£</title>
+  <meta name="description" content="Quiet helpers for the practice â€” mala calculator, jap goal calculator, the 1 lakh challenge, the 108 calculator and the jap timer. All private, on your device.">
+  <link rel="canonical" href="https://naamjap.in/tools/">
+  <meta name="theme-color" content="#f6f3ec">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Naam Jap">
+  <meta property="og:title" content="Tools â€” Naam Jap">
+  <meta property="og:url" content="https://naamjap.in/tools/">
+  <meta property="og:image" content="https://naamjap.in/assets/og-image.svg">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..520&family=Inter:wght@400..600&family=Tiro+Devanagari+Hindi&display=swap">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <link rel="stylesheet" href="/css/jap.css">
+  <link rel="stylesheet" href="/css/tools.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header data-chrome="header"></header>
+
+  <main class="site-main" id="main">
+    <div class="container gutter-y">
+      <div class="page-hero" style="text-align:center;max-width:640px;margin-inline:auto">
+        <p class="eyebrow">Tools Â· à¤‰à¤ªà¤•à¤°à¤£</p>
+        <h1>Small helpers for the practice</h1>
+        <p class="lead muted" style="margin-inline:auto">Quiet calculators to make sense of a large count, set a goal, or pace a timed jap. Nothing here leaves your device.</p>
+      </div>
+
+      <section class="tool-panel" style="margin-top:var(--space-7)" aria-labelledby="tool-mala">
+        <div class="tool-panel__head">
+          <h2 id="tool-mala"><span class="dev-glyph" aria-hidden="true">à¤®à¤¾à¤²à¤¾</span> Mala Calculator</h2>
+          <span class="muted" style="font-size:var(--text-xs)">beads â†” malas â†” jap</span>
+        </div>
+        <div class="tool-panel__body">
+          <div class="calc-grid">
+            <div class="calc-cell">
+              <label class="field__label" for="calc-mala-beads">Beads counted</label>
+              <input class="input" id="calc-mala-beads" type="number" inputmode="numeric" min="0" placeholder="e.g. 54">
+            </div>
+            <div class="calc-cell">
+              <label class="field__label" for="calc-mala-malas">Full malas completed</label>
+              <input class="input" id="calc-mala-malas" type="number" inputmode="numeric" min="0" placeholder="e.g. 4">
+            </div>
+            <div class="calc-cell" style="justify-content:flex-end">
+              <button type="button" class="btn btn--primary btn--block" id="calc-mala-run">Convert</button>
+            </div>
+          </div>
+          <div class="calc-result" id="calc-mala-out"></div>
+        </div>
+      </section>
+
+      <section class="tool-panel" aria-labelledby="tool-goal">
+        <div class="tool-panel__head">
+          <h2 id="tool-goal"><span class="dev-glyph" aria-hidden="true">à¤²à¤•à¥à¤·à¥à¤¯</span> Jap Goal Calculator</h2>
+          <span class="muted" style="font-size:var(--text-xs)">target Â· days Â· malas per day</span>
+        </div>
+        <div class="tool-panel__body">
+          <div class="calc-grid">
+            <div class="calc-cell">
+              <label class="field__label" for="calc-goal-total">Total jap goal</label>
+              <input class="input" id="calc-goal-total" type="number" inputmode="numeric" min="1" placeholder="e.g. 125000">
+            </div>
+            <div class="calc-cell">
+              <label class="field__label" for="calc-goal-days">Days to finish</label>
+              <input class="input" id="calc-goal-days" type="number" inputmode="numeric" min="1" placeholder="e.g. 40">
+            </div>
+            <div class="calc-cell">
+              <label class="field__label" for="calc-goal-rate">â€¦or jap per day</label>
+              <input class="input" id="calc-goal-rate" type="number" inputmode="numeric" min="1" placeholder="e.g. 540">
+            </div>
+            <div class="calc-cell" style="justify-content:flex-end">
+              <button type="button" class="btn btn--primary btn--block" id="calc-goal-run">Work it out</button>
+            </div>
+          </div>
+          <p class="field__hint" style="margin-top:var(--space-3)">Fill a goal with days â€” or with jap-per-day â€” and press. Both directions are answered.</p>
+          <div class="calc-result" id="calc-goal-out"></div>
+        </div>
+      </section>
+
+      <section class="tool-panel" aria-labelledby="tool-lakh">
+        <div class="tool-panel__head">
+          <h2 id="tool-lakh"><span class="dev-glyph" aria-hidden="true">à¤²à¤•à¥à¤·</span> 1 Lakh Naam Challenge</h2>
+          <span class="muted" style="font-size:var(--text-xs)">a 100,000-naam sankalp, one tap at a time</span>
+        </div>
+        <div class="tool-panel__body">
+          <div class="lakh-face" id="lakh-face">
+            <div class="lakh-face__num" id="lakh-num">0 <small>/ 100,000</small></div>
+            <div class="lakh-face__label" id="lakh-label">naam of jap counted</div>
+            <div class="lakh-remaining" id="lakh-remain">â€”</div>
+            <div class="progress" style="margin-top:var(--space-4)"><div class="progress__bar" id="lakh-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progress toward one lakh"></div></div>
+            <p class="lakh-pace" id="lakh-pace"></p>
+          </div>
+          <div class="lakh-state" id="lakh-state" hidden>
+            <span class="lakh-state__glyph" aria-hidden="true">à¥¥</span>
+            <h3>One lakh of the Name â€” complete</h3>
+            <p class="muted">A sankalp kept. When you are ready, a fresh lakh can begin.</p>
+          </div>
+          <div class="lakh-actions">
+            <button type="button" class="btn btn--primary btn--lg" id="lakh-add">+ 1 mala (108)</button>
+            <button type="button" class="btn btn--ghost" id="lakh-undo">Undo mala</button>
+            <div class="timer-custom" style="width:100%">
+              <input class="input" id="lakh-add-num" type="number" inputmode="numeric" min="1" placeholder="add custom count" aria-label="Add a custom count">
+              <button type="button" class="btn btn--soft" id="lakh-add-custom">Add</button>
+              <input class="input" id="lakh-target" type="number" inputmode="numeric" min="1" placeholder="target (default 100000)" aria-label="Target">
+              <button type="button" class="btn btn--soft" id="lakh-set-target">Set target</button>
+              <button type="button" class="btn btn--ink" id="lakh-reset">Reset</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tool-panel" aria-labelledby="tool-108">
+        <div class="tool-panel__head">
+          <h2 id="tool-108"><span class="dev-glyph" aria-hidden="true">108</span> 108 Calculator</h2>
+          <span class="muted" style="font-size:var(--text-xs)">rounds Ã— 108 + loose beads</span>
+        </div>
+        <div class="tool-panel__body">
+          <div class="calc-grid">
+            <div class="calc-cell">
+              <label class="field__label" for="calc-108-rounds">Rounds (malas) of 108</label>
+              <input class="input" id="calc-108-rounds" type="number" inputmode="numeric" min="0" placeholder="e.g. 7">
+            </div>
+            <div class="calc-cell">
+              <label class="field__label" for="calc-108-beads">Extra beads</label>
+              <input class="input" id="calc-108-beads" type="number" inputmode="numeric" min="0" placeholder="e.g. 43">
+            </div>
+            <div class="calc-cell" style="justify-content:flex-end">
+              <button type="button" class="btn btn--primary btn--block" id="calc-108-run">Total</button>
+            </div>
+          </div>
+          <div class="calc-result" id="calc-108-out"></div>
+        </div>
+      </section>
+
+      <section class="tool-panel" aria-labelledby="tool-timer">
+        <div class="tool-panel__head">
+          <h2 id="tool-timer"><span class="dev-glyph" aria-hidden="true">à¤˜à¤¡à¤¼à¥€</span> Jap Timer</h2>
+        </div>
+        <div class="tool-panel__body" id="tools-timer-quick"></div>
+      </section>
+
+      <p class="privacy-note">All calculations run on this device. The 1 Lakh Challenge persists locally under the same private store as the rest of your practice.</p>
+      <p style="text-align:center;margin-top:var(--space-4)" data-credit></p>
+    </div>
+  </main>
+
+  <footer data-chrome="footer"></footer>
+
+  <script src="/js/site.config.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/store.js"></script>
+  <script src="/js/db.js"></script>
+  <script src="/js/shared.js"></script>
+  <script src="/js/core.js"></script>
+  <script src="/js/tools.js"></script>
+</body>
+</html>

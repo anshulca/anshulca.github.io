@@ -1,0 +1,97 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Naam Jap Counter â€” Naam Jap Â· à¤œà¤ª</title>
+  <meta name="description" content="Choose a naam and tap to count. 108 jap is one full mala. A calm, private Naam Jap counter that keeps your practice on your device.">
+  <link rel="canonical" href="https://naamjap.in/jap/naam-jap/">
+  <meta name="theme-color" content="#f6f3ec">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Naam Jap">
+  <meta property="og:title" content="Naam Jap Counter â€” Naam Jap">
+  <meta property="og:description" content="A calm, private Naam Jap counter. 108 jap is one full mala.">
+  <meta property="og:url" content="https://naamjap.in/jap/naam-jap/">
+  <meta property="og:image" content="https://naamjap.in/assets/og-image.svg">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..520&family=Inter:wght@400..600&family=Tiro+Devanagari+Hindi&display=swap">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <link rel="stylesheet" href="/css/naam-jap.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header data-chrome="header"></header>
+
+  <main class="site-main" id="main">
+    <div class="container gutter-y">
+      <div class="page-hero" style="text-align:center;max-width:640px;margin-inline:auto">
+        <p class="eyebrow">Jap Â· à¤œà¤ª â€” Naam Jap Counter</p>
+        <h1>Count the Name</h1>
+        <p class="lead muted" style="margin-inline:auto">Choose a naam, then tap. 108 jap is one full mala. Your count stays on this device â€” refreshing never loses it.</p>
+      </div>
+
+      <!-- Naam selector -->
+      <section class="jap-stage" style="margin-top:var(--space-7)" aria-label="Naam Jap counter">
+        <p class="card__kicker" style="text-align:center;margin-bottom:var(--space-3)">Choose your naam</p>
+        <div class="naam-select" id="naam-select" role="group" aria-label="Choose a naam"></div>
+        <div class="naam-custom" id="naam-custom" hidden>
+          <div class="field">
+            <label class="field__label" for="naam-custom-input">Your naam</label>
+            <input class="input" id="naam-custom-input" type="text" inputmode="text" autocomplete="off" placeholder="e.g. Shamb Sadashiv" aria-describedby="naam-custom-hint">
+            <p class="field__hint" id="naam-custom-hint">It becomes the active naam for this counter.</p>
+          </div>
+        </div>
+
+        <div class="mala-ring" id="mala-ring" aria-hidden="true"></div>
+
+        <button class="tap-btn" id="tap-btn" type="button" aria-label="Tap for jap. Counts one repetition.">
+          <span class="naam-dev" id="tap-naam-dev" aria-hidden="true"></span>
+          <span class="naam-en" id="tap-naam-en"></span>
+          <span class="tap-count" id="tap-count"></span>
+          <span class="tap-mala" id="tap-mala"></span>
+          <span class="tap-hint" id="tap-hint">Tap to jap</span>
+        </button>
+      </section>
+
+      <!-- Session summary -->
+      <section class="jap-summary" aria-label="Session summary">
+        <div class="summary-group">
+          <div class="summary-tile"><b id="sum-mala">1</b><span>Current mala</span></div>
+          <div class="summary-tile summary-tile--accent"><b id="sum-today">0</b><span>Today</span></div>
+          <div class="summary-tile summary-tile--accent"><b id="sum-total">0</b><span>Total jap</span></div>
+          <div class="summary-tile"><b id="sum-malas">0</b><span>Malas completed</span></div>
+        </div>
+        <div class="summary-tile" style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-3)">
+          <span>Session time</span><b id="sum-duration" style="font-size:var(--text-lg)">0 sec</b>
+        </div>
+        <div class="jap-progress"><div class="progress"><div class="progress__bar" id="jap-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progress in current mala"></div></div></div>
+      </section>
+
+      <!-- Controls -->
+      <div class="jap-controls">
+        <button class="btn btn--ghost" id="btn-pause" type="button">Pause</button>
+        <button class="btn btn--ink" id="btn-reset" type="button">Reset session</button>
+                  </div>
+      <p style="text-align:center;margin-top:var(--space-4)" data-credit></p>
+    </div>
+  </main>
+
+  <footer data-chrome="footer"></footer>
+
+  <script src="/js/site.config.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/store.js"></script>
+  <script src="/js/db.js"></script>
+  <script src="/js/shared.js"></script>
+  <script src="/js/core.js"></script>
+  <script src="/js/naam-jap.js"></script>
+</body>
+</html>

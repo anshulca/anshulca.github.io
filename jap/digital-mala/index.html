@@ -1,0 +1,91 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Digital Mala â€” Naam Jap Â· à¤®à¤¾à¤²à¤¾</title>
+  <meta name="description" content="A circular 108-bead digital mala with a meru bead. Tap to count jap, complete malas and keep your practice on your device.">
+  <link rel="canonical" href="https://naamjap.in/jap/digital-mala/">
+  <meta name="theme-color" content="#f6f3ec">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Naam Jap">
+  <meta property="og:title" content="Digital Mala â€” Naam Jap">
+  <meta property="og:url" content="https://naamjap.in/jap/digital-mala/">
+  <meta property="og:image" content="https://naamjap.in/assets/og-image.svg">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..520&family=Inter:wght@400..600&family=Tiro+Devanagari+Hindi&display=swap">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <link rel="stylesheet" href="/css/naam-jap.css">
+  <link rel="stylesheet" href="/css/jap.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header data-chrome="header"></header>
+
+  <main class="site-main" id="main">
+    <div class="container gutter-y">
+      <div class="page-hero" style="text-align:center;max-width:640px;margin-inline:auto">
+        <p class="eyebrow">Jap Â· à¤®à¤¾à¤²à¤¾ â€” Digital Mala</p>
+        <h1>A mala for the palm of your hand</h1>
+        <p class="lead muted" style="margin-inline:auto">108 beads, one meru bead, one tap for one jap. Your practice stays on this device.</p>
+      </div>
+
+      <section class="mod-stage" style="margin-top:var(--space-7)" aria-label="Digital Mala">
+        <p class="mod-stage__kicker">Choose your naam</p>
+        <div class="naam-select" id="mala-naams" role="group" aria-label="Choose a naam"></div>
+        <div class="naam-custom" id="mala-custom" hidden>
+          <div class="field">
+            <label class="field__label" for="mala-custom-input">Your naam</label>
+            <input class="input" id="mala-custom-input" type="text" inputmode="text" autocomplete="off" placeholder="e.g. Shamb Sadashiv">
+          </div>
+        </div>
+
+        <button class="tap-btn" id="mala-tap" type="button" aria-label="Tap for jap. One tap counts one repetition.">
+          <span class="mala-ring" id="mala-ring" aria-hidden="true" style="margin:0 auto 0;display:block"></span>
+          <span class="naam-dev" id="tap-naam-dev" aria-hidden="true"></span>
+          <span class="naam-en" id="tap-naam-en"></span>
+          <span class="tap-count" id="mala-count"></span>
+          <span class="tap-mala" id="mala-label"></span>
+          <span class="tap-hint">Tap to jap</span>
+        </button>
+      </section>
+
+      <section class="jap-summary" aria-label="Session summary">
+        <div class="summary-group">
+          <div class="summary-tile"><b id="sum-mala">1</b><span>Current mala</span></div>
+          <div class="summary-tile summary-tile--accent"><b id="sum-today">0</b><span>Today</span></div>
+          <div class="summary-tile summary-tile--accent"><b id="sum-total">0</b><span>Total jap</span></div>
+          <div class="summary-tile"><b id="sum-malas">0</b><span>Malas completed</span></div>
+        </div>
+        <div class="jap-progress"><div class="progress"><div class="progress__bar" id="mala-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progress in current mala"></div></div></div>
+      </section>
+
+      <div class="jap-controls">
+        <button class="btn btn--ghost" id="btn-pause" type="button">Pause</button>
+        <button class="btn btn--ink" id="btn-reset" type="button">Reset session</button>
+      </div>
+
+      <p class="privacy-note">Your practice stays on this device â€” no account, no cloud.</p>
+      <p style="text-align:center;margin-top:var(--space-4)" data-credit></p>
+    </div>
+  </main>
+
+  <footer data-chrome="footer"></footer>
+
+  <script src="/js/site.config.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/store.js"></script>
+  <script src="/js/db.js"></script>
+  <script src="/js/shared.js"></script>
+  <script src="/js/core.js"></script>
+  <script src="/js/digital-mala.js"></script>
+</body>
+</html>
