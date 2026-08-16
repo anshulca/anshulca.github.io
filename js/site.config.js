@@ -126,9 +126,9 @@
        SOCIAL / CONTACT  (configure when you have links)
        ------------------------------------------------------------------ */
     social: [
-      // { label: 'Instagram', url: 'https://instagram.com/...', icon: 'instagram' },
-      // { label: 'YouTube', url: 'https://youtube.com/@...', icon: 'youtube' },
-      // { label: 'Email', url: 'mailto:alerts@karwaandassociates.com', icon: 'mail' }
+      { label: 'LinkedIn', url: 'https://www.linkedin.com/in/anshulkarwa/', icon: 'linkedin' },
+      { label: 'Instagram', url: 'https://www.instagram.com/anshulkarwa/', icon: 'instagram' },
+      { label: 'Email', url: 'mailto:alerts@karwaandassociates.com', icon: 'mail' }
     ],
 
     /* ------------------------------------------------------------------
@@ -136,19 +136,20 @@
        ------------------------------------------------------------------ */
     aboutMe: {
       name: 'CA Anshul Karwa',
-      role: 'Chartered Accountant · Maker of Naam Jap',
+      role: 'Chartered Accountant · Developer of Naam Jap',
       location: 'India',
+      photo: '/assets/photo.jpg',
       shortIntro:
         'A quiet devotee who built Naam Jap to keep company with the Name - and to help others stay steady in their own daily practice.',
-      photo: '', // e.g. '/assets/img/me.jpg' - empty uses an initial monogram
       story: [
         'Naam Jap began as a simple personal habit - a few malas each morning before the day began.',
         'Over time I saw how much consistency mattered, and how easy it was to lose count, lose track, or lose the thread of a daily sadhana.',
-        'This space is the result: a calm, private place where the practice holds its own rhythm, without noise or distraction.'
+        'This space is the result: a calm, private place where the practice holds its own rhythm, without noise or distraction.',
+        'People often forget or feel shy to use a physical mala in office meetings or while travelling. This tool overcomes that problem — your practice stays with you, quietly, on the device you already carry.'
       ],
       philosophy:
         'Technology is not the opposite of stillness. A well-made tool can hold space for the sacred - quietly, and in the background.',
-      message: 'May this little space help you pause, remember and return.'
+      message: 'May this little space help you pause, remember and return. — <a href="https://www.linkedin.com/in/anshulkarwa/" target="_blank" rel="noopener noreferrer">By CA Anshul Karwa</a>'
     },
 
     /* ------------------------------------------------------------------

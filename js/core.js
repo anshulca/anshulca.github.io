@@ -60,10 +60,14 @@
   function initTheme() {
     var stored;
     try { stored = global.localStorage.getItem(THEME_KEY); } catch (e) {}
-    // Default by time of day: light 6am-7pm, night 7pm-6am. A manual toggle
-    // persists and wins until the user changes it again.
-    var h = new Date().getHours();
-    var timed = (h >= 19 || h < 6) ? 'dark' : 'light';
+    // Default by IST time of day: light 5am-8pm, dark 8pm-5am.
+    // A manual toggle persists and wins until the user changes it again.
+    var now = new Date();
+    // IST is UTC+5:30
+    var istOffset = 5.5 * 60 * 60 * 1000;
+    var istTime = new Date(now.getTime() + istOffset);
+    var h = istTime.getUTCHours();
+    var timed = (h >= 20 || h < 5) ? 'dark' : 'light';
     applyTheme(stored || timed);
   }
 
@@ -241,10 +245,17 @@ function isDark() {
       ? '<div class="avatar"><img class="avatar--img" src="' + a.photo + '" alt="' + esc(a.name) + '" width="88" height="88"></div>'
       : '<div class="avatar" aria-hidden="true">' + esc(a.name.trim().charAt(0) || 'ॐ') + '</div>';
     var story = a.story.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('');
+    var socialHtml = (C.social || []).filter(function (s) { return s.icon === 'linkedin' || s.icon === 'instagram'; }).map(function (s) {
+      var svg = s.icon === 'linkedin'
+        ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>'
+        : '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-.1263-.058-1.689-.072-4.947-.072zM12 6.865c-2.797 0-5.07 2.273-5.07 5.071s2.273 5.071 5.07 5.071 5.07-2.273 5.07-5.071-2.273-5.07-5.07-5.07zm0 8.844c-2.083 0-3.778-1.695-3.778-3.778s1.695-3.777 3.778-3.777 3.777 1.695 3.777 3.777-1.695 3.778-3.777 3.778z"/></svg>';
+      return '<a href="' + esc(s.url) + '" aria-label="' + esc(s.label) + '" target="_blank" rel="noopener noreferrer" class="social-icon">' + svg + '</a>';
+    }).join('');
     return '<div class="about-hero">' +
       '<div class="about-hero__id">' + avatar +
         '<div><h1 class="page-hero__title" style="font-size:var(--text-2xl)">' + esc(a.name) + '</h1>' +
-        '<p class="muted" style="margin-top:var(--space-1)">' + esc(a.role) + (a.location ? ' · ' + esc(a.location) : '') + '</p></div>' +
+        '<p class="muted" style="margin-top:var(--space-1)">' + esc(a.role) + (a.location ? ' · ' + esc(a.location) : '') + '</p>' +
+        '<div class="about-social" style="margin-top:var(--space-3)">' + socialHtml + '</div></div>' +
       '</div>' +
       '<p class="lead muted" style="max-width:60ch">' + esc(a.shortIntro) + '</p>' +
       '<div class="prose-body">' +
@@ -252,9 +263,9 @@ function isDark() {
         '<h2>Why this website</h2>' +
         '<p>Consistency is everything in a daily practice - and it is the first thing that slips. A calm, private tool removes friction: no account, no dashboards judging you, no audience. Just you, the Name, and a faithful count.</p>' +
         '<h2>My vision</h2>' +
-        '<p>' + esc(a.philosophy) + '</p>' +
+        '<p>' + a.philosophy + '</p>' +
       '</div>' +
-      '<div class="msg">' + esc(a.message) + '</div>' +
+      '<div class="msg">' + a.message + '</div>' +
     '</div>';
   }
   function platformHTML() {
