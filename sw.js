@@ -5,7 +5,7 @@
    ========================================================================= */
 'use strict';
 
-var CACHE = 'naamjap-shell-v2';
+var CACHE = 'naamjap-shell-v3';
 
 var SHELL = [
   '/',
@@ -14,7 +14,7 @@ var SHELL = [
   '/jap/digital-mala/',
   '/jap/jap-timer/',
   '/jap/custom-naam-jap/',
-  '/lekhan/',
+  '/lekh/',
   '/lekhan/naam-lekhan/',
   '/lekhan/custom-naam-lekhan/',
   '/lekhan/digital-jap-notebook/',
