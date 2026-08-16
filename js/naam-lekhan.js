@@ -193,7 +193,7 @@
           gc.textAlign = 'right'; gc.textBaseline = 'top';
           gc.fillText('✓', x + L.colW - 8, y + 6);
         } else if (guideOn) {
-          var pxs = Math.round(Math.min(L.colW * 0.42, L.rowH * 0.58));
+          var pxs = Math.round(Math.min(L.colW * 0.38, L.rowH * 0.52));
           var isDevTxt = /[\u0900-\u097f]/.test(txt);
           gc.font = (isDevTxt ? pxs + 'px "Tiro Devanagari Hindi", "Nirmala UI", serif' : 'italic ' + pxs + 'px Fraunces, Georgia, serif');
           // Keep long naams inside their cell: measure at the base size and
@@ -201,7 +201,7 @@
           var m = gc.measureText(txt);
           var tw = m.width || 0;
           var th = (m.actualBoundingBoxAscent || pxs) + (m.actualBoundingBoxDescent || pxs * 0.25);
-          var fitW = L.colW * 0.86, fitH = L.rowH * 0.62;
+          var fitW = L.colW * 0.82, fitH = L.rowH * 0.58;
           if (tw > fitW || th > fitH) {
             pxs = Math.max(9, Math.round(pxs * Math.min(1, fitW / Math.max(tw, 1), fitH / Math.max(th, 1))));
             gc.font = (isDevTxt ? pxs + 'px "Tiro Devanagari Hindi", "Nirmala UI", serif' : 'italic ' + pxs + 'px Fraunces, Georgia, serif');

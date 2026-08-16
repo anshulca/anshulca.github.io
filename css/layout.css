@@ -98,7 +98,7 @@
 .drawer__links a .dev-caret { font-family: var(--font-dev); font-size: 15px; color: var(--accent-strong); }
 .drawer__links a:hover { background: var(--accent-soft); }
 /* ---- Main shell ---------------------------------------------------------- */
-.site-main { padding-top: var(--space-6); }
+.site-main { padding: var(--space-6) var(--space-0) var(--space-16); }
 .site-main > * + * { margin-top: var(--section-gap); }
 
 /* ---- Page hero (interior pages) ----------------------------------------- */
