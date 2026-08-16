@@ -44,8 +44,8 @@
 /* ---- About / Platform ------------------------------------------------------------ */
 .about-hero { display: grid; gap: var(--space-6); }
 .about-hero__id { display: flex; align-items: center; gap: var(--space-5); }
-.avatar { width: 88px; height: 88px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-strong); font-family: var(--font-dev); font-size: 2rem; border: 1px solid var(--line); }
-.avatar--img { object-fit: cover; }
+.avatar { width: 88px; height: 88px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-strong); font-family: var(--font-dev); font-size: 2rem; border: 1px solid var(--line); overflow: hidden; }
+.avatar--img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 .prose-body h2 { margin-top: var(--space-8); margin-bottom: var(--space-4); }
 .prose-body p + p { margin-top: var(--space-4); }
 .msg { margin-top: var(--space-8); padding: var(--space-6); border-left: 3px solid var(--accent); border-radius: 0 var(--radius-md) var(--radius-md) 0; background: var(--accent-soft); font-family: var(--font-display); font-size: var(--text-xl); font-style: italic; color: var(--primary-ink); }

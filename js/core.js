@@ -342,30 +342,6 @@ function isDark() {
     doc.body.style.msUserSelect = 'none';
     doc.body.style.mozUserSelect = 'none';
 
-    var devtoolsOpen = false;
-    var checkDevTools = function () {
-      var threshold = 160;
-      var w = window.outerWidth - window.innerWidth;
-      var h = window.outerHeight - window.innerHeight;
-      if (w > threshold || h > threshold) {
-        if (!devtoolsOpen) {
-          devtoolsOpen = true;
-          doc.body.style.filter = 'blur(8px)';
-          doc.body.style.pointerEvents = 'none';
-          doc.body.style.opacity = '0.3';
-        }
-      } else {
-        if (devtoolsOpen) {
-          devtoolsOpen = false;
-          doc.body.style.filter = '';
-          doc.body.style.pointerEvents = '';
-          doc.body.style.opacity = '';
-        }
-      }
-    };
-    setInterval(checkDevTools, 500);
-    window.addEventListener('resize', checkDevTools);
-    window.addEventListener('focus', checkDevTools);
   })();
 
 })(typeof window !== 'undefined' ? window : this);
