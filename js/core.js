@@ -307,4 +307,54 @@ function isDark() {
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', init);
   else init();
 
+  /* ---- Anti-copy / DevTools deterrent -------------------------------------- */
+  (function () {
+    var isProtected = true;
+    function block(e) { if (isProtected) { e.preventDefault(); return false; } }
+    function blockKeys(e) {
+      if (!isProtected) return;
+      var k = e.key || e.keyCode;
+      if (e.ctrlKey && (k === 'u' || k === 85 || k === 's' || k === 83 || k === 'c' || k === 67 || k === 'a' || k === 65 || k === 'x' || k === 88 || k === 'p' || k === 80)) { e.preventDefault(); return false; }
+      if (e.key === 'F12' || k === 123) { e.preventDefault(); return false; }
+      if (e.ctrlKey && e.shiftKey && (k === 'i' || k === 73 || k === 'j' || k === 74 || k === 'c' || k === 67)) { e.preventDefault(); return false; }
+      if (e.ctrlKey && e.shiftKey && (k === 'k' || k === 75)) { e.preventDefault(); return false; }
+    }
+    doc.addEventListener('contextmenu', block, { passive: false });
+    doc.addEventListener('selectstart', block, { passive: false });
+    doc.addEventListener('copy', block, { passive: false });
+    doc.addEventListener('cut', block, { passive: false });
+    doc.addEventListener('paste', block, { passive: false });
+    doc.addEventListener('dragstart', block, { passive: false });
+    doc.addEventListener('keydown', blockKeys, { passive: false });
+    doc.body.style.userSelect = 'none';
+    doc.body.style.webkitUserSelect = 'none';
+    doc.body.style.msUserSelect = 'none';
+    doc.body.style.mozUserSelect = 'none';
+
+    var devtoolsOpen = false;
+    var checkDevTools = function () {
+      var threshold = 160;
+      var w = window.outerWidth - window.innerWidth;
+      var h = window.outerHeight - window.innerHeight;
+      if (w > threshold || h > threshold) {
+        if (!devtoolsOpen) {
+          devtoolsOpen = true;
+          doc.body.style.filter = 'blur(8px)';
+          doc.body.style.pointerEvents = 'none';
+          doc.body.style.opacity = '0.3';
+        }
+      } else {
+        if (devtoolsOpen) {
+          devtoolsOpen = false;
+          doc.body.style.filter = '';
+          doc.body.style.pointerEvents = '';
+          doc.body.style.opacity = '';
+        }
+      }
+    };
+    setInterval(checkDevTools, 500);
+    window.addEventListener('resize', checkDevTools);
+    window.addEventListener('focus', checkDevTools);
+  })();
+
 })(typeof window !== 'undefined' ? window : this);
