@@ -109,7 +109,7 @@
         m.ses = { mala: 1, in: 0, malas: 0, paused: false };
         completing = false; clearTimeout(completionTimer); completedAtMala = -1;
         persist(); render();
-        F.toast('Session reset — lifetime kept', 'success');
+        F.toast('Session reset - lifetime kept', 'success');
       }
     });
   }

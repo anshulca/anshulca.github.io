@@ -3,7 +3,7 @@
    -------------------------------------------------------------------------
    This file is the SINGLE source of truth for branding, navigation, footer
    and editable content (About Me / Platform). Global header, footer, mobile
-   nav and footer chrome are rendered from this object by core.js — branding
+   nav and footer chrome are rendered from this object by core.js - branding
    is NEVER hard-coded on individual pages.
 
    To re-brand the whole site, edit ONLY this file.
@@ -30,10 +30,10 @@
       // Visual logo mark (inline SVG, mala-bead inspired). Swap via assets/logo.svg when a real logo is ready.
       logo: {
         src: '/assets/logo.svg',
-        alt: 'Naam Jap — a circle of mala beads'
+        alt: 'Naam Jap - a circle of mala beads'
       },
       favicon: '/assets/favicon.svg',
-      // Canonical base URL — update once a real domain is chosen (used for SEO + sitemap).
+      // Canonical base URL - update once a real domain is chosen (used for SEO + sitemap).
       url: 'https://jap.studyfromnotes.com',
       // Palette for programmatic use (progress, charts). CSS tokens in css/tokens.css are the visual source of truth.
       palette: {
@@ -54,7 +54,7 @@
     },
 
     /* ------------------------------------------------------------------
-       NAVIGATION — main nav in header; CTA starts Jap
+       NAVIGATION - main nav in header; CTA starts Jap
        ------------------------------------------------------------------ */
     nav: {
       primary: [
@@ -85,7 +85,7 @@
        ------------------------------------------------------------------ */
     footer: {
       note:
-        'A small digital space to pause, remember and return — a private companion for daily jap and sadhana.',
+        'A small digital space to pause, remember and return - a private companion for daily jap and sadhana.',
       blurb:
         'Naam Jap keeps your practice close, calm and yours. Your data stays on your device, private by design.',
       cols: [
@@ -132,22 +132,22 @@
     ],
 
     /* ------------------------------------------------------------------
-       ABOUT ME  (editable personal content — update freely)
+       ABOUT ME  (editable personal content - update freely)
        ------------------------------------------------------------------ */
     aboutMe: {
       name: 'CA Anshul Karwa',
       role: 'Chartered Accountant · Maker of Naam Jap',
       location: 'India',
       shortIntro:
-        'A quiet devotee who built Naam Jap to keep company with the Name — and to help others stay steady in their own daily practice.',
-      photo: '', // e.g. '/assets/img/me.jpg' — empty uses an initial monogram
+        'A quiet devotee who built Naam Jap to keep company with the Name - and to help others stay steady in their own daily practice.',
+      photo: '', // e.g. '/assets/img/me.jpg' - empty uses an initial monogram
       story: [
-        'Naam Jap began as a simple personal habit — a few malas each morning before the day began.',
+        'Naam Jap began as a simple personal habit - a few malas each morning before the day began.',
         'Over time I saw how much consistency mattered, and how easy it was to lose count, lose track, or lose the thread of a daily sadhana.',
         'This space is the result: a calm, private place where the practice holds its own rhythm, without noise or distraction.'
       ],
       philosophy:
-        'Technology is not the opposite of stillness. A well-made tool can hold space for the sacred — quietly, and in the background.',
+        'Technology is not the opposite of stillness. A well-made tool can hold space for the sacred - quietly, and in the background.',
       message: 'May this little space help you pause, remember and return.'
     },
 
@@ -157,7 +157,7 @@
     platform: {
       what: [
         'Naam Jap is a private digital companion for daily spiritual practice.',
-        'You can do jap, write lekhan, set a daily sadhana, explore mantras and watch your own quiet progress — all without an account, all kept on your device.'
+        'You can do jap, write lekhan, set a daily sadhana, explore mantras and watch your own quiet progress - all without an account, all kept on your device.'
       ],
       practices: [
         {
@@ -166,7 +166,7 @@
         },
         {
           name: 'Naam Lekhan',
-          desc: 'Write the naam into a digital notebook — 108 writings per page, page after page.'
+          desc: 'Write the naam into a digital notebook - 108 writings per page, page after page.'
         },
         {
           name: 'Sadhana',
@@ -182,7 +182,7 @@
         }
       ],
       privacy:
-        'Your practice data is private by design. It is stored only on your device and is never sent to any server. A future account system will respect the same boundary — migration will never lock you in.'
+        'Your practice data is private by design. It is stored only on your device and is never sent to any server. A future account system will respect the same boundary - migration will never lock you in.'
     },
 
     /* ------------------------------------------------------------------
@@ -194,7 +194,7 @@
     },
 
     /* ------------------------------------------------------------------
-       JAP · Naam Jap Counter — default naams (editable here)
+       JAP · Naam Jap Counter - default naams (editable here)
        ------------------------------------------------------------------ */
     jap: {
       malaSize: 108,
@@ -211,12 +211,12 @@
       custom: {
         label: 'Custom Naam',
         placeholder: 'e.g. Shamb Sadashiv',
-        hint: 'Enter any naam — it becomes the active naam for this counter.'
+        hint: 'Enter any naam - it becomes the active naam for this counter.'
       }
     },
 
     /* ------------------------------------------------------------------
-       MANTRA LIBRARY  (editable here — text, transliteration, meaning)
+       MANTRA LIBRARY  (editable here - text, transliteration, meaning)
        Each entry maps to a jap naam id where possible (`japId`), so
        "Begin jap" can start the counter with the right naam selected.
        ------------------------------------------------------------------ */
@@ -226,15 +226,15 @@
         category: 'Devotion',
         text: 'रामाय नमः',
         transliteration: 'Ramāya namah',
-        meaning: 'Salutations to Ram — the one in whom all beings rest. The name carried by a million tongues, the steady heart of the bhakti tradition.',
-        note: 'Often chanted as "Shree Ram, Jai Ram, Jai Jai Ram" — the mahamantra of the Ram tradition.'
+        meaning: 'Salutations to Ram - the one in whom all beings rest. The name carried by a million tongues, the steady heart of the bhakti tradition.',
+        note: 'Often chanted as "Shree Ram, Jai Ram, Jai Jai Ram" - the mahamantra of the Ram tradition.'
       },
       {
         id: 'radha', name: 'Radha', dev: 'राधा', japId: 'radha',
         category: 'Devotion',
         text: 'राधे राधे · राधाकृष्णाय नमः',
         transliteration: 'Rādhe Rādhe · Rādhā-Kṛṣṇāya namah',
-        meaning: 'The name of Radha, the embodiment of devotion itself — and salutations to Radha and Krishna together, the two that are one.',
+        meaning: 'The name of Radha, the embodiment of devotion itself - and salutations to Radha and Krishna together, the two that are one.',
         note: 'Chanted with pure affection ("Radhe Radhe") as a greeting of love between devotees.'
       },
       {
@@ -242,7 +242,7 @@
         category: 'Devotion',
         text: 'कृष्णाय वासुदेवाय हरये परमात्मने',
         transliteration: 'Kṛṣṇāya Vāsudevāya Haraye Paramātmane',
-        meaning: 'To Krishna, born of Vasudeva, to Hari, the Supreme Self — one name that holds the flute, the heart, and the remover of fear.',
+        meaning: 'To Krishna, born of Vasudeva, to Hari, the Supreme Self - one name that holds the flute, the heart, and the remover of fear.',
         note: 'The opening of the Vishnu Sahasranama, calling the Lord by name and family.'
       },
       {
@@ -250,7 +250,7 @@
         category: 'Shiv',
         text: 'ॐ नमः शिवाय',
         transliteration: 'Om Namah Shivāya',
-        meaning: 'Salutations to the auspicious one — "Om" the universal sound, "namah" the offering of the self, "Shivaya" to Shiva. The great five-syllable mantra of inner stillness.',
+        meaning: 'Salutations to the auspicious one - "Om" the universal sound, "namah" the offering of the self, "Shivaya" to Shiva. The great five-syllable mantra of inner stillness.',
         note: 'The panchakshari (five-syllable) mantra of the Shaiva tradition; the core of a whole lifetime of jap.'
       },
       {
@@ -258,7 +258,7 @@
         category: 'Shiv',
         text: 'शं च मयस्करं च माम् · शिवाय नमः',
         transliteration: 'Śivāya namah',
-        meaning: 'Salutations to the auspicious one — the meditative, the still, the remover of what is not real.',
+        meaning: 'Salutations to the auspicious one - the meditative, the still, the remover of what is not real.',
         note: 'A simple daily salutation to the Lord of meditation.'
       },
       {
@@ -266,7 +266,7 @@
         category: 'Shiv',
         text: 'ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम् । उर्वारुकमिव बन्धनान् मृत्योर्मुक्षीय माऽमृतात् ॥',
         transliteration: 'Om Tryambakaṁ yajāmahe sugandhiṁ puṣṭi-vardhanam | Urvārukamiva bandhanān mṛtyor mukṣīya mā\u2019mṛtāt ||',
-        meaning: 'We worship the three-eyed one, fragrant and nourishing. Like the ripened cucumber freed from its vine, may we be released from the bonds of mortality — not away from immortality, but unto it.',
+        meaning: 'We worship the three-eyed one, fragrant and nourishing. Like the ripened cucumber freed from its vine, may we be released from the bonds of mortality - not away from immortality, but unto it.',
         note: 'The great death-conquering mantra, offered to Shiva as the healer of all fears.'
       },
       {
@@ -274,7 +274,7 @@
         category: 'Protection',
         text: 'ॐ हं हनुमते नमः',
         transliteration: 'Om Haṁ Hanumate namah',
-        meaning: 'Salutations to Hanuman — the son of the wind, the peerless servant of Ram, the remover of fear and the giver of strength.',
+        meaning: 'Salutations to Hanuman - the son of the wind, the peerless servant of Ram, the remover of fear and the giver of strength.',
         note: 'A seed-syllable mantra (Haṁ) opening to the complete offering of self to Hanuman.'
       },
       {
@@ -282,7 +282,7 @@
         category: 'Protection',
         text: 'ॐ गं गणपतये नमः',
         transliteration: 'Om Gaṁ Gaṇapataye namah',
-        meaning: 'Salutations to the lord of the ganas — the remover of obstacles, the one who clears the way at the beginning of all beginnings.',
+        meaning: 'Salutations to the lord of the ganas - the remover of obstacles, the one who clears the way at the beginning of all beginnings.',
         note: 'Chanted before any new undertaking, its seed syllable opening the path.'
       },
       {
@@ -290,7 +290,7 @@
         category: 'Devi',
         text: 'ॐ दुं दुर्गायै नमः',
         transliteration: 'Om Duṁ Durgāyai namah',
-        meaning: 'Salutations to Durga, the protectress — the one who shelters and carries her devotees through all that is difficult.',
+        meaning: 'Salutations to Durga, the protectress - the one who shelters and carries her devotees through all that is difficult.',
         note: 'A seed-syllable mantra (Duṁ) to the goddess of protection and courage.'
       },
       {
@@ -298,7 +298,7 @@
         category: 'Devi',
         text: 'ॐ श्रीं महालक्ष्म्यै नमः',
         transliteration: 'Om Śrīṁ Mahālakṣmyai namah',
-        meaning: 'Salutations to Mahalakshmi — the radiant abundance of the divine, giver of grace, beauty and prosperity in all its forms.',
+        meaning: 'Salutations to Mahalakshmi - the radiant abundance of the divine, giver of grace, beauty and prosperity in all its forms.',
         note: 'Its seed syllable (Śrīṁ) is itself the sound of auspiciousness and wealth.'
       },
       {
@@ -306,7 +306,7 @@
         category: 'Devi',
         text: 'ॐ ऐं सरस्वत्यै नमः',
         transliteration: 'Om Aiṁ Sarasvatyai namah',
-        meaning: 'Salutations to Saraswati — the flow of speech, knowledge and wisdom, the river of learning and the clear voice of discernment.',
+        meaning: 'Salutations to Saraswati - the flow of speech, knowledge and wisdom, the river of learning and the clear voice of discernment.',
         note: 'A seed-syllable mantra (Aiṁ) to the goddess of learning and eloquence.'
       },
       {
@@ -314,15 +314,15 @@
         category: 'Universal',
         text: 'ॐ भूर्भुवः स्वः । तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि । धियो यो नः प्रचोदयात् ॥',
         transliteration: 'Om Bhūr Bhuvaḥ Svaḥ | Tat savitur vareṇyaṁ bhargo devasya dhīmahi | Dhiyo yo naḥ pracodayāt ||',
-        meaning: 'Om — the earth, the middle worlds, the heavens. We meditate upon the magnificent light of the divine sun, that it may illuminate our intellects and impel them on the right path.',
-        note: 'The most celebrated mantra of the Vedas, addressed to Savitur, the sun — the light of understanding which illumines the one who chants.'
+        meaning: 'Om - the earth, the middle worlds, the heavens. We meditate upon the magnificent light of the divine sun, that it may illuminate our intellects and impel them on the right path.',
+        note: 'The most celebrated mantra of the Vedas, addressed to Savitur, the sun - the light of understanding which illumines the one who chants.'
       },
       {
         id: 'hanuman-chalisa', name: 'Hanuman Chalisa', dev: 'हनुमान चालीसा', japId: 'hanuman',
         category: 'Protection',
         text: 'श्रीगुरु चरन सरोज रज, निज मनु मुकुरु सुधारि । बरनउँ रघुबर बिमल जसु, जो दायकु फल चारि ॥',
         transliteration: 'Śrīguru carana sarōja raja, nija manu mukuru sudhāri | Baranau Raghubara bimala jasu, jō dāyaku phala cāri ||',
-        meaning: 'Cleansing the mirror of my mind with the dust of the guru\u2019s lotus feet, I sing the pure glory of Ram — the best of Raghus — which grants the four fruits of life.',
+        meaning: 'Cleansing the mirror of my mind with the dust of the guru\u2019s lotus feet, I sing the pure glory of Ram - the best of Raghus - which grants the four fruits of life.',
         note: 'The opening couplet of the celebrated forty verses to Hanuman composed by Goswami Tulsidas. The full Chalisa may be chanted as a daily sadhana.'
       },
       {
@@ -330,13 +330,13 @@
         category: 'Universal',
         text: 'ॐ',
         transliteration: 'Om',
-        meaning: 'The primal sound — the seed of all mantras and all speech. The universe is said to have emerged from it, and all mantras dissolve back into it.',
-        note: 'Chanted slowly, aloud or in silence — one Om repeated is worth a full mala of concentration.'
+        meaning: 'The primal sound - the seed of all mantras and all speech. The universe is said to have emerged from it, and all mantras dissolve back into it.',
+        note: 'Chanted slowly, aloud or in silence - one Om repeated is worth a full mala of concentration.'
       }
     ],
 
     /* ------------------------------------------------------------------
-       SADHANA  (daily flow — targets, sankalp presets)
+       SADHANA  (daily flow - targets, sankalp presets)
        ------------------------------------------------------------------ */
     sadhana: {
       targets: {
@@ -349,7 +349,7 @@
         'I will turn to the Name with a quiet heart each morning.',
         'I will complete my daily jap before the first cup of tea.',
         'I will write one page of naam this week, no matter how slowly.',
-        'I will not let a miss become a stop — I will only return.'
+        'I will not let a miss become a stop - I will only return.'
       ],
       sankalpPlaceholder: 'e.g. Two malas of Ram every morning, and one page of lekhan each Sunday.'
     },
@@ -360,10 +360,10 @@
     journey: {
       milestones: [
         { id: 'first-jap', kind: 'jap', at: 1, label: 'The first tap', dev: '॥', desc: 'Your very first naam counted.' },
-        { id: 'first-mala', kind: 'mala', at: 1, label: 'One full mala', dev: 'माला', desc: '108 — one complete round of jap.' },
+        { id: 'first-mala', kind: 'mala', at: 1, label: 'One full mala', dev: 'माला', desc: '108 - one complete round of jap.' },
         { id: 'thousand', kind: 'jap', at: 1000, label: 'One thousand', dev: '१०००', desc: 'A thousand jap stands quietly behind you.' },
         { id: 'ten-thousand', kind: 'jap', at: 10000, label: 'Ten thousand', dev: '१००००', desc: 'The discipline of ten thousand repetitions.' },
-        { id: 'lakh', kind: 'jap', at: 100000, label: 'One lakh', dev: 'लक्ष', desc: 'One lakh of the Name — a true sankalp.' },
+        { id: 'lakh', kind: 'jap', at: 100000, label: 'One lakh', dev: 'लक्ष', desc: 'One lakh of the Name - a true sankalp.' },
         { id: 'first-page', kind: 'page', at: 1, label: 'First written page', dev: 'पृष्ठ', desc: 'Your first completed page of lekhan.' },
         { id: 'ten-pages', kind: 'page', at: 10, label: 'Ten pages', dev: '१०', desc: 'Ten pages of the name, handwritten.' },
         { id: '108-pages', kind: 'page', at: 108, label: '108 pages', dev: '१०८', desc: 'A full notebook of the Name.' },

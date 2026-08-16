@@ -216,7 +216,7 @@
     return {
       update: function (n) {
         for (var i = 0; i < size; i++) beads[i].classList.toggle('is-counted', i < n);
-        svg.setAttribute('aria-label', 'Mala — ' + n + ' of ' + size + ' beads');
+        svg.setAttribute('aria-label', 'Mala - ' + n + ' of ' + size + ' beads');
       },
       svg: svg
     };

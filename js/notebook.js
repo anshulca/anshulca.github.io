@@ -92,10 +92,10 @@
     if (lk.written > 0 && lk.written < size) {
       el.current.innerHTML =
         '<div class="card" style="margin-bottom:var(--space-4)">' +
-        '<div class="nb-card__row"><h3 style="font-family:var(--font-display);font-size:var(--text-lg)">Page ' + lk.page + ' — in progress</h3>' +
+        '<div class="nb-card__row"><h3 style="font-family:var(--font-display);font-size:var(--text-lg)">Page ' + lk.page + ' - in progress</h3>' +
         '<span class="pill pill--soon">' + lk.written + '/' + size + '</span></div>' +
         '<div class="progress" style="margin-top:var(--space-3)"><div class="progress__bar" style="width:' + Math.round(lk.written / size * 100) + '%"></div></div>' +
-        '<button type="button" class="btn btn--primary btn--sm" data-go-continue style="margin-top:var(--space-3)">Continue writing — Page ' + lk.page + '</button>' +
+        '<button type="button" class="btn btn--primary btn--sm" data-go-continue style="margin-top:var(--space-3)">Continue writing - Page ' + lk.page + '</button>' +
         '</div>';
       var b = el.current.querySelector('[data-go-continue]');
       if (b) b.addEventListener('click', function () { global.location.href = '/lekhan/naam-lekhan/'; });
@@ -128,7 +128,7 @@
       a.download = 'naam-jap-notebook-backup.json';
       doc.body.appendChild(a); a.click(); a.remove();
       setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
-      F.toast('Backup downloaded — it stays yours', 'success');
+      F.toast('Backup downloaded - it stays yours', 'success');
     }).catch(function () { F.toast('Could not prepare backup'); });
   }
 

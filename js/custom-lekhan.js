@@ -70,7 +70,7 @@
       '<h2>PAGE COMPLETE</h2>' +
       '<p class="done-sub">' + size() + ' Naam Written · ' + (n.english || '') + '</p>' +
       '<div class="btn-group" style="margin-top:var(--space-5);justify-content:center">' +
-      '<button type="button" class="btn btn--primary" data-next-page>Continue — Page ' + (clk.page + 1) + '</button>' +
+      '<button type="button" class="btn btn--primary" data-next-page>Continue - Page ' + (clk.page + 1) + '</button>' +
       '</div></div>';
     var b = el.doneMount.querySelector('[data-next-page]');
     if (b) b.addEventListener('click', function () {

@@ -2,7 +2,7 @@
    NAAM JAP · JOURNEY DASHBOARD  (/journey/)
    A single quiet view of the whole practice: today's sadhana, lifetime
    totals, streak, a day heatmap, a 14-day rhythm chart and milestones.
-   Everything reads from the local store — nothing leaves the device.
+   Everything reads from the local store - nothing leaves the device.
    ========================================================================= */
 (function (global) {
   'use strict';
@@ -143,7 +143,7 @@
     if (el.todayNaam) el.todayNaam.textContent = fmt(t.naam);
     if (el.todayStatus) {
       el.todayStatus.className = 'pill' + ((t.jap || t.malas || t.naam) ? ' pill--good' : '');
-      el.todayStatus.textContent = (t.jap || t.malas || t.naam) ? 'Practice recorded today' : 'Rest day — return when ready';
+      el.todayStatus.textContent = (t.jap || t.malas || t.naam) ? 'Practice recorded today' : 'Rest day - return when ready';
     }
     if (el.totalJap) el.totalJap.textContent = fmt(totals.jap);
     if (el.totalMalas) el.totalMalas.textContent = fmt(totals.malas);
@@ -153,7 +153,7 @@
     if (el.streak) el.streak.textContent = s.current;
     if (el.streakBest) el.streakBest.textContent = 'Best ' + s.best + ' days';
     if (el.streakToday) el.streakToday.textContent = s.today
-      ? 'Today counts — keep the thread.'
+      ? 'Today counts - keep the thread.'
       : 'Nothing recorded today yet.';
 
     renderHeatmap();

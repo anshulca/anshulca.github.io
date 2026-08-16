@@ -85,13 +85,13 @@
     var arr = challenges();
     arr.push({ id: F.uid(), kind: 'days', name: name || 'Naam Lekhan Challenge',
       total: total, dailyTarget: dailyTarget || 108, start: today(), done: {}, completed: false });
-    saveCh(arr); render(); F.toast('Challenge started — ' + name, 'success');
+    saveCh(arr); render(); F.toast('Challenge started - ' + name, 'success');
   }
   function createPages(name, total) {
     var arr = challenges();
     arr.push({ id: F.uid(), kind: 'pages', name: name || 'Pages Challenge',
         total: total, start: today(), completed: pagesDone() >= total });
-    saveCh(arr); render(); F.toast('Challenge started — ' + name, 'success');
+    saveCh(arr); render(); F.toast('Challenge started - ' + name, 'success');
   }
 
   /* ---- Interactions --------------------------------------------------------- */
@@ -162,7 +162,7 @@
   function render() {
     var arr = challenges();
     if (!el.list) return;
-    el.list.innerHTML = arr.length ? arr.map(card).join('') : '<div class="nb-empty">No challenges yet — choose one above.</div>';
+    el.list.innerHTML = arr.length ? arr.map(card).join('') : '<div class="nb-empty">No challenges yet - choose one above.</div>';
     el.list.querySelectorAll('[data-mark]').forEach(function (b) { b.addEventListener('click', function () { markToday(b.getAttribute('data-id')); }); });
     el.list.querySelectorAll('[data-del]').forEach(function (b) { b.addEventListener('click', function () { deleteChallenge(b.getAttribute('data-id')); }); });
   }

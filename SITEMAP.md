@@ -1,6 +1,6 @@
 # Site Map & URL Architecture
 
-Clean, short, semantic URLs. No build step — each URL is a real static folder with `index.html`.
+Clean, short, semantic URLs. No build step - each URL is a real static folder with `index.html`.
 The canonical domain is a placeholder (`https://naamjap.in`) defined once in `js/site.config.js`.
 
 ## Primary Sections
@@ -21,38 +21,38 @@ The canonical domain is a placeholder (`https://naamjap.in`) defined once in `js
 
 ## Detailed Hierarchy (future feature routes)
 
-### Jap — `/jap/`
-- `/jap/naam-jap/` — Naam Jap counter (daily + cumulative)
-- `/jap/mala/` — Digital mala (108 beads + meru)
-- `/jap/timer/` — Jap timer / rounds of 108
-- `/jap/custom/` — Custom naam jap (free-form)
+### Jap - `/jap/`
+- `/jap/naam-jap/` - Naam Jap counter (daily + cumulative)
+- `/jap/mala/` - Digital mala (108 beads + meru)
+- `/jap/timer/` - Jap timer / rounds of 108
+- `/jap/custom/` - Custom naam jap (free-form)
 
-### Lekhan — `/lekh/`
-- `/lekh/naam-lekhan/` — Write the naam, 108 per page
-- `/lekh/notebook/` — Digital jap notebook (persisted pages)
-- `/lekh/challenges/` — Writing challenges (e.g. 40-day)
-- `/lekh/custom/` — Custom lekhan
+### Lekhan - `/lekh/`
+- `/lekh/naam-lekhan/` - Write the naam, 108 per page
+- `/lekh/notebook/` - Digital jap notebook (persisted pages)
+- `/lekh/challenges/` - Writing challenges (e.g. 40-day)
+- `/lekh/custom/` - Custom lekhan
 
-### Sadhana — `/sadhana/`
-- `/sadhana/daily/` — Daily sadhana checklist / flow
-- `/sadhana/sankalp/` — Personal sankalp (resolves/projects)
-- `/sadhana/target/` — Daily target setting
-- `/sadhana/streak/` — Streak view
-- `/sadhana/journey/` — Long-form sadhana journey
+### Sadhana - `/sadhana/`
+- `/sadhana/daily/` - Daily sadhana checklist / flow
+- `/sadhana/sankalp/` - Personal sankalp (resolves/projects)
+- `/sadhana/target/` - Daily target setting
+- `/sadhana/streak/` - Streak view
+- `/sadhana/journey/` - Long-form sadhana journey
 
-### Mantra — `/mantra/`
-- `/mantra/` — Library hub (all mantras listed)
+### Mantra - `/mantra/`
+- `/mantra/` - Library hub (all mantras listed)
 - `/mantra/ram/`, `/mantra/radha/`, `/mantra/krishna/`, `/mantra/shiv/`,
   `/mantra/hanuman/`, `/mantra/ganesh/`, `/mantra/durga/`, `/mantra/lakshmi/`,
   `/mantra/saraswati/`, `/mantra/other/`
-- `/mantra/custom/` — User’s own mantra
+- `/mantra/custom/` - User’s own mantra
 - Mantra metadata lives in `js/site.config.js` (single source), pages are generated from it.
 
-### Journey — `/journey/`
+### Journey - `/journey/`
 - Single-page dashboard: today’s progress, total jap, total malas, total naam written,
   streak, milestones, sadhana history. All client-side from local storage.
 
-### Tools — `/tools/`
+### Tools - `/tools/`
 - `/tools/mala-calculator/`
 - `/tools/goal-calculator/`
 - `/tools/lakh-challenge/`

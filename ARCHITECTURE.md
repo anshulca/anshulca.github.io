@@ -2,13 +2,13 @@
 
 ## Design Principles
 Calm · Premium · Indian · Spiritual · Modern · Personal · Beautiful · Fast.
-Spiritual motifs (mala, mandala, lotus, paper) are subtle details — discovered, not forced.
+Spiritual motifs (mala, mandala, lotus, paper) are subtle details - discovered, not forced.
 
 ## Stack (no build step, zero dependencies)
-- **HTML** — static, semantic, SEO-ready pages.
-- **CSS** — design token system via custom properties (`css/tokens.css`) + base/layout/components/pages.
-- **Vanilla JS** — `site.config.js` (single source of truth), `ui.js` (interaction primitives),
-  `core.js` (global chrome — header/footer/nav injection, theme, PWA register).
+- **HTML** - static, semantic, SEO-ready pages.
+- **CSS** - design token system via custom properties (`css/tokens.css`) + base/layout/components/pages.
+- **Vanilla JS** - `site.config.js` (single source of truth), `ui.js` (interaction primitives),
+  `core.js` (global chrome - header/footer/nav injection, theme, PWA register).
 No frameworks, no runtime libraries. Everything native.
 
 ## Folder Structure

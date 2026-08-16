@@ -1,7 +1,7 @@
 /* =========================================================================
    NAAM JAP · HOME  (live today strip)
-   Fills the "Today" card on / with real numbers from the store — today's
-   jap / malas / naam and the current streak — then fades the "Coming"
+   Fills the "Today" card on / with real numbers from the store - today's
+   jap / malas / naam and the current streak - then fades the "Coming"
    placeholder out. Requires: store.js, shared.js (via feature).
    ========================================================================= */
 (function (global) {

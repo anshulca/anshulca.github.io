@@ -117,7 +117,7 @@
       el.progress.style.width = pct + '%';
       el.progress.setAttribute('aria-valuenow', String(Math.round(pct)));
     }
-    el.ring.querySelector('svg').setAttribute('aria-label', 'Mala — ' + s.inMala + ' of ' + MALA + ' beads');
+    el.ring.querySelector('svg').setAttribute('aria-label', 'Mala - ' + s.inMala + ' of ' + MALA + ' beads');
   }
 
   function updateBeads() {
@@ -296,11 +296,11 @@
     if (data.session.paused) {
       data.session.paused = false;
       data.session.sessionStart = Date.now();
-      NJ.Toast('Resumed — tap to continue.');
+      NJ.Toast('Resumed - tap to continue.');
     } else {
       accumulate();
       data.session.paused = true;
-      NJ.Toast('Paused — tap to resume.');
+      NJ.Toast('Paused - tap to resume.');
     }
     persistMerge();
     updatePauseBtn();
@@ -311,7 +311,7 @@
   function resetSession() {
     NJ.Confirm({
       title: 'Reset this session?',
-      message: 'This clears the current count, malas and session time. Your lifetime and today\u2019s totals are kept — only the current session starts fresh.',
+      message: 'This clears the current count, malas and session time. Your lifetime and today\u2019s totals are kept - only the current session starts fresh.',
       confirmText: 'Reset session',
       cancelText: 'Keep counting',
       onConfirm: function () {
@@ -325,7 +325,7 @@
         updateBeads();
         updatePauseBtn();
         render();
-        NJ.Toast('Session reset — lifetime kept', 'success');
+        NJ.Toast('Session reset - lifetime kept', 'success');
       }
     });
   }

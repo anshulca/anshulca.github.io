@@ -1,11 +1,11 @@
 /* =========================================================================
    NAAM JAP · TOOLS HUB  (/tools/)
    Five quiet helpers, one page:
-     1. Mala Calculator     — beads ↔ malas ↔ total jap
-     2. Jap Goal Calculator — target ↔ days ↔ malas per day
-     3. 1 Lakh Challenge    — a persisted 100,000-naam sankalp counter
-     4. 108 Calculator      — rounds × 108 + extra beads
-     5. Jap Timer           — links to the full timer module
+     1. Mala Calculator     - beads ↔ malas ↔ total jap
+     2. Jap Goal Calculator - target ↔ days ↔ malas per day
+     3. 1 Lakh Challenge    - a persisted 100,000-naam sankalp counter
+     4. 108 Calculator      - rounds × 108 + extra beads
+     5. Jap Timer           - links to the full timer module
    The Lakh Challenge persists via NJ.store (modules.lakh) and feeds today.
    ========================================================================= */
 (function (global) {
@@ -123,7 +123,7 @@
     if (n <= 0) { F.toast('Enter a number first.'); return; }
     var o = lakhData();
     var t = o.lakh.target || 100000;
-    if (o.lakh.count >= t) { F.toast('Sankalp already complete — reset to begin again.'); return; }
+    if (o.lakh.count >= t) { F.toast('Sankalp already complete - reset to begin again.'); return; }
     if (o.lakh.count + n > t) { n = t - o.lakh.count; F.toast('Added the remaining ' + n + ' to complete the sankalp'); }
     o.lakh.count += n;
     if (!o.lakh.started) o.lakh.started = NJ.store.nowISO();
@@ -131,7 +131,7 @@
     NJ.store.addToday(n, 0);
     F.bump(el.lakhNum); F.haptic(10); F.sound(o.lakh.count >= t ? 'complete' : 'short');
     lakhRender();
-    if (o.lakh.count >= t) { F.haptic([12, 40, 12]); F.sound('complete'); F.toast('One lakh of the Name — sankalp complete · ॥', 'success'); }
+    if (o.lakh.count >= t) { F.haptic([12, 40, 12]); F.sound('complete'); F.toast('One lakh of the Name - sankalp complete · ॥', 'success'); }
   }
   function lakhUndo() {
     var o = lakhData();

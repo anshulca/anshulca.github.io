@@ -38,7 +38,7 @@
       '<path d="M20 5 A15 15 0 0 1 34.8 20" opacity=".45"/>' +
       '<circle cx="20" cy="5" r="3.4" fill="currentColor" stroke="none"/>' +
       '</g></svg>';
-    return '<a class="brand ' + (klass || '') + '" href="/" aria-label="' + esc(b.name) + ' — home">' +
+    return '<a class="brand ' + (klass || '') + '" href="/" aria-label="' + esc(b.name) + ' - home">' +
       mark +
       '<span class="brand__text"><span class="brand__name">' + esc(b.name) + '</span>' +
       '<span class="brand__dev">' + esc(b.byline || b.devanagari) + '</span></span></a>';
@@ -60,9 +60,11 @@
   function initTheme() {
     var stored;
     try { stored = global.localStorage.getItem(THEME_KEY); } catch (e) {}
-    var prefers = global.matchMedia && global.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    applyTheme(stored || prefers);
-    if (!stored) { try { global.localStorage.setItem(THEME_KEY, prefers); } catch (e) {} }
+    // Default by time of day: light 6am-7pm, night 7pm-6am. A manual toggle
+    // persists and wins until the user changes it again.
+    var h = new Date().getHours();
+    var timed = (h >= 19 || h < 6) ? 'dark' : 'light';
+    applyTheme(stored || timed);
   }
 
   /* ---- Header ------------------------------------------------------------- */
@@ -217,7 +219,7 @@ function isDark() {
     if (!('serviceWorker' in global.navigator)) return;
     if (!/^https?:$/.test(global.location.protocol)) return; // file:// skipped
     global.addEventListener('load', function () {
-      global.navigator.serviceWorker.register('/sw.js').catch(function () { /* offline-only env — optional */ });
+      global.navigator.serviceWorker.register('/sw.js').catch(function () { /* offline-only env - optional */ });
     });
   }
 
@@ -248,7 +250,7 @@ function isDark() {
       '<div class="prose-body">' +
         '<h2>My story</h2>' + story +
         '<h2>Why this website</h2>' +
-        '<p>Consistency is everything in a daily practice — and it is the first thing that slips. A calm, private tool removes friction: no account, no dashboards judging you, no audience. Just you, the Name, and a faithful count.</p>' +
+        '<p>Consistency is everything in a daily practice - and it is the first thing that slips. A calm, private tool removes friction: no account, no dashboards judging you, no audience. Just you, the Name, and a faithful count.</p>' +
         '<h2>My vision</h2>' +
         '<p>' + esc(a.philosophy) + '</p>' +
       '</div>' +

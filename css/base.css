@@ -62,7 +62,7 @@ strong { font-weight: var(--label-weight); }
 /* Selected / highlight */
 ::selection { background: var(--accent-soft); color: var(--ink); }
 
-/* Focus visibility — accessible */
+/* Focus visibility - accessible */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;

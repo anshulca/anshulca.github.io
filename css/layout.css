@@ -1,5 +1,5 @@
 /* =========================================================================
-   NAAM JAP · LAYOUT — header, nav, mobile drawer
+   NAAM JAP · LAYOUT - header, nav, mobile drawer
    ========================================================================= */
 
 /* ---- Site header -------------------------------------------------------- */
@@ -58,7 +58,7 @@
 .icon-btn:hover { background: var(--accent-soft); color: var(--ink); }
 .icon-btn svg { width: 20px; height: 20px; }
 
-/* Hamburger — desktop hidden */
+/* Hamburger - desktop hidden */
 .hamburger { display: inline-flex; }
 
 /* Desktop layout switch */

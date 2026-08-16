@@ -116,7 +116,7 @@
       }
       mergeModules(base, stored.modules);
     }
-    // roll today's counters if the day changed — the old day is archived
+    // roll today's counters if the day changed - the old day is archived
     var tk = todayKey();
     if (base.today.key !== tk) {
       if (base.today.key && (base.today.jap || base.today.malas || base.today.naam)) {

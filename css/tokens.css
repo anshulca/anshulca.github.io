@@ -20,10 +20,10 @@
   --line: #e7e0d0;               /* borders / hairlines */
   --line-strong: #d6cdb8;
 
-  --primary: #33405f;            /* deep ink indigo — links, emphasis */
+  --primary: #33405f;            /* deep ink indigo - links, emphasis */
   --primary-ink: #232c45;
 
-  --accent: #b5852f;             /* muted gold — the mala accent */
+  --accent: #b5852f;             /* muted gold - the mala accent */
   --accent-strong: #9c701f;
   --accent-soft: #efe4cb;        /* tinted wash for fills */
   --accent-glow: rgba(181, 133, 47, 0.14);
@@ -136,7 +136,7 @@
 
   --transition: all var(--dur) var(--ease-out);
 }
-/* Dark theme — warm charcoal, calm, low brightness */
+/* Dark theme - warm charcoal, calm, low brightness */
 [data-theme='dark'] {
   --bg: #15120e;
   --surface: #1e1a15;

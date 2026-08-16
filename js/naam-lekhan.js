@@ -69,10 +69,11 @@
   }
   function layout() {
     var w = el.sheet.getBoundingClientRect().width;
+    var h = el.sheet.getBoundingClientRect().height;
     var cols = colCount();
     var colW = w / cols;
-    var rowH = colW * 0.62;
-    return { w: w, cols: cols, colW: colW, rowH: rowH, per: cols * ROWS, sections: Math.ceil(PAGE / (cols * ROWS)) };
+    var rowH = Math.min(colW * 0.62, h / ROWS);
+    return { w: w, h: h, cols: cols, colW: colW, rowH: rowH, per: cols * ROWS, sections: Math.ceil(PAGE / (cols * ROWS)) };
   }
   function cellAt(x, y) {
     if (!isGuided()) return null;
@@ -195,6 +196,16 @@
           var pxs = Math.round(Math.min(L.colW * 0.42, L.rowH * 0.58));
           var isDevTxt = /[\u0900-\u097f]/.test(txt);
           gc.font = (isDevTxt ? pxs + 'px "Tiro Devanagari Hindi", "Nirmala UI", serif' : 'italic ' + pxs + 'px Fraunces, Georgia, serif');
+          // Keep long naams inside their cell: measure at the base size and
+          // shrink the font until it fits the cell's usable area.
+          var m = gc.measureText(txt);
+          var tw = m.width || 0;
+          var th = (m.actualBoundingBoxAscent || pxs) + (m.actualBoundingBoxDescent || pxs * 0.25);
+          var fitW = L.colW * 0.86, fitH = L.rowH * 0.62;
+          if (tw > fitW || th > fitH) {
+            pxs = Math.max(9, Math.round(pxs * Math.min(1, fitW / Math.max(tw, 1), fitH / Math.max(th, 1))));
+            gc.font = (isDevTxt ? pxs + 'px "Tiro Devanagari Hindi", "Nirmala UI", serif' : 'italic ' + pxs + 'px Fraunces, Georgia, serif');
+          }
           gc.textAlign = 'center'; gc.textBaseline = 'middle';
           gc.globalAlpha = 0.13;
           gc.fillStyle = ink;

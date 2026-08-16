@@ -1,5 +1,5 @@
 /* =========================================================================
-   NAAM JAP · PAGES — Home, About, Platform, Legal, hubs, 404
+   NAAM JAP · PAGES - Home, About, Platform, Legal, hubs, 404
    ========================================================================= */
 
 /* ---- HOME · Hero ------------------------------------------------------------ */
@@ -11,7 +11,7 @@
 .hero__cta { margin-top: var(--space-6); }
 .hero__mala { justify-self: center; }
 
-/* Aura behind mala — subtle radial glow, discovered not forced */
+/* Aura behind mala - subtle radial glow, discovered not forced */
 .hero__aura { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(42% 46% at 74% 40%, var(--accent-glow), transparent 70%); }
 
 /* ---- HOME · Today's sadhana strip -------------------------------------------- */

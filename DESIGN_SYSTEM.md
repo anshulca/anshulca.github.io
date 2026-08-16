@@ -1,4 +1,4 @@
-# Design System — Naam Jap
+# Design System - Naam Jap
 
 The single source of truth for the visual language is `css/tokens.css` (CSS custom
 properties). Every token below is a variable there; components reference those
@@ -58,4 +58,4 @@ stepper, date, empty/loading/error states, notebook page sheets, timer, audio ct
 
 ## Principles
 Calm · Premium · Indian · Spiritual · Modern · Personal.
-Motifs (mala, mandala, paper) are subtle and optional — discovered, never forced.
+Motifs (mala, mandala, paper) are subtle and optional - discovered, never forced.

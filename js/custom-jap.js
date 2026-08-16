@@ -85,7 +85,7 @@
       confirmText: 'Reset count', cancelText: 'Keep counting',
       onConfirm: function () {
         cj.count = 0; cj.completed = false; cj.paused = false; persist(); render();
-        F.toast('Count reset — lifetime kept', 'success');
+        F.toast('Count reset - lifetime kept', 'success');
       }
     });
   }

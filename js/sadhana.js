@@ -1,7 +1,7 @@
 /* =========================================================================
    NAAM JAP · SADHANA  (/sadhana/)
    The daily flow: targets for jap / malas / lekhan, a personal sankalp,
-   and a quiet streak that counts real practice — with the option to mark
+   and a quiet streak that counts real practice - with the option to mark
    a day manually. Persists via NJ.store (modules.sadhana).
    ========================================================================= */
 (function (global) {
@@ -64,7 +64,7 @@
     var s = sad();
     s.sankalp = String(t || '').trim();
     persist(); renderSankalp();
-    F.toast('Sankalp set — hold it gently', 'success');
+    F.toast('Sankalp set - hold it gently', 'success');
   }
 
   /* ---- Manual day marking ------------------------------------------------------ */
@@ -75,10 +75,10 @@
     var on = !man[tk];
     if (on) {
       if (today().jap === 0 && today().malas === 0 && today().naam === 0) {
-        F.toast('That would be a vow without practice — do a little first.'); return;
+        F.toast('That would be a vow without practice - do a little first.'); return;
       }
       man[tk] = true;
-      F.toast('Today marked — with intention');
+      F.toast('Today marked - with intention');
     } else {
       delete man[tk];
       F.toast('Today\u2019s mark removed');
@@ -156,7 +156,7 @@
       el.sankalp.textContent = '“' + t + '”';
     } else {
       el.sankalp.classList.add('is-empty');
-      el.sankalp.textContent = 'No sankalp set yet — a small vow to guide the practice.';
+      el.sankalp.textContent = 'No sankalp set yet - a small vow to guide the practice.';
     }
     if (el.sankalpInput) el.sankalpInput.value = t;
   }
@@ -167,8 +167,8 @@
     el.streakNum.textContent = s.current;
     el.streakBest.textContent = 'Best: ' + s.best + ' days';
     el.streakToday.textContent = s.today
-      ? 'Today counts — the streak is alive.'
-      : 'No practice recorded today yet — the streak breathes through the day.';
+      ? 'Today counts - the streak is alive.'
+      : 'No practice recorded today yet - the streak breathes through the day.';
     var strip = el.streakStrip;
     strip.innerHTML = '';
     var days = F.lastNDays(14);
