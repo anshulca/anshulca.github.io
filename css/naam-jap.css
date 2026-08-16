@@ -103,3 +103,26 @@
   .tap-count.is-bump, .ripple { animation: none !important; opacity: 0; }
   .tap-btn:active { transform: none; }
 }
+
+/* ---- Mobile composition ------------------------------------------------------
+   On phones the counter is the hero: naam chips first, then the big tap button
+   (naam Devanagari + count + Mala number), then a compact mala visual below.
+   The page lead is hidden so the count sits above the fold. ------------------- */
+@media (max-width: 860px) {
+  .page-hero--jap { padding-block: var(--space-4) 0; }
+  .page-hero--jap .lead { display: none; }
+  .page-hero--jap .site-maker { margin-bottom: var(--space-1); }
+
+  .jap-stage {
+    display: flex; flex-direction: column;
+    padding: var(--space-4) var(--space-4) var(--space-5);
+  }
+  .naam-select { order: 1; }
+  .naam-custom { order: 2; margin-top: var(--space-3); }
+  .tap-btn { order: 3; margin-top: var(--space-4); min-height: 290px; padding-block: var(--space-5) var(--space-4); }
+  .mala-ring { order: 4; width: min(40vw, 190px); margin-top: var(--space-3); }
+
+  .tap-count { margin-top: var(--space-4); font-size: clamp(3.2rem, 16vw, 3.9rem); }
+  .tap-mala { margin-top: var(--space-3); font-size: var(--text-base); }
+  .tap-hint { margin-top: var(--space-4); }
+}
