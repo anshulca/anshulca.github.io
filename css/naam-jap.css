@@ -100,7 +100,8 @@
 
 /* ---- Reduced motion --------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  .tap-count.is-bump, .ripple { animation: none !important; opacity: 0; }
+  .tap-count.is-bump { animation: none !important; }
+  .ripple { animation: none !important; opacity: 0; }
   .tap-btn:active { transform: none; }
 }
 
