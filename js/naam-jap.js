@@ -76,27 +76,34 @@
   function speakNaam() {
     if (!voiceEnabled || !synth) return;
     var naam = currentNaam();
-    var text = naam.english || naam.dev || '';
+    // Speak Devanagari if available, else English
+    var text = naam.dev || naam.english || '';
     if (!text) return;
     synth.cancel();
     var u = new SpeechSynthesisUtterance(text);
-    var isHindi = /[\u0900-\u097f]/.test(naam.dev);
+    var isHindi = /[\u0900-\u097f]/.test(text);
     u.lang = isHindi ? 'hi-IN' : 'en-IN';
     u.rate = 1.1;
-    u.pitch = isHindi ? 1.05 : 1;
+    u.pitch = 1;
     u.volume = 1;
     // Prefer Indian voices
     var voices = synth.getVoices();
     var preferred = null;
+    // First try exact Hindi voice
     for (var i = 0; i < voices.length; i++) {
       var v = voices[i];
-      if (isHindi && v.lang === 'hi-IN') { preferred = v; break; }
-      if (!isHindi && v.lang === 'en-IN') { preferred = v; break; }
+      if (v.lang === 'hi-IN' || v.lang === 'hi-IN-x-hin-local') { preferred = v; break; }
     }
+    // Then try any Hindi voice
     if (!preferred) {
       for (var j = 0; j < voices.length; j++) {
-        var v2 = voices[j];
-        if (v2.lang.indexOf('hi') === 0 || v2.lang.indexOf('en-IN') === 0) { preferred = v2; break; }
+        if (voices[j].lang.indexOf('hi') === 0) { preferred = voices[j]; break; }
+      }
+    }
+    // Then try Indian English
+    if (!preferred) {
+      for (var k = 0; k < voices.length; k++) {
+        if (voices[k].lang === 'en-IN') { preferred = voices[k]; break; }
       }
     }
     if (preferred) u.voice = preferred;
