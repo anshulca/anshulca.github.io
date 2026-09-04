@@ -41,8 +41,43 @@
     sumDuration: $('sum-duration'),
     progress: $('jap-progress-bar'),
     btnPause: $('btn-pause'),
-    btnReset: $('btn-reset')
+    btnReset: $('btn-reset'),
+    btnVoice: $('btn-voice')
   };
+
+  /* ---- Voice (Web Speech API) ---------------------------------------------- */
+  var VOICE_KEY = 'nj:jap:voice';
+  var voiceEnabled = false;
+  var synth = global.speechSynthesis || null;
+
+  function loadVoice() {
+    try { voiceEnabled = localStorage.getItem(VOICE_KEY) === '1'; } catch (e) {}
+    updateVoiceBtn();
+  }
+  function toggleVoice() {
+    voiceEnabled = !voiceEnabled;
+    try { localStorage.setItem(VOICE_KEY, voiceEnabled ? '1' : '0'); } catch (e) {}
+    updateVoiceBtn();
+    NJ.Toast(voiceEnabled ? 'Voice on - naam speaks on each tap.' : 'Voice off.');
+  }
+  function updateVoiceBtn() {
+    if (!el.btnVoice) return;
+    el.btnVoice.textContent = voiceEnabled ? 'Voice On' : 'Voice Off';
+    el.btnVoice.classList.toggle('is-active', voiceEnabled);
+  }
+  function speakNaam() {
+    if (!voiceEnabled || !synth) return;
+    var naam = currentNaam();
+    var text = naam.english || naam.dev || '';
+    if (!text) return;
+    synth.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = /[\u0900-\u097f]/.test(naam.dev) ? 'hi-IN' : 'en-IN';
+    u.rate = 0.85;
+    u.pitch = 1;
+    u.volume = 1;
+    synth.speak(u);
+  }
 
   /* ---- Naam lookup ------------------------------------------------------- */
   function currentNaam() {
@@ -220,6 +255,7 @@
     render();
     flashCount();
     haptic(10);
+    speakNaam();
     if (data.session.inMala === MALA) completeMala();
   }
 
@@ -344,6 +380,7 @@
     });
     el.btnReset.addEventListener('click', resetSession);
     el.btnPause.addEventListener('click', pauseToggle);
+    if (el.btnVoice) el.btnVoice.addEventListener('click', toggleVoice);
     el.customInput.addEventListener('input', function () {
       var v = el.customInput.value.trim();
       data.customNaam = v;
@@ -360,6 +397,7 @@
     buildBeads();
     buildChips();
     wire();
+    loadVoice();
     updateChips();
     updatePauseBtn();
     render();

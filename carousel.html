@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Naam Jap LinkedIn Carousel</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Inter:wght@300;400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 40px;
+  font-family: 'Inter', sans-serif;
+}
+
+.slide {
+  width: 1080px;
+  height: 1080px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.slide-number {
+  position: absolute;
+  bottom: 30px;
+  right: 40px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  opacity: 0.5;
+}
+
+/* ===== SLIDE 1: HERO ===== */
+.s1 {
+  background: linear-gradient(145deg, #f6f3ec 0%, #ede8dd 50%, #e8e2d4 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px;
+}
+.s1 .brand {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #b98a3a;
+  margin-bottom: 40px;
+}
+.s1 .title {
+  font-family: 'Fraunces', serif;
+  font-size: 72px;
+  font-weight: 800;
+  color: #2b2620;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.s1 .subtitle {
+  font-size: 24px;
+  font-weight: 400;
+  color: #7a7264;
+  line-height: 1.6;
+  max-width: 700px;
+}
+.s1 .devanagari {
+  font-family: 'Tiro Devanagari Hindi', serif;
+  font-size: 48px;
+  color: #b98a3a;
+  margin-top: 32px;
+  opacity: 0.6;
+}
+.s1 .line {
+  width: 60px;
+  height: 3px;
+  background: #b98a3a;
+  margin: 32px auto;
+}
+.s1 .tagline {
+  font-size: 18px;
+  color: #98917f;
+  letter-spacing: 0.08em;
+}
+.s1 .slide-number { color: #98917f; }
+
+/* ===== SLIDE 2: PROBLEM ===== */
+.s2 {
+  background: linear-gradient(145deg, #1e1a15 0%, #262117 50%, #1e1a15 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px;
+}
+.s2 .label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #b98a3a;
+  margin-bottom: 32px;
+}
+.s2 .heading {
+  font-family: 'Fraunces', serif;
+  font-size: 56px;
+  font-weight: 700;
+  color: #f1ece2;
+  line-height: 1.15;
+  margin-bottom: 40px;
+}
+.s2 .points {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.s2 .point {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+.s2 .point-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(185, 138, 58, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 22px;
+  color: #d0a24d;
+}
+.s2 .point-text {
+  font-size: 22px;
+  color: #b4ad9c;
+  line-height: 1.5;
+}
+.s2 .point-text strong { color: #f1ece2; font-weight: 600; }
+.s2 .slide-number { color: #7d7668; }
+
+/* ===== SLIDE 3: FEATURES ===== */
+.s3 {
+  background: linear-gradient(145deg, #f6f3ec 0%, #ede8dd 50%, #e8e2d4 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px;
+}
+.s3 .label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #b98a3a;
+  margin-bottom: 24px;
+}
+.s3 .heading {
+  font-family: 'Fraunces', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #2b2620;
+  line-height: 1.15;
+  margin-bottom: 48px;
+}
+.s3 .features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.s3 .feature {
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(185,138,58,0.15);
+  border-radius: 16px;
+  padding: 32px;
+}
+.s3 .feature-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+  color: #b98a3a;
+}
+.s3 .feature-name {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #2b2620;
+  margin-bottom: 8px;
+}
+.s3 .feature-desc {
+  font-size: 16px;
+  color: #7a7264;
+  line-height: 1.5;
+}
+.s3 .slide-number { color: #98917f; }
+
+/* ===== SLIDE 4: WHY DIFFERENT ===== */
+.s4 {
+  background: linear-gradient(145deg, #15120e 0%, #1e1a15 50%, #15120e 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px;
+}
+.s4 .label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #b98a3a;
+  margin-bottom: 24px;
+}
+.s4 .heading {
+  font-family: 'Fraunces', serif;
+  font-size: 52px;
+  font-weight: 700;
+  color: #f1ece2;
+  line-height: 1.15;
+  margin-bottom: 48px;
+}
+.s4 .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.s4 .card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(185,138,58,0.2);
+  border-radius: 16px;
+  padding: 36px;
+}
+.s4 .card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: rgba(185,138,58,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: #d0a24d;
+  margin-bottom: 20px;
+}
+.s4 .card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #f1ece2;
+  margin-bottom: 8px;
+}
+.s4 .card-desc {
+  font-size: 16px;
+  color: #b4ad9c;
+  line-height: 1.5;
+}
+.s4 .slide-number { color: #7d7668; }
+
+/* ===== SLIDE 5: USE CASES ===== */
+.s5 {
+  background: linear-gradient(145deg, #f6f3ec 0%, #ede8dd 50%, #e8e2d4 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px;
+}
+.s5 .label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #b98a3a;
+  margin-bottom: 24px;
+}
+.s5 .heading {
+  font-family: 'Fraunces', serif;
+  font-size: 52px;
+  font-weight: 700;
+  color: #2b2620;
+  line-height: 1.15;
+  margin-bottom: 48px;
+}
+.s5 .cases {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.s5 .case {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  background: rgba(255,255,255,0.5);
+  border: 1px solid rgba(185,138,58,0.12);
+  border-radius: 16px;
+  padding: 32px 36px;
+}
+.s5 .case-num {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #b98a3a;
+  color: #fff;
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.s5 .case-content { flex: 1; }
+.s5 .case-title {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #2b2620;
+  margin-bottom: 6px;
+}
+.s5 .case-desc {
+  font-size: 17px;
+  color: #7a7264;
+  line-height: 1.5;
+}
+.s5 .slide-number { color: #98917f; }
+
+/* ===== SLIDE 6: GIFT ===== */
+.s6 {
+  background: linear-gradient(145deg, #1e1a15 0%, #262117 50%, #1e1a15 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px;
+}
+.s6 .label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #b98a3a;
+  margin-bottom: 32px;
+}
+.s6 .heading {
+  font-family: 'Fraunces', serif;
+  font-size: 56px;
+  font-weight: 800;
+  color: #f1ece2;
+  line-height: 1.15;
+  margin-bottom: 24px;
+  max-width: 800px;
+}
+.s6 .sub {
+  font-size: 22px;
+  color: #b4ad9c;
+  line-height: 1.6;
+  max-width: 650px;
+  margin-bottom: 48px;
+}
+.s6 .badges {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 48px;
+}
+.s6 .badge {
+  background: rgba(185,138,58,0.1);
+  border: 1px solid rgba(185,138,58,0.3);
+  border-radius: 12px;
+  padding: 20px 32px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #d0a24d;
+  letter-spacing: 0.03em;
+}
+.s6 .url {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #b98a3a;
+  padding: 20px 48px;
+  border: 2px solid #b98a3a;
+  border-radius: 60px;
+}
+.s6 .slide-number { color: #7d7668; }
+
+/* ===== SLIDE 7: CTA ===== */
+.s7 {
+  background: linear-gradient(145deg, #f6f3ec 0%, #ede8dd 50%, #e8e2d4 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px;
+}
+.s7 .photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #b98a3a;
+  margin-bottom: 32px;
+  background: #ddd;
+}
+.s7 .photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.s7 .name {
+  font-family: 'Fraunces', serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: #2b2620;
+  margin-bottom: 8px;
+}
+.s7 .role {
+  font-size: 20px;
+  color: #7a7264;
+  margin-bottom: 40px;
+}
+.s7 .links {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.s7 .link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  color: #5a5347;
+  text-decoration: none;
+  padding: 14px 28px;
+  border: 1px solid rgba(185,138,58,0.3);
+  border-radius: 60px;
+  background: rgba(255,255,255,0.5);
+}
+.s7 .link svg { width: 22px; height: 22px; fill: #b98a3a; }
+.s7 .cta {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #b98a3a;
+  padding: 18px 44px;
+  border: 2px solid #b98a3a;
+  border-radius: 60px;
+  text-decoration: none;
+}
+.s7 .slide-number { color: #98917f; }
+
+.slide-label {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: HERO -->
+<div class="slide s1" id="slide1">
+  <div class="slide-label" style="color:#98917f">SLIDE 1 / 7</div>
+  <div class="brand">NAAM JAP</div>
+  <div class="title">Your Daily Jap,<br>Finally Frictionless.</div>
+  <div class="line"></div>
+  <div class="subtitle">A private, offline-first companion for Naam Jap, Naam Lekhan and daily Sadhana. No login. No tracking. No ads.</div>
+  <div class="devanagari">नाम जप</div>
+  <div class="slide-number" style="color:#98917f">1 / 7</div>
+</div>
+
+<!-- SLIDE 2: PROBLEM -->
+<div class="slide s2" id="slide2">
+  <div class="slide-label" style="color:#7d7668">SLIDE 2 / 7</div>
+  <div class="label">THE PROBLEM</div>
+  <div class="heading">Real Life Breaks<br>The Rhythm.</div>
+  <div class="points">
+    <div class="point">
+      <div class="point-icon">01</div>
+      <div class="point-text"><strong>Mala in the bag.</strong> Boardroom. Meeting. Presentation. No one pulls out a mala mid-meeting.</div>
+    </div>
+    <div class="point">
+      <div class="point-icon">02</div>
+      <div class="point-text"><strong>Counter on paper.</strong> Lose the page. Forget the count. Start over. Again.</div>
+    </div>
+    <div class="point">
+      <div class="point-icon">03</div>
+      <div class="point-text"><strong>Travelling.</strong> Airport. Train. Hotel. The physical mala stays home. The streak breaks.</div>
+    </div>
+  </div>
+  <div class="slide-number" style="color:#7d7668">2 / 7</div>
+</div>
+
+<!-- SLIDE 3: FEATURES -->
+<div class="slide s3" id="slide3">
+  <div class="slide-label" style="color:#98917f">SLIDE 3 / 7</div>
+  <div class="label">WHAT YOU GET</div>
+  <div class="heading">Five Tools.<br>One Purpose.</div>
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">01</div>
+      <div class="feature-name">Jap Counter</div>
+      <div class="feature-desc">Digital mala with 108 beads, haptic feedback, session history.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">02</div>
+      <div class="feature-name">Naam Lekhan</div>
+      <div class="feature-desc">Write the naam 108 times per page, guided strokes, page-turn.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">03</div>
+      <div class="feature-name">Sadhana</div>
+      <div class="feature-desc">Set sankalps, daily targets, streak heatmap, milestones.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">04</div>
+      <div class="feature-name">Mantra Library</div>
+      <div class="feature-desc">Text, transliteration, meaning. One-tap start jap.</div>
+    </div>
+  </div>
+  <div class="slide-number" style="color:#98917f">3 / 7</div>
+</div>
+
+<!-- SLIDE 4: WHY DIFFERENT -->
+<div class="slide s4" id="slide4">
+  <div class="slide-label" style="color:#7d7668">SLIDE 4 / 7</div>
+  <div class="label">WHY IT IS DIFFERENT</div>
+  <div class="heading">Built For Real Life.</div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-icon">L</div>
+      <div class="card-title">100% Local</div>
+      <div class="card-desc">Your practice data never leaves your device. No servers. No tracking.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">D</div>
+      <div class="card-title">Auto Dark Mode</div>
+      <div class="card-desc">Light 5 AM to 8 PM. Dark 8 PM to 5 AM. IST automatically.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">O</div>
+      <div class="card-title">Works Offline</div>
+      <div class="card-desc">Plane mode? No problem. PWA installed? Opens like a native app.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">C</div>
+      <div class="card-title">Designed For Calm</div>
+      <div class="card-desc">Warm paper textures. Fraunces + Devanagari fonts. Zero clutter.</div>
+    </div>
+  </div>
+  <div class="slide-number" style="color:#7d7668">4 / 7</div>
+</div>
+
+<!-- SLIDE 5: USE CASES -->
+<div class="slide s5" id="slide5">
+  <div class="slide-label" style="color:#98917f">SLIDE 5 / 7</div>
+  <div class="label">USE IT ANYWHERE</div>
+  <div class="heading">30 Seconds.<br>Anywhere.</div>
+  <div class="cases">
+    <div class="case">
+      <div class="case-num">1</div>
+      <div class="case-content">
+        <div class="case-title">Metro Commute</div>
+        <div class="case-desc">Open the app. Tap the mala. 108 beads before your stop.</div>
+      </div>
+    </div>
+    <div class="case">
+      <div class="case-num">2</div>
+      <div class="case-content">
+        <div class="case-title">Lunch Break</div>
+        <div class="case-desc">Five minutes. One mala. Write the naam. Return refreshed.</div>
+      </div>
+    </div>
+    <div class="case">
+      <div class="case-num">3</div>
+      <div class="case-content">
+        <div class="case-title">Bedside Table</div>
+        <div class="case-desc">End the day the way it started. With the Name. With silence.</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number" style="color:#98917f">5 / 7</div>
+</div>
+
+<!-- SLIDE 6: GIFT -->
+<div class="slide s6" id="slide6">
+  <div class="slide-label" style="color:#7d7668">SLIDE 6 / 7</div>
+  <div class="label">THIS JANMASHTMI</div>
+  <div class="heading">Gift Yourself<br>The Habit.</div>
+  <div class="sub">The full platform. Free forever.<br>No account walls. No upsells. No data mining.</div>
+  <div class="badges">
+    <div class="badge">No Account</div>
+    <div class="badge">No Cost</div>
+    <div class="badge">No Compromise</div>
+  </div>
+  <div class="url">jap.studyfromnotes.com</div>
+  <div class="slide-number" style="color:#7d7668">6 / 7</div>
+</div>
+
+<!-- SLIDE 7: CTA -->
+<div class="slide s7" id="slide7">
+  <div class="slide-label" style="color:#98917f">SLIDE 7 / 7</div>
+  <div class="photo">
+    <img src="assets/photo.jpg" alt="CA Anshul Karwa">
+  </div>
+  <div class="name">CA Anshul Karwa</div>
+  <div class="role">Chartered Accountant. Developer of Naam Jap.</div>
+  <div class="links">
+    <a class="link" href="https://www.linkedin.com/in/anshulkarwa/" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+    <a class="link" href="https://www.instagram.com/anshulkarwa/" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-.1263-.058-1.689-.072-4.947-.072zM12 6.865c-2.797 0-5.07 2.273-5.07 5.071s2.273 5.071 5.07 5.071 5.07-2.273 5.07-5.071-2.273-5.07-5.07-5.07zm0 8.844c-2.083 0-3.778-1.695-3.778-3.778s1.695-3.777 3.778-3.777 3.777 1.695 3.777 3.777-1.695 3.778-3.777 3.778z"/></svg>
+      Instagram
+    </a>
+  </div>
+  <a class="cta" href="https://jap.studyfromnotes.com" target="_blank">Try Naam Jap</a>
+  <div class="slide-number" style="color:#98917f">7 / 7</div>
+</div>
+
+</body>
+</html>

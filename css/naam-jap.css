@@ -96,7 +96,12 @@
 
 /* ---- Controls -------------------------------------------------------------- */
 .jap-controls { max-width: 560px; margin: var(--space-5) auto 0; display: flex; gap: var(--space-3); flex-wrap: wrap; }
-.jap-controls .btn { flex: 1; min-width: 140px; }
+.jap-controls .btn { flex: 1; min-width: 120px; }
+
+/* Voice toggle */
+#btn-voice { position: relative; }
+#btn-voice.is-active { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+#btn-voice.is-active:hover { background: var(--accent-strong); }
 
 /* ---- Reduced motion --------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
