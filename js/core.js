@@ -60,15 +60,8 @@
   function initTheme() {
     var stored;
     try { stored = global.localStorage.getItem(THEME_KEY); } catch (e) {}
-    // Default by IST time of day: light 5am-8pm, dark 8pm-5am.
-    // A manual toggle persists and wins until the user changes it again.
-    var now = new Date();
-    // IST is UTC+5:30
-    var istOffset = 5.5 * 60 * 60 * 1000;
-    var istTime = new Date(now.getTime() + istOffset);
-    var h = istTime.getUTCHours();
-    var timed = (h >= 20 || h < 5) ? 'dark' : 'light';
-    applyTheme(stored || timed);
+    // Default to light theme. Manual toggle persists and wins.
+    applyTheme(stored || 'light');
   }
 
   /* ---- Header ------------------------------------------------------------- */
