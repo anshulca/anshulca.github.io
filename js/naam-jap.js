@@ -49,6 +49,14 @@
   var VOICE_KEY = 'nj:jap:voice';
   var voiceEnabled = false;
   var synth = global.speechSynthesis || null;
+  var voicesLoaded = false;
+
+  function loadVoices() {
+    if (!synth) return;
+    var voices = synth.getVoices();
+    if (voices.length > 0) { voicesLoaded = true; return; }
+    synth.onvoiceschanged = function () { voicesLoaded = true; };
+  }
 
   function loadVoice() {
     try { voiceEnabled = localStorage.getItem(VOICE_KEY) === '1'; } catch (e) {}
@@ -72,10 +80,26 @@
     if (!text) return;
     synth.cancel();
     var u = new SpeechSynthesisUtterance(text);
-    u.lang = /[\u0900-\u097f]/.test(naam.dev) ? 'hi-IN' : 'en-IN';
-    u.rate = 0.85;
-    u.pitch = 1;
+    var isHindi = /[\u0900-\u097f]/.test(naam.dev);
+    u.lang = isHindi ? 'hi-IN' : 'en-IN';
+    u.rate = 1.1;
+    u.pitch = isHindi ? 1.05 : 1;
     u.volume = 1;
+    // Prefer Indian voices
+    var voices = synth.getVoices();
+    var preferred = null;
+    for (var i = 0; i < voices.length; i++) {
+      var v = voices[i];
+      if (isHindi && v.lang === 'hi-IN') { preferred = v; break; }
+      if (!isHindi && v.lang === 'en-IN') { preferred = v; break; }
+    }
+    if (!preferred) {
+      for (var j = 0; j < voices.length; j++) {
+        var v2 = voices[j];
+        if (v2.lang.indexOf('hi') === 0 || v2.lang.indexOf('en-IN') === 0) { preferred = v2; break; }
+      }
+    }
+    if (preferred) u.voice = preferred;
     synth.speak(u);
   }
 
@@ -398,6 +422,7 @@
     buildChips();
     wire();
     loadVoice();
+    loadVoices();
     updateChips();
     updatePauseBtn();
     render();
