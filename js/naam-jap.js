@@ -47,7 +47,7 @@
 
   /* ---- Voice (Web Speech API) ---------------------------------------------- */
   var VOICE_KEY = 'nj:jap:voice';
-  var voiceEnabled = false;
+  var voiceEnabled = true;
   var synth = global.speechSynthesis || null;
   var voicesLoaded = false;
 
@@ -59,7 +59,10 @@
   }
 
   function loadVoice() {
-    try { voiceEnabled = localStorage.getItem(VOICE_KEY) === '1'; } catch (e) {}
+    try {
+      var stored = localStorage.getItem(VOICE_KEY);
+      voiceEnabled = stored === null ? true : stored === '1';
+    } catch (e) { voiceEnabled = true; }
     updateVoiceBtn();
   }
   function toggleVoice() {
