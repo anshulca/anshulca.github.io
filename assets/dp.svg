@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f6f3ec"/>
+      <stop offset="100%" stop-color="#ede8dd"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d0a24d"/>
+      <stop offset="100%" stop-color="#b98a3a"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#b98a3a" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  
+  <!-- Subtle radial glow -->
+  <circle cx="256" cy="220" r="180" fill="url(#gold)" opacity="0.06"/>
+  
+  <!-- Mala ring -->
+  <g transform="translate(256,240)" filter="url(#shadow)">
+    <!-- Ring circle -->
+    <circle r="140" fill="none" stroke="#b98a3a" stroke-width="4" opacity="0.3"/>
+    
+    <!-- Beads -->
+    <g fill="#d0a24d">
+      <!-- Top bead (meru) -->
+      <circle cx="0" cy="-140" r="10" fill="#b98a3a"/>
+      
+      <!-- Beads around the ring -->
+      <circle cx="70" cy="-121" r="7"/>
+      <circle cx="121" cy="-70" r="7"/>
+      <circle cx="140" cy="0" r="7"/>
+      <circle cx="121" cy="70" r="7"/>
+      <circle cx="70" cy="121" r="7"/>
+      <circle cx="0" cy="140" r="7"/>
+      <circle cx="-70" cy="121" r="7"/>
+      <circle cx="-121" cy="70" r="7"/>
+      <circle cx="-140" cy="0" r="7"/>
+      <circle cx="-121" cy="-70" r="7"/>
+      <circle cx="-70" cy="-121" r="7"/>
+      
+      <!-- Additional beads for 108 feel -->
+      <circle cx="35" cy="-135" r="5" opacity="0.7"/>
+      <circle cx="95" cy="-105" r="5" opacity="0.7"/>
+      <circle cx="135" cy="-35" r="5" opacity="0.7"/>
+      <circle cx="135" cy="35" r="5" opacity="0.7"/>
+      <circle cx="95" cy="105" r="5" opacity="0.7"/>
+      <circle cx="35" cy="135" r="5" opacity="0.7"/>
+      <circle cx="-35" cy="135" r="5" opacity="0.7"/>
+      <circle cx="-95" cy="105" r="5" opacity="0.7"/>
+      <circle cx="-135" cy="35" r="5" opacity="0.7"/>
+      <circle cx="-135" cy="-35" r="5" opacity="0.7"/>
+      <circle cx="-95" cy="-105" r="5" opacity="0.7"/>
+      <circle cx="-35" cy="-135" r="5" opacity="0.7"/>
+    </g>
+    
+    <!-- Center dot -->
+    <circle r="5" fill="#b98a3a"/>
+  </g>
+  
+  <!-- Text: NAAM JAP -->
+  <text x="256" y="430" text-anchor="middle" font-family="Georgia, serif" font-size="42" font-weight="700" fill="#2b2620" letter-spacing="6">NAAM JAP</text>
+  
+  <!-- Devanagari subtitle -->
+  <text x="256" y="470" text-anchor="middle" font-family="serif" font-size="24" fill="#b98a3a" opacity="0.7">नाम जप</text>
+</svg>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Generate Naam Jap Icons</title>
+<style>
+body { font-family: Arial, sans-serif; padding: 40px; background: #f5f5f5; }
+h1 { margin-bottom: 20px; }
+.icon-group { display: flex; flex-wrap: wrap; gap: 30px; margin: 30px 0; }
+.icon-item { text-align: center; }
+.icon-item canvas { border: 1px solid #ddd; background: #f6f3ec; cursor: pointer; }
+.icon-item p { margin-top: 10px; font-size: 14px; color: #666; }
+.icon-item a { display: inline-block; margin-top: 8px; padding: 6px 16px; background: #b98a3a; color: white; text-decoration: none; border-radius: 4px; font-size: 13px; }
+.icon-item a:hover { background: #a07830; }
+.note { background: #fff3cd; padding: 15px; border-radius: 8px; margin-bottom: 30px; }
+</style>
+</head>
+<body>
+<h1>Naam Jap Icon Generator</h1>
+<div class="note">
+  <p><strong>Right-click any icon → "Save image as..." to download.</strong></p>
+  <p>These replace the existing icons in <code>/assets/</code></p>
+</div>
+
+<div class="icon-group">
+  <div class="icon-item">
+    <canvas id="c192" width="192" height="192"></canvas>
+    <p>icon-192.png (PWA)</p>
+    <a href="#" onclick="download('c192','icon-192.png')">Download</a>
+  </div>
+  <div class="icon-item">
+    <canvas id="c512" width="512" height="512"></canvas>
+    <p>icon-512.png (PWA)</p>
+    <a href="#" onclick="download('c512','icon-512.png')">Download</a>
+  </div>
+  <div class="icon-item">
+    <canvas id="c180" width="180" height="180"></canvas>
+    <p>apple-touch-icon.png</p>
+    <a href="#" onclick="download('c180','apple-touch-icon.png')">Download</a>
+  </div>
+  <div class="icon-item">
+    <canvas id="c32" width="32" height="32"></canvas>
+    <p>favicon-32.png</p>
+    <a href="#" onclick="download('c32','favicon-32.png')">Download</a>
+  </div>
+  <div class="icon-item">
+    <canvas id="c16" width="16" height="16"></canvas>
+    <p>favicon-16.png</p>
+    <a href="#" onclick="download('c16','favicon-16.png')">Download</a>
+  </div>
+</div>
+
+<script>
+function drawIcon(canvasId, size) {
+  const c = document.getElementById(canvasId);
+  const ctx = c.getContext('2d');
+  const s = size;
+  const r = s * 0.18; // corner radius
+  
+  // Background
+  ctx.beginPath();
+  ctx.moveTo(r, 0);
+  ctx.lineTo(s - r, 0);
+  ctx.quadraticCurveTo(s, 0, s, r);
+  ctx.lineTo(s, s - r);
+  ctx.quadraticCurveTo(s, s, s - r, s);
+  ctx.lineTo(r, s);
+  ctx.quadraticCurveTo(0, s, 0, s - r);
+  ctx.lineTo(0, r);
+  ctx.quadraticCurveTo(0, 0, r, 0);
+  ctx.closePath();
+  ctx.fillStyle = '#f6f3ec';
+  ctx.fill();
+  
+  // Subtle radial glow
+  const grd = ctx.createRadialGradient(s/2, s*0.45, 0, s/2, s*0.45, s*0.4);
+  grd.addColorStop(0, 'rgba(185,138,58,0.08)');
+  grd.addColorStop(1, 'rgba(185,138,58,0)');
+  ctx.fillStyle = grd;
+  ctx.fillRect(0, 0, s, s);
+  
+  // Mala ring
+  const cx = s / 2;
+  const cy = s * 0.46;
+  const ringR = s * 0.27;
+  
+  // Ring circle
+  ctx.beginPath();
+  ctx.arc(cx, cy, ringR, 0, Math.PI * 2);
+  ctx.strokeStyle = 'rgba(185,138,58,0.3)';
+  ctx.lineWidth = s * 0.008;
+  ctx.stroke();
+  
+  // Beads
+  const beadCount = 12;
+  const beadR = s * 0.014;
+  ctx.fillStyle = '#d0a24d';
+  for (let i = 0; i < beadCount; i++) {
+    const angle = (i / beadCount) * Math.PI * 2 - Math.PI / 2;
+    const bx = cx + Math.cos(angle) * ringR;
+    const by = cy + Math.sin(angle) * ringR;
+    ctx.beginPath();
+    ctx.arc(bx, by, beadR, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  
+  // Meru bead (top)
+  ctx.beginPath();
+  ctx.arc(cx, cy - ringR, s * 0.02, 0, Math.PI * 2);
+  ctx.fillStyle = '#b98a3a';
+  ctx.fill();
+  
+  // Center dot
+  ctx.beginPath();
+  ctx.arc(cx, cy, s * 0.01, 0, Math.PI * 2);
+  ctx.fillStyle = '#b98a3a';
+  ctx.fill();
+  
+  // NAAM JAP text
+  ctx.fillStyle = '#2b2620';
+  ctx.font = `bold ${s * 0.082}px Georgia, serif`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('NAAM JAP', cx, s * 0.84);
+  
+  // Devanagari
+  ctx.fillStyle = 'rgba(185,138,58,0.7)';
+  ctx.font = `${s * 0.048}px serif`;
+  ctx.fillText('नाम जप', cx, s * 0.92);
+}
+
+function download(canvasId, filename) {
+  const c = document.getElementById(canvasId);
+  const link = document.createElement('a');
+  link.download = filename;
+  link.href = c.toDataURL('image/png');
+  link.click();
+}
+
+// Draw all sizes
+drawIcon('c192', 192);
+drawIcon('c512', 512);
+drawIcon('c180', 180);
+drawIcon('c32', 32);
+drawIcon('c16', 16);
+</script>
+</body>
+</html>

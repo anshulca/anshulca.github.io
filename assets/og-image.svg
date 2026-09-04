@@ -1,18 +1,47 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#f6f3ec"/>
-  <rect width="1200" height="630" fill="url(#g)"/>
   <defs>
-    <radialGradient id="g" cx="0.72" cy="0.35" r="0.6">
-      <stop offset="0" stop-color="#b5852f" stop-opacity="0.16"/>
-      <stop offset="1" stop-color="#b5852f" stop-opacity="0"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f6f3ec"/>
+      <stop offset="100%" stop-color="#ede8dd"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.72" cy="0.35" r="0.6">
+      <stop offset="0" stop-color="#b98a3a" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#b98a3a" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <text x="120" y="300" font-family="Georgia, serif" font-size="72" fill="#2b2620">Naam Jap</text>
-  <text x="120" y="368" font-family="'Nirmala UI', sans-serif" font-size="48" fill="#b5852f">नाम जप</text>
-  <text x="122" y="430" font-family="Georgia, serif" font-size="30" fill="#6d675c">Pause. Remember. Repeat.</text>
-  <g fill="none" stroke="#b5852f" stroke-width="6" transform="translate(1010,215)">
-    <circle cx="70" cy="70" r="56"/>
-    <path d="M70 14 A56 56 0 0 1 119.5 70" opacity=".45"/>
-    <circle cx="70" cy="14" r="12" fill="#b5852f"/>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  
+  <!-- Mala ring -->
+  <g transform="translate(960,240)">
+    <circle r="120" fill="none" stroke="#b98a3a" stroke-width="4" opacity="0.3"/>
+    <g fill="#d0a24d">
+      <circle cx="0" cy="-120" r="9" fill="#b98a3a"/>
+      <circle cx="60" cy="-104" r="6"/>
+      <circle cx="104" cy="-60" r="6"/>
+      <circle cx="120" cy="0" r="6"/>
+      <circle cx="104" cy="60" r="6"/>
+      <circle cx="60" cy="104" r="6"/>
+      <circle cx="0" cy="120" r="6"/>
+      <circle cx="-60" cy="104" r="6"/>
+      <circle cx="-104" cy="60" r="6"/>
+      <circle cx="-120" cy="0" r="6"/>
+      <circle cx="-104" cy="-60" r="6"/>
+      <circle cx="-60" cy="-104" r="6"/>
+    </g>
+    <circle r="4" fill="#b98a3a"/>
   </g>
+  
+  <!-- Text -->
+  <text x="120" y="260" font-family="Georgia, serif" font-size="78" font-weight="700" fill="#2b2620">Naam Jap</text>
+  <text x="122" y="330" font-family="serif" font-size="52" fill="#b98a3a">नाम जप</text>
+  <text x="122" y="400" font-family="Georgia, serif" font-size="32" fill="#7a7264">Pause. Remember. Repeat.</text>
+  
+  <!-- Tagline -->
+  <text x="122" y="460" font-family="Arial, sans-serif" font-size="22" fill="#98917f">A private digital companion for daily spiritual practice</text>
+  
+  <!-- URL -->
+  <text x="122" y="560" font-family="Arial, sans-serif" font-size="20" fill="#b98a3a" font-weight="600">jap.studyfromnotes.com</text>
 </svg>
