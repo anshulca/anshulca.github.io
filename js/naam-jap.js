@@ -42,7 +42,8 @@
     progress: $('jap-progress-bar'),
     btnPause: $('btn-pause'),
     btnReset: $('btn-reset'),
-    btnVoice: $('btn-voice')
+    btnVoice: $('btn-voice'),
+    btnHaptic: $('btn-haptic')
   };
 
   /* ---- Voice (Web Speech API) ---------------------------------------------- */
@@ -75,6 +76,27 @@
     if (!el.btnVoice) return;
     el.btnVoice.textContent = voiceEnabled ? 'Voice On' : 'Voice Off';
     el.btnVoice.classList.toggle('is-active', voiceEnabled);
+  }
+
+  var HAPTIC_KEY = 'nj:jap:haptic';
+  var hapticEnabled = true;
+  function loadHaptic() {
+    try {
+      var stored = localStorage.getItem(HAPTIC_KEY);
+      hapticEnabled = stored === null ? true : stored === '1';
+    } catch (e) { hapticEnabled = true; }
+    updateHapticBtn();
+  }
+  function toggleHaptic() {
+    hapticEnabled = !hapticEnabled;
+    try { localStorage.setItem(HAPTIC_KEY, hapticEnabled ? '1' : '0'); } catch (e) {}
+    updateHapticBtn();
+    NJ.Toast(hapticEnabled ? 'Vibration on.' : 'Vibration off.');
+  }
+  function updateHapticBtn() {
+    if (!el.btnHaptic) return;
+    el.btnHaptic.textContent = hapticEnabled ? 'Vibration On' : 'Vibration Off';
+    el.btnHaptic.classList.toggle('is-active', hapticEnabled);
   }
   function speakNaam() {
     if (!voiceEnabled || !synth) return;
@@ -368,6 +390,7 @@
     } catch (e) {}
   }
   function haptic(pattern) {
+    if (!hapticEnabled) return;
     try { if (global.navigator && navigator.vibrate) navigator.vibrate(pattern); } catch (e) {}
   }
   function alertComplete() {
@@ -457,6 +480,7 @@
     el.btnReset.addEventListener('click', resetSession);
     el.btnPause.addEventListener('click', pauseToggle);
     if (el.btnVoice) el.btnVoice.addEventListener('click', toggleVoice);
+    if (el.btnHaptic) el.btnHaptic.addEventListener('click', toggleHaptic);
     el.customInput.addEventListener('input', function () {
       var v = el.customInput.value.trim();
       data.customNaam = v;
@@ -475,6 +499,7 @@
     wire();
     loadVoice();
     loadVoices();
+    loadHaptic();
     updateChips();
     updatePauseBtn();
     render();
