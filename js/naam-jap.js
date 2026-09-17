@@ -303,7 +303,7 @@
     data.stats.malas++;
     addToday(0, 1);
     persist();
-    haptic([12, 40, 12]);
+    alertComplete();
     completedAtMala = data.session.mala;
     completing = true;
     render();
@@ -329,8 +329,41 @@
     void el.count.offsetWidth; // reflow to restart animation
     el.count.classList.add('is-bump');
   }
+  var audioCtx = null;
+  function beep() {
+    try {
+      if (!audioCtx) audioCtx = new (global.AudioContext || global.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      var osc = audioCtx.createOscillator();
+      var gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.type = 'sine';
+      osc.frequency.value = 520;
+      gain.gain.setValueAtTime(0.6, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+      osc.start(audioCtx.currentTime);
+      osc.stop(audioCtx.currentTime + 0.35);
+      setTimeout(function () {
+        var osc2 = audioCtx.createOscillator();
+        var gain2 = audioCtx.createGain();
+        osc2.connect(gain2);
+        gain2.connect(audioCtx.destination);
+        osc2.type = 'sine';
+        osc2.frequency.value = 660;
+        gain2.gain.setValueAtTime(0.6, audioCtx.currentTime);
+        gain2.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.45);
+        osc2.start(audioCtx.currentTime);
+        osc2.stop(audioCtx.currentTime + 0.45);
+      }, 200);
+    } catch (e) {}
+  }
   function haptic(pattern) {
     try { if (global.navigator && navigator.vibrate) navigator.vibrate(pattern); } catch (e) {}
+  }
+  function alertComplete() {
+    haptic([100, 50, 100, 50, 200]);
+    beep();
   }
   function ripple(x, y) {
     var r = doc.createElement('span');
