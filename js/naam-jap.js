@@ -278,6 +278,7 @@
 
   /* ---- Counting ------------------------------------------------------------- */
   function countOne() {
+    initAudio();
     if (data.session.paused) { NJ.Toast('Press Resume to continue counting.'); return; }
     if (data.session.inMala >= MALA) rollover();
     data.session.inMala++;
@@ -330,9 +331,17 @@
     el.count.classList.add('is-bump');
   }
   var audioCtx = null;
+  function initAudio() {
+    if (audioCtx) return;
+    try {
+      audioCtx = new (global.AudioContext || global.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+    } catch (e) { audioCtx = null; }
+  }
   function beep() {
     try {
-      if (!audioCtx) audioCtx = new (global.AudioContext || global.webkitAudioContext)();
+      if (!audioCtx) initAudio();
+      if (!audioCtx) return;
       if (audioCtx.state === 'suspended') audioCtx.resume();
       var osc = audioCtx.createOscillator();
       var gain = audioCtx.createGain();

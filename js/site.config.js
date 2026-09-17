@@ -138,9 +138,21 @@
       name: 'CA Anshul Karwa',
       role: 'Chartered Accountant · Developer of Naam Jap',
       location: 'India',
-      photo: '/assets/photo.jpg',
+      photo: '/assets/photo.png',
       shortIntro:
         'A quiet devotee who built Naam Jap to keep company with the Name - and to help others stay steady in their own daily practice.',
+      credentials: 'CA · LLB · BCA · DISA · FAFD · AUTHOR · SaaS Founder & Developer · Tax Technology Enabler',
+      stats: [
+        { value: '20+', label: 'Apps / Software / Tools' },
+        { value: '01', label: 'Developer' },
+        { value: '∞', label: 'Ideas' }
+      ],
+      capabilities: [
+        { title: 'CA', desc: 'Tax · GST · Income tax · Litigation' },
+        { title: 'Developer', desc: 'Tools · Apps · Calculators · Automation' },
+        { title: 'Markets', desc: 'Stocks · SME · IPO · Capital markets' },
+        { title: 'Technology', desc: 'Web apps · AI · Digital products' }
+      ],
       story: [
         'Naam Jap began as a simple personal habit - a few malas each morning before the day began.',
         'Over time I saw how much consistency mattered, and how easy it was to lose count, lose track, or lose the thread of a daily sadhana.',
@@ -149,7 +161,7 @@
       ],
       philosophy:
         'Technology is not the opposite of stillness. A well-made tool can hold space for the sacred - quietly, and in the background.',
-      message: 'May this little space help you pause, remember and return. — <a href="https://www.linkedin.com/in/anshulkarwa/" target="_blank" rel="noopener noreferrer">By CA Anshul Karwa</a>'
+      message: 'May this little space help you pause, remember and return.'
     },
 
     /* ------------------------------------------------------------------
@@ -162,28 +174,39 @@
       ],
       practices: [
         {
+          num: '01',
           name: 'Naam Jap',
           desc: 'Count malas of 108 calmly, with a digital mala that feels like the real thing.'
         },
         {
+          num: '02',
           name: 'Naam Lekhan',
           desc: 'Write the naam into a digital notebook - 108 writings per page, page after page.'
         },
         {
+          num: '03',
           name: 'Sadhana',
           desc: 'Set sankalps and daily targets, build a streak, and return day after day.'
         },
         {
+          num: '04',
           name: 'Mantra',
           desc: 'Explore a library of mantras with text, transliteration and meaning.'
         },
         {
+          num: '05',
           name: 'Journey',
           desc: 'A personal dashboard of your total jap, malas, naam written and milestones.'
         }
       ],
       privacy:
-        'Your practice data is private by design. It is stored only on your device and is never sent to any server. A future account system will respect the same boundary - migration will never lock you in.'
+        'Your practice data is private by design. It is stored only on your device and is never sent to any server. A future account system will respect the same boundary - migration will never lock you in.',
+      whyExists:
+        'Daily practice is easy to postpone. Naam Jap was made to remove a little friction from that practice, so the tools stay close without becoming the focus.',
+      madeBy: {
+        photo: '/assets/photo.png',
+        intro: 'Naam Jap began as a simple personal practice and slowly became a tool I wanted to make useful for others who wanted to keep a daily practice close, private and consistent.'
+      }
     },
 
     /* ------------------------------------------------------------------
