@@ -50,12 +50,41 @@
   var VOICE_KEY = 'nj:jap:voice';
   var voiceEnabled = true;
   var naamAudioCache = {};
+  var synth = global.speechSynthesis || null;
 
   function preloadAudio(id) {
     if (naamAudioCache[id]) return;
     var a = new Audio('/assets/audio/' + id + '.mp3');
     a.preload = 'auto';
     naamAudioCache[id] = a;
+  }
+
+  function speakCustom(text) {
+    if (!synth || !text) return;
+    synth.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    var isHindi = /[ऀ-ॿ]/.test(text);
+    u.lang = isHindi ? 'hi-IN' : 'en-IN';
+    u.rate = 1.1;
+    u.pitch = 1;
+    u.volume = 1;
+    var voices = synth.getVoices();
+    var preferred = null;
+    for (var i = 0; i < voices.length; i++) {
+      if (voices[i].lang === 'hi-IN' || voices[i].lang === 'hi-IN-x-hin-local') { preferred = voices[i]; break; }
+    }
+    if (!preferred) {
+      for (var j = 0; j < voices.length; j++) {
+        if (voices[j].lang.indexOf('hi') === 0) { preferred = voices[j]; break; }
+      }
+    }
+    if (!preferred) {
+      for (var k = 0; k < voices.length; k++) {
+        if (voices[k].lang === 'en-IN') { preferred = voices[k]; break; }
+      }
+    }
+    if (preferred) u.voice = preferred;
+    synth.speak(u);
   }
 
   function loadVoice() {
@@ -65,6 +94,9 @@
     } catch (e) { voiceEnabled = true; }
     updateVoiceBtn();
     for (var i = 0; i < JAP.naams.length; i++) preloadAudio(JAP.naams[i].id);
+    if (synth && synth.getVoices().length === 0) {
+      synth.onvoiceschanged = function () {};
+    }
   }
   function toggleVoice() {
     voiceEnabled = !voiceEnabled;
@@ -101,7 +133,10 @@
   function speakNaam() {
     if (!voiceEnabled) return;
     var id = data.naamId;
-    if (id === 'custom') return;
+    if (id === 'custom') {
+      speakCustom(data.customNaam || '');
+      return;
+    }
     var cached = naamAudioCache[id];
     if (cached) {
       cached.currentTime = 0;
