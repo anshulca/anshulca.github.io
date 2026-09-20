@@ -46,17 +46,16 @@
     btnHaptic: $('btn-haptic')
   };
 
-  /* ---- Voice (Web Speech API) ---------------------------------------------- */
+  /* ---- Voice (pre-recorded Hindi audio) ------------------------------------- */
   var VOICE_KEY = 'nj:jap:voice';
   var voiceEnabled = true;
-  var synth = global.speechSynthesis || null;
-  var voicesLoaded = false;
+  var naamAudioCache = {};
 
-  function loadVoices() {
-    if (!synth) return;
-    var voices = synth.getVoices();
-    if (voices.length > 0) { voicesLoaded = true; return; }
-    synth.onvoiceschanged = function () { voicesLoaded = true; };
+  function preloadAudio(id) {
+    if (naamAudioCache[id]) return;
+    var a = new Audio('/assets/audio/' + id + '.mp3');
+    a.preload = 'auto';
+    naamAudioCache[id] = a;
   }
 
   function loadVoice() {
@@ -65,6 +64,7 @@
       voiceEnabled = stored === null ? true : stored === '1';
     } catch (e) { voiceEnabled = true; }
     updateVoiceBtn();
+    for (var i = 0; i < JAP.naams.length; i++) preloadAudio(JAP.naams[i].id);
   }
   function toggleVoice() {
     voiceEnabled = !voiceEnabled;
@@ -99,40 +99,18 @@
     el.btnHaptic.classList.toggle('is-active', hapticEnabled);
   }
   function speakNaam() {
-    if (!voiceEnabled || !synth) return;
-    var naam = currentNaam();
-    // Speak Devanagari if available, else English
-    var text = naam.dev || naam.english || '';
-    if (!text) return;
-    synth.cancel();
-    var u = new SpeechSynthesisUtterance(text);
-    var isHindi = /[\u0900-\u097f]/.test(text);
-    u.lang = isHindi ? 'hi-IN' : 'en-IN';
-    u.rate = 1.1;
-    u.pitch = 1;
-    u.volume = 1;
-    // Prefer Indian voices
-    var voices = synth.getVoices();
-    var preferred = null;
-    // First try exact Hindi voice
-    for (var i = 0; i < voices.length; i++) {
-      var v = voices[i];
-      if (v.lang === 'hi-IN' || v.lang === 'hi-IN-x-hin-local') { preferred = v; break; }
+    if (!voiceEnabled) return;
+    var id = data.naamId;
+    if (id === 'custom') return;
+    var cached = naamAudioCache[id];
+    if (cached) {
+      cached.currentTime = 0;
+      cached.play().catch(function () {});
+    } else {
+      var a = new Audio('/assets/audio/' + id + '.mp3');
+      a.play().catch(function () {});
+      naamAudioCache[id] = a;
     }
-    // Then try any Hindi voice
-    if (!preferred) {
-      for (var j = 0; j < voices.length; j++) {
-        if (voices[j].lang.indexOf('hi') === 0) { preferred = voices[j]; break; }
-      }
-    }
-    // Then try Indian English
-    if (!preferred) {
-      for (var k = 0; k < voices.length; k++) {
-        if (voices[k].lang === 'en-IN') { preferred = voices[k]; break; }
-      }
-    }
-    if (preferred) u.voice = preferred;
-    synth.speak(u);
   }
 
   /* ---- Naam lookup ------------------------------------------------------- */
@@ -498,7 +476,6 @@
     buildChips();
     wire();
     loadVoice();
-    loadVoices();
     loadHaptic();
     updateChips();
     updatePauseBtn();

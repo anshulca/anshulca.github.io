@@ -5,7 +5,7 @@
    ========================================================================= */
 'use strict';
 
-var CACHE = 'naamjap-shell-v8';
+var CACHE = 'naamjap-shell-v9';
 
 var SHELL = [
   '/',
@@ -67,7 +67,15 @@ var SHELL = [
   '/assets/og-image.svg',
   '/assets/apple-touch-icon.png',
   '/assets/icon-192.png',
-  '/assets/icon-512.png'
+  '/assets/icon-512.png',
+  '/assets/audio/ram.mp3',
+  '/assets/audio/radha.mp3',
+  '/assets/audio/shiv.mp3',
+  '/assets/audio/krishna.mp3',
+  '/assets/audio/om-namah-shivay.mp3',
+  '/assets/audio/hanuman.mp3',
+  '/assets/audio/ganesh.mp3',
+  '/assets/audio/durga.mp3'
 ];
 
 self.addEventListener('install', function (event) {
