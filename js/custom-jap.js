@@ -20,10 +20,85 @@
     naam: $('cj-naam'), targets: $('cj-targets'), customTarget: $('cj-target-custom'), applyTarget: $('cj-target-apply'),
     btn: $('cj-tap'), dev: $('cj-naam-dev'), en: $('cj-naam-en'), count: $('cj-count'), targetLabel: $('cj-target-label'),
     progress: $('cj-progress'), doneMount: $('cj-done'),
-    btnPause: $('cj-pause'), btnReset: $('cj-reset')
+    btnPause: $('cj-pause'), btnReset: $('cj-reset'),
+    btnVoice: $('btn-voice'), btnHaptic: $('btn-haptic')
   };
 
   var TARGETS = [108, 1008, 10008];
+
+  /* ---- Voice / haptic / speed -------------------------------------------- */
+  var VOICE_KEY = 'nj:jap:voice';
+  var SPEED_KEY = 'nj:jap:speed';
+  var HAPTIC_KEY = 'nj:jap:haptic';
+  var voiceEnabled = true;
+  var hapticEnabled = true;
+  var speedRate = 1.0;
+  var synth = global.speechSynthesis || null;
+
+  function speakNaam() {
+    if (!voiceEnabled || !synth) return;
+    var text = cj.naam;
+    if (!text) return;
+    synth.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = /[ऀ-ॿ]/.test(text) ? 'hi-IN' : 'en-IN';
+    u.rate = speedRate; u.pitch = 1; u.volume = 1;
+    var voices = synth.getVoices();
+    for (var i = 0; i < voices.length; i++) {
+      if (voices[i].lang === 'hi-IN' || voices[i].lang.indexOf('hi') === 0) { u.voice = voices[i]; break; }
+    }
+    synth.speak(u);
+  }
+
+  function loadVoice() {
+    try { var v = localStorage.getItem(VOICE_KEY); voiceEnabled = v === null ? true : v === '1'; } catch (e) {}
+    updateVoiceBtn();
+  }
+  function toggleVoice() {
+    voiceEnabled = !voiceEnabled;
+    try { localStorage.setItem(VOICE_KEY, voiceEnabled ? '1' : '0'); } catch (e) {}
+    updateVoiceBtn();
+    F.toast(voiceEnabled ? 'Voice on' : 'Voice off');
+  }
+  function updateVoiceBtn() {
+    if (!el.btnVoice) return;
+    el.btnVoice.textContent = voiceEnabled ? 'Voice On' : 'Voice Off';
+    el.btnVoice.classList.toggle('is-active', voiceEnabled);
+  }
+
+  function loadHaptic() {
+    try { var v = localStorage.getItem(HAPTIC_KEY); hapticEnabled = v === null ? true : v === '1'; } catch (e) {}
+    updateHapticBtn();
+  }
+  function toggleHaptic() {
+    hapticEnabled = !hapticEnabled;
+    try { localStorage.setItem(HAPTIC_KEY, hapticEnabled ? '1' : '0'); } catch (e) {}
+    updateHapticBtn();
+    F.toast(hapticEnabled ? 'Vibration on' : 'Vibration off');
+  }
+  function updateHapticBtn() {
+    if (!el.btnHaptic) return;
+    el.btnHaptic.textContent = hapticEnabled ? 'Vibration On' : 'Vibration Off';
+    el.btnHaptic.classList.toggle('is-active', hapticEnabled);
+  }
+  function haptic(pattern) {
+    if (!hapticEnabled) return;
+    try { if (global.navigator && navigator.vibrate) navigator.vibrate(pattern); } catch (e) {}
+  }
+
+  function loadSpeed() {
+    try { var s = parseFloat(localStorage.getItem(SPEED_KEY)); if (s >= 0.5 && s <= 2.5) speedRate = s; } catch (e) {}
+    syncSlider();
+  }
+  function syncSlider() {
+    var slider = $('speed-slider'), label = $('speed-value');
+    if (slider) { slider.value = speedRate; updateSliderFill(slider); }
+    if (label) label.textContent = speedRate.toFixed(1) + 'x';
+  }
+  function updateSliderFill(slider) {
+    var pct = ((slider.value - 0.5) / 2.0) * 100;
+    slider.style.setProperty('--fill', pct + '%');
+  }
 
   function persist() { NJ.store.save(data); }
   function target() { return cj.target || 108; }
@@ -72,8 +147,10 @@
     persist();
     NJ.store.addToday(1, 0);
     render();
-    F.bump(el.count); F.haptic(10);
-    if (cj.count >= t) { cj.completed = true; F.haptic([12, 40, 12]); F.sound('complete'); persist(); render(); }
+    F.bump(el.count);
+    haptic(10);
+    speakNaam();
+    if (cj.count >= t) { cj.completed = true; haptic([100, 50, 100, 50, 200]); F.sound('complete'); persist(); render(); }
   }
 
   function pauseToggle() { cj.paused = !cj.paused; persist(); render(); }
@@ -106,6 +183,8 @@
     el.btn.addEventListener('pointerdown', function (e) { if (e.isPrimary) F.ripple(el.btn, e.clientX, e.clientY); });
     el.btnPause.addEventListener('click', pauseToggle);
     el.btnReset.addEventListener('click', reset);
+    if (el.btnVoice) el.btnVoice.addEventListener('click', toggleVoice);
+    if (el.btnHaptic) el.btnHaptic.addEventListener('click', toggleHaptic);
     el.applyTarget.addEventListener('click', applyCustomTarget);
     el.customTarget.addEventListener('keydown', function (e) { if (e.key === 'Enter') applyCustomTarget(); });
     TARGETS.forEach(function (t) {
@@ -117,6 +196,17 @@
     el.naam.addEventListener('input', function () {
       cj.naam = el.naam.value.trim(); if (cj.naam) persist(); render();
     });
+
+    var speedSlider = $('speed-slider');
+    if (speedSlider) {
+      speedSlider.addEventListener('input', function () {
+        speedRate = parseFloat(this.value);
+        updateSliderFill(this);
+        var label = $('speed-value');
+        if (label) label.textContent = speedRate.toFixed(1) + 'x';
+        try { localStorage.setItem(SPEED_KEY, speedRate); } catch (e) {}
+      });
+    }
   }
 
   function init() {
@@ -124,6 +214,7 @@
     if (!cj.target) cj.target = 108;
     el.naam.value = cj.naam || '';
     wire();
+    loadVoice(); loadSpeed(); loadHaptic();
     var chips = el.targets.querySelectorAll('.chip');
     chips.forEach(function (x) { x.classList.toggle('is-active', parseInt(x.getAttribute('data-target'), 10) === cj.target); });
     render();

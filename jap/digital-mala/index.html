@@ -25,6 +25,111 @@
   <link rel="stylesheet" href="/css/pages.css">
   <link rel="stylesheet" href="/css/naam-jap.css">
   <link rel="stylesheet" href="/css/jap.css">
+  <style>
+    .dm-mala {
+      position: relative; display: block; width: 100%; max-width: 400px;
+      aspect-ratio: 1; margin: var(--space-4) auto 0;
+      background: transparent; border: none; padding: 0;
+      cursor: pointer; -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation; user-select: none; outline: none;
+    }
+    .dm-mala:active { transform: scale(0.99); }
+    .dm-mala:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 50%; }
+    .dm-mala.is-done { pointer-events: none; }
+    .dm-svg { width: 100%; height: 100%; display: block; }
+    .dm-string { fill: none; stroke: var(--line, #d4c4a0); stroke-width: 1.2; opacity: 0.35; }
+    .dm-bead {
+      fill: #d4b896; stroke: #c4a47a; stroke-width: 0.5;
+      transform-box: fill-box; transform-origin: center;
+      transition: fill 200ms ease, transform 200ms ease, filter 200ms ease;
+    }
+    .dm-bead.is-counted { fill: var(--accent, #b5852f); stroke: var(--accent-strong, #9c701f); }
+    .dm-bead.is-active {
+      fill: var(--accent, #b5852f); stroke: var(--accent-strong, #9c701f);
+      transform: scale(1.7);
+    }
+    @keyframes dm-glow {
+      0%, 100% { filter: drop-shadow(0 0 3px rgba(181,133,47,.45)); }
+      50% { filter: drop-shadow(0 0 7px rgba(181,133,47,.7)); }
+    }
+    .dm-bead.is-active { animation: dm-glow 2s ease-in-out infinite; }
+    .dm-meru { fill: var(--accent-strong, #9c701f); stroke: var(--accent-strong, #9c701f); stroke-width: 0.5; }
+    .dm-tassel line { stroke: #c44; stroke-linecap: round; }
+    .dm-tassel circle { fill: #c44; }
+    .dm-center {
+      position: absolute; top: 46%; left: 50%; transform: translate(-50%,-50%);
+      text-align: center; pointer-events: none; width: 52%;
+    }
+    .dm-center__dev {
+      display: block; font-family: var(--font-dev); font-size: clamp(1.3rem,5vw,1.9rem);
+      color: var(--primary-ink); line-height: 1.3;
+    }
+    .dm-center__en {
+      display: block; font-family: var(--font-display); font-weight: var(--display-weight);
+      font-size: var(--text-sm); color: var(--ink-muted); margin-top: 2px; letter-spacing: 0.02em;
+    }
+    .dm-center__count {
+      display: block; font-family: var(--font-display); font-variant-numeric: tabular-nums;
+      font-size: clamp(2rem,8vw,2.8rem); line-height: 1; color: var(--ink); margin-top: var(--space-3);
+    }
+    .dm-center__count small { font-size: var(--text-sm); color: var(--ink-faint); font-variant-numeric: normal; }
+    .dm-center__count.is-bump { animation: dm-bump 150ms var(--ease-spring); }
+    @keyframes dm-bump { 0% { transform: scale(1); } 40% { transform: scale(1.1); } 100% { transform: scale(1); } }
+    .dm-center__label {
+      display: block; font-size: var(--text-sm); color: var(--accent-strong);
+      font-weight: var(--label-weight); letter-spacing: 0.04em; margin-top: var(--space-1);
+    }
+    .dm-center__hint {
+      display: block; font-size: var(--text-xs); color: var(--ink-faint);
+      text-transform: uppercase; letter-spacing: 0.12em; margin-top: var(--space-3);
+    }
+    .dm-center__done-glyph {
+      display: block; font-family: var(--font-dev); font-size: 2.4rem;
+      color: var(--accent-strong); line-height: 1; margin-bottom: var(--space-2);
+    }
+    .dm-center__done-text {
+      display: block; font-family: var(--font-display); font-weight: var(--display-weight);
+      font-size: var(--text-lg); color: var(--accent-strong);
+    }
+    .dm-next { text-align: center; margin-top: var(--space-4); max-width: 400px; margin-inline: auto; }
+    .dm-next[hidden] { display: none; }
+    #btn-voice.is-active { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+    #btn-voice.is-active:hover { background: var(--accent-strong); }
+    #btn-haptic.is-active { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+    #btn-haptic.is-active:hover { background: var(--accent-strong); }
+    .voice-speed {
+      max-width: 340px; margin: 1.25rem auto 0;
+      background: var(--surface, #fff); border: 1px solid var(--line, #ddd);
+      border-radius: 16px; padding: 1rem 1.25rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+    }
+    .voice-speed__head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+    .voice-speed__title { font-size: 0.7rem; font-weight: 600; color: var(--ink-muted, #888); text-transform: uppercase; letter-spacing: 0.08em; }
+    .voice-speed__value { font-size: 0.875rem; font-weight: 700; color: var(--accent, #b98a3a); background: rgba(185,138,58,.1); padding: 0.2em 0.7em; border-radius: 999px; min-width: 3em; text-align: center; }
+    .voice-speed__track { display: flex; align-items: center; gap: 0.75rem; }
+    .voice-speed__label { font-size: 0.72rem; font-weight: 500; color: var(--ink-muted, #888); flex-shrink: 0; min-width: 2.2em; }
+    .voice-speed__label:last-child { text-align: right; }
+    .voice-speed__slider {
+      -webkit-appearance: none; appearance: none; flex: 1; height: 6px;
+      border-radius: 999px; outline: none; cursor: pointer;
+      background: linear-gradient(to right, var(--accent, #b98a3a), var(--accent, #b98a3a)) no-repeat, rgba(0,0,0,.08);
+      background-size: var(--fill, 25%) 100%, 100% 100%; transition: background-size 0.08s;
+    }
+    .voice-speed__slider::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%;
+      background: var(--accent, #b98a3a); border: 3px solid var(--surface, #fff);
+      box-shadow: 0 1px 6px rgba(0,0,0,.2); cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .voice-speed__slider::-webkit-slider-thumb:hover { transform: scale(1.18); box-shadow: 0 2px 10px rgba(0,0,0,.25); }
+    [data-theme="dark"] .dm-bead { fill: #8a7a5e; stroke: #7a6a4e; }
+    [data-theme="dark"] .dm-string { stroke: var(--line-strong, #463e30); }
+    [data-theme="dark"] .dm-tassel line { stroke: #e06040; }
+    [data-theme="dark"] .dm-tassel circle { fill: #e06040; }
+    @media (max-width: 480px) {
+      .dm-mala { max-width: 92vw; }
+      .dm-center { width: 56%; }
+    }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -47,16 +152,22 @@
             <input class="input" id="mala-custom-input" type="text" inputmode="text" autocomplete="off" placeholder="e.g. Shamb Sadashiv">
           </div>
         </div>
-
-        <button class="tap-btn" id="mala-tap" type="button" aria-label="Tap for jap. One tap counts one repetition.">
-          <span class="mala-ring" id="mala-ring" aria-hidden="true" style="margin:0 auto 0;display:block"></span>
-          <span class="naam-dev" id="tap-naam-dev" aria-hidden="true"></span>
-          <span class="naam-en" id="tap-naam-en"></span>
-          <span class="tap-count" id="mala-count"></span>
-          <span class="tap-mala" id="mala-label"></span>
-          <span class="tap-hint">Tap to jap</span>
-        </button>
       </section>
+
+      <button class="dm-mala" id="mala-tap" type="button" aria-label="Tap for jap. One tap counts one repetition.">
+        <div class="dm-ring" id="mala-ring"></div>
+        <div class="dm-center" id="mala-center">
+          <span class="dm-center__dev" id="mala-dev"></span>
+          <span class="dm-center__en" id="mala-en"></span>
+          <span class="dm-center__count" id="mala-count"></span>
+          <span class="dm-center__label" id="mala-label">Mala 1</span>
+          <span class="dm-center__hint" id="mala-hint">Tap to jap</span>
+        </div>
+      </button>
+
+      <div class="dm-next" id="mala-next-wrap" hidden>
+        <button class="btn btn--primary" id="mala-next" type="button">Begin next mala</button>
+      </div>
 
       <section class="jap-summary" aria-label="Session summary">
         <div class="summary-group">
@@ -69,8 +180,20 @@
       </section>
 
       <div class="jap-controls">
-        <button class="btn btn--ghost" id="btn-pause" type="button">Pause</button>
+        <button class="btn btn--ghost" id="btn-voice" type="button" aria-label="Toggle voice">Voice Off</button>
+        <button class="btn btn--ghost" id="btn-haptic" type="button" aria-label="Toggle vibration">Vibration On</button>
         <button class="btn btn--ink" id="btn-reset" type="button">Reset session</button>
+      </div>
+      <div class="voice-speed" id="voice-speed" aria-label="Voice speed">
+        <div class="voice-speed__head">
+          <span class="voice-speed__title">Voice speed</span>
+          <span class="voice-speed__value" id="speed-value">1.0x</span>
+        </div>
+        <div class="voice-speed__track">
+          <span class="voice-speed__label">Slow</span>
+          <input class="voice-speed__slider" id="speed-slider" type="range" min="0.5" max="2.5" step="0.1" value="1.0" aria-label="Voice speed">
+          <span class="voice-speed__label">Fast</span>
+        </div>
       </div>
 
       <p class="privacy-note">Your practice stays on this device - no account, no cloud.</p>

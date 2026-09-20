@@ -25,6 +25,33 @@
   <link rel="stylesheet" href="/css/pages.css">
   <link rel="stylesheet" href="/css/naam-jap.css">
   <link rel="stylesheet" href="/css/jap.css">
+  <style>
+    #btn-voice.is-active { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+    #btn-haptic.is-active { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+    .voice-speed {
+      max-width: 340px; margin: 1.25rem auto 0;
+      background: var(--surface, #fff); border: 1px solid var(--line, #ddd);
+      border-radius: 16px; padding: 1rem 1.25rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+    }
+    .voice-speed__head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+    .voice-speed__title { font-size: 0.7rem; font-weight: 600; color: var(--ink-muted, #888); text-transform: uppercase; letter-spacing: 0.08em; }
+    .voice-speed__value { font-size: 0.875rem; font-weight: 700; color: var(--accent, #b98a3a); background: rgba(185,138,58,.1); padding: 0.2em 0.7em; border-radius: 999px; min-width: 3em; text-align: center; }
+    .voice-speed__track { display: flex; align-items: center; gap: 0.75rem; }
+    .voice-speed__label { font-size: 0.72rem; font-weight: 500; color: var(--ink-muted, #888); flex-shrink: 0; min-width: 2.2em; }
+    .voice-speed__label:last-child { text-align: right; }
+    .voice-speed__slider {
+      -webkit-appearance: none; appearance: none; flex: 1; height: 6px;
+      border-radius: 999px; outline: none; cursor: pointer;
+      background: linear-gradient(to right, var(--accent, #b98a3a), var(--accent, #b98a3a)) no-repeat, rgba(0,0,0,.08);
+      background-size: var(--fill, 25%) 100%, 100% 100%; transition: background-size 0.08s;
+    }
+    .voice-speed__slider::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%;
+      background: var(--accent, #b98a3a); border: 3px solid var(--surface, #fff);
+      box-shadow: 0 1px 6px rgba(0,0,0,.2); cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -66,9 +93,23 @@
 
         <div class="mod-actions">
           <button type="button" class="btn btn--ghost" id="cj-pause">Pause</button>
+          <button type="button" class="btn btn--ghost" id="btn-voice" aria-label="Toggle voice">Voice Off</button>
+          <button type="button" class="btn btn--ghost" id="btn-haptic" aria-label="Toggle vibration">Vibration On</button>
           <button type="button" class="btn btn--ink" id="cj-reset">Reset count</button>
         </div>
       </section>
+
+      <div class="voice-speed" id="voice-speed" aria-label="Voice speed">
+        <div class="voice-speed__head">
+          <span class="voice-speed__title">Voice speed</span>
+          <span class="voice-speed__value" id="speed-value">1.0x</span>
+        </div>
+        <div class="voice-speed__track">
+          <span class="voice-speed__label">Slow</span>
+          <input class="voice-speed__slider" id="speed-slider" type="range" min="0.5" max="2.5" step="0.1" value="1.0" aria-label="Voice speed">
+          <span class="voice-speed__label">Fast</span>
+        </div>
+      </div>
 
       <p class="privacy-note">Your practice stays on this device. This naam and count are never sent to any server.</p>
       <p style="text-align:center;margin-top:var(--space-4)" data-credit></p>
