@@ -52,8 +52,7 @@
   var voiceEnabled = true;
   var naamAudioCache = {};
   var synth = global.speechSynthesis || null;
-  var SPEEDS = { slow: { audio: 0.75, speech: 0.8 }, medium: { audio: 1.0, speech: 1.1 }, fast: { audio: 1.5, speech: 1.5 } };
-  var voiceSpeed = 'medium';
+  var speedRate = 1.0;
 
   function preloadAudio(id) {
     if (naamAudioCache[id]) return;
@@ -68,7 +67,7 @@
     var u = new SpeechSynthesisUtterance(text);
     var isHindi = /[ऀ-ॿ]/.test(text);
     u.lang = isHindi ? 'hi-IN' : 'en-IN';
-    u.rate = SPEEDS[voiceSpeed].speech;
+    u.rate = speedRate;
     u.pitch = 1;
     u.volume = 1;
     var voices = synth.getVoices();
@@ -91,22 +90,18 @@
   }
 
   function loadSpeed() {
-    try { var s = localStorage.getItem(SPEED_KEY); if (s && SPEEDS[s]) voiceSpeed = s; } catch (e) {}
-    updateSpeedBtns();
+    try { var s = parseFloat(localStorage.getItem(SPEED_KEY)); if (s >= 0.5 && s <= 2.5) speedRate = s; } catch (e) {}
+    syncSlider();
   }
-  function setSpeed(s) {
-    voiceSpeed = s;
-    try { localStorage.setItem(SPEED_KEY, s); } catch (e) {}
-    updateSpeedBtns();
-    NJ.Toast('Voice speed: ' + s + '.');
+  function syncSlider() {
+    var slider = $('speed-slider');
+    var label = $('speed-value');
+    if (slider) { slider.value = speedRate; updateSliderFill(slider); }
+    if (label) label.textContent = speedRate.toFixed(1) + 'x';
   }
-  function updateSpeedBtns() {
-    var wrap = $('voice-speed');
-    if (!wrap) return;
-    var btns = wrap.querySelectorAll('.voice-speed__btn');
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].classList.toggle('is-active', btns[i].getAttribute('data-speed') === voiceSpeed);
-    }
+  function updateSliderFill(slider) {
+    var pct = ((slider.value - 0.5) / 2.0) * 100;
+    slider.style.setProperty('--fill', pct + '%');
   }
 
   function loadVoice() {
@@ -159,7 +154,7 @@
       speakCustom(data.customNaam || '');
       return;
     }
-    var rate = SPEEDS[voiceSpeed].audio;
+    var rate = speedRate;
     var cached = naamAudioCache[id];
     if (cached) {
       cached.playbackRate = rate;
@@ -519,12 +514,15 @@
     el.btnPause.addEventListener('click', pauseToggle);
     if (el.btnVoice) el.btnVoice.addEventListener('click', toggleVoice);
     if (el.btnHaptic) el.btnHaptic.addEventListener('click', toggleHaptic);
-    var speedWrap = $('voice-speed');
-    if (speedWrap) {
-      var sBtns = speedWrap.querySelectorAll('.voice-speed__btn');
-      for (var si = 0; si < sBtns.length; si++) {
-        sBtns[si].addEventListener('click', function () { setSpeed(this.getAttribute('data-speed')); });
-      }
+    var speedSlider = $('speed-slider');
+    if (speedSlider) {
+      speedSlider.addEventListener('input', function () {
+        speedRate = parseFloat(this.value);
+        updateSliderFill(this);
+        var label = $('speed-value');
+        if (label) label.textContent = speedRate.toFixed(1) + 'x';
+        try { localStorage.setItem(SPEED_KEY, speedRate); } catch (e) {}
+      });
     }
     el.customInput.addEventListener('input', function () {
       var v = el.customInput.value.trim();
