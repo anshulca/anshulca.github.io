@@ -48,9 +48,12 @@
 
   /* ---- Voice (pre-recorded Hindi audio) ------------------------------------- */
   var VOICE_KEY = 'nj:jap:voice';
+  var SPEED_KEY = 'nj:jap:speed';
   var voiceEnabled = true;
   var naamAudioCache = {};
   var synth = global.speechSynthesis || null;
+  var SPEEDS = { slow: { audio: 0.75, speech: 0.8 }, medium: { audio: 1.0, speech: 1.1 }, fast: { audio: 1.5, speech: 1.5 } };
+  var voiceSpeed = 'medium';
 
   function preloadAudio(id) {
     if (naamAudioCache[id]) return;
@@ -65,7 +68,7 @@
     var u = new SpeechSynthesisUtterance(text);
     var isHindi = /[ऀ-ॿ]/.test(text);
     u.lang = isHindi ? 'hi-IN' : 'en-IN';
-    u.rate = 1.1;
+    u.rate = SPEEDS[voiceSpeed].speech;
     u.pitch = 1;
     u.volume = 1;
     var voices = synth.getVoices();
@@ -85,6 +88,25 @@
     }
     if (preferred) u.voice = preferred;
     synth.speak(u);
+  }
+
+  function loadSpeed() {
+    try { var s = localStorage.getItem(SPEED_KEY); if (s && SPEEDS[s]) voiceSpeed = s; } catch (e) {}
+    updateSpeedBtns();
+  }
+  function setSpeed(s) {
+    voiceSpeed = s;
+    try { localStorage.setItem(SPEED_KEY, s); } catch (e) {}
+    updateSpeedBtns();
+    NJ.Toast('Voice speed: ' + s + '.');
+  }
+  function updateSpeedBtns() {
+    var wrap = $('voice-speed');
+    if (!wrap) return;
+    var btns = wrap.querySelectorAll('.voice-speed__btn');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].classList.toggle('is-active', btns[i].getAttribute('data-speed') === voiceSpeed);
+    }
   }
 
   function loadVoice() {
@@ -137,12 +159,15 @@
       speakCustom(data.customNaam || '');
       return;
     }
+    var rate = SPEEDS[voiceSpeed].audio;
     var cached = naamAudioCache[id];
     if (cached) {
+      cached.playbackRate = rate;
       cached.currentTime = 0;
       cached.play().catch(function () {});
     } else {
       var a = new Audio('/assets/audio/' + id + '.mp3');
+      a.playbackRate = rate;
       a.play().catch(function () {});
       naamAudioCache[id] = a;
     }
@@ -494,6 +519,13 @@
     el.btnPause.addEventListener('click', pauseToggle);
     if (el.btnVoice) el.btnVoice.addEventListener('click', toggleVoice);
     if (el.btnHaptic) el.btnHaptic.addEventListener('click', toggleHaptic);
+    var speedWrap = $('voice-speed');
+    if (speedWrap) {
+      var sBtns = speedWrap.querySelectorAll('.voice-speed__btn');
+      for (var si = 0; si < sBtns.length; si++) {
+        sBtns[si].addEventListener('click', function () { setSpeed(this.getAttribute('data-speed')); });
+      }
+    }
     el.customInput.addEventListener('input', function () {
       var v = el.customInput.value.trim();
       data.customNaam = v;
@@ -511,6 +543,7 @@
     buildChips();
     wire();
     loadVoice();
+    loadSpeed();
     loadHaptic();
     updateChips();
     updatePauseBtn();
