@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#31405f</color>
+    <color name="colorPrimaryDark">#1e2a40</color>
+    <color name="colorAccent">#b98a3a</color>
+    <color name="colorPaper">#f6f3ec</color>
+    <color name="colorSurface">#ffffff</color>
+    <color name="colorOnPrimary">#ffffff</color>
+    <color name="colorSuccess">#41785b</color>
+
+    <!-- Widget colors -->
+    <color name="widgetBg">#f6f3ec</color>
+    <color name="widgetAccent">#b98a3a</color>
+    <color name="widgetText">#31405f</color>
+    <color name="widgetMuted">#888888</color>
+</resources>

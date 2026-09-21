@@ -1,7 +1,7 @@
 {
-  "name": "Naam Jap by CA Anshul Karwa - Pause. Remember.Repeat",
-  "short_name": "Naam Jap by CA Anshul Karwa - Pause. Remember.Repeat",
-  "description": "A calm, private digital companion for Naam Jap, Naam Lekhan, mantra jap and daily sadhana.",
+  "name": "Dhun: Naam Jap Mala & Sadhana",
+  "short_name": "Dhun",
+  "description": "A calm, private digital companion for Naam Jap, Naam Lekhan, mantra jap and daily sadhana. 108-bead digital mala, jap counter, timer, streak tracker, milestone badges and ambient sounds. By CA Anshul Karwa.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -10,11 +10,31 @@
   "theme_color": "#f6f3ec",
   "lang": "en-IN",
   "dir": "ltr",
-  "categories": ["lifestyle", "health", "books"],
+  "categories": ["lifestyle", "health", "books", "education"],
   "icons": [
     { "src": "/assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
     { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
     { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
     { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Naam Jap Counter",
+      "short_name": "Jap",
+      "url": "/jap/naam-jap/",
+      "icons": [{ "src": "/assets/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Digital Mala",
+      "short_name": "Mala",
+      "url": "/jap/digital-mala/",
+      "icons": [{ "src": "/assets/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Journey Dashboard",
+      "short_name": "Journey",
+      "url": "/journey/",
+      "icons": [{ "src": "/assets/icon-192.png", "sizes": "192x192" }]
+    }
   ]
 }

@@ -124,6 +124,7 @@
           <span class="voice-speed__label">Fast</span>
         </div>
       </div>
+      <div id="ambient-mount"></div>
       <p style="text-align:center;margin-top:var(--space-4)" data-credit></p>
     </div>
   </main>
@@ -137,5 +138,6 @@
   <script src="/js/shared.js"></script>
   <script src="/js/core.js"></script>
   <script src="/js/naam-jap.js"></script>
+  <script>if(NJ.feature.ambientInit)NJ.feature.ambientInit(document.getElementById('ambient-mount'));</script>
 </body>
 </html>

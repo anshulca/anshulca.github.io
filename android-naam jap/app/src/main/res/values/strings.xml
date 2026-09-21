@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dhun</string>
+    <string name="app_name_full">Dhun: Naam Jap Mala &amp; Sadhana</string>
+    <string name="widget_name">Dhun - Jap Counter</string>
+    <string name="widget_description">Shows your daily jap count. Tap to open Dhun.</string>
+</resources>

@@ -43,6 +43,30 @@
 /* ---- Progress under timers/counters ----------------------------------------- */
 .mod-progress { margin-top: var(--space-4); }
 
+/* ---- Ambient player --------------------------------------------------------- */
+.ambient-player {
+  max-width: 340px; margin: 1.25rem auto 0;
+  background: var(--surface, #fff); border: 1px solid var(--line, #ddd);
+  border-radius: 16px; padding: 1rem 1.25rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+}
+.ambient-player__head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+.ambient-player__title { font-size: 0.7rem; font-weight: 600; color: var(--ink-muted, #888); text-transform: uppercase; letter-spacing: 0.08em; }
+.ambient-player__toggle {
+  font-size: 0.75rem; font-weight: 600; padding: 0.25em 0.8em; border-radius: 999px;
+  border: 1px solid var(--line, #ddd); background: var(--surface-sunken, #f0ede6); color: var(--ink-muted, #888); cursor: pointer;
+}
+.ambient-player__toggle.is-active { background: var(--accent, #b98a3a); color: var(--on-accent, #fff); border-color: var(--accent); }
+.ambient-player__sounds { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
+.ambient-chip {
+  font-size: 0.72rem; padding: 0.3em 0.7em; border-radius: 999px;
+  border: 1px solid var(--line, #ddd); background: var(--surface, #fff); color: var(--ink-muted, #888);
+  cursor: pointer; transition: background 0.15s, color 0.15s;
+}
+.ambient-chip.is-active { background: var(--accent, #b98a3a); color: var(--on-accent, #fff); border-color: var(--accent); }
+.ambient-player__vol { display: flex; align-items: center; gap: 0.5rem; }
+.ambient-player__vol .voice-speed__slider { flex: 1; }
+
 /* ---- Responsive -------------------------------------------------------------- */
 @media (max-width: 480px) {
   .mod-stage { padding-inline: 1rem; }

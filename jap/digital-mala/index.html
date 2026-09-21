@@ -196,6 +196,7 @@
         </div>
       </div>
 
+      <div id="ambient-mount"></div>
       <p class="privacy-note">Your practice stays on this device - no account, no cloud.</p>
       <p style="text-align:center;margin-top:var(--space-4)" data-credit></p>
     </div>
@@ -210,5 +211,6 @@
   <script src="/js/shared.js"></script>
   <script src="/js/core.js"></script>
   <script src="/js/digital-mala.js"></script>
+  <script>if(NJ.feature.ambientInit)NJ.feature.ambientInit(document.getElementById('ambient-mount'));</script>
 </body>
 </html>

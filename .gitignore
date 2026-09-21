@@ -1,2 +1,5 @@
 # Local QA harness (CDP end-to-end tests) — not published with the site
 tests/
+
+# Claude Code config
+.claude/

@@ -371,6 +371,136 @@
     }
   };
 
+  /* ---- Ambient sounds -------------------------------------------------------- */
+  var AMBIENT_KEY = 'nj:ambient';
+  var ambientCtx = null;
+  var ambientNodes = {};
+  var ambientPlaying = false;
+  var ambientVolume = 0.3;
+
+  F.ambientSounds = ['om-drone', 'temple-bell', 'flowing-water'];
+
+  F.ambientInit = function (container) {
+    if (!container) return;
+    var saved = null;
+    try { saved = JSON.parse(global.localStorage.getItem(AMBIENT_KEY)); } catch (e) {}
+
+    var html =
+      '<div class="ambient-player" id="ambient-player">' +
+      '<div class="ambient-player__head">' +
+      '<span class="ambient-player__title">Ambient sounds</span>' +
+      '<button type="button" class="ambient-player__toggle" id="ambient-toggle" aria-label="Toggle ambient sound">Off</button>' +
+      '</div>' +
+      '<div class="ambient-player__sounds">' +
+      '<button type="button" class="ambient-chip" data-sound="om-drone">Om Drone</button>' +
+      '<button type="button" class="ambient-chip" data-sound="temple-bell">Temple Bell</button>' +
+      '<button type="button" class="ambient-chip" data-sound="flowing-water">Water Flow</button>' +
+      '</div>' +
+      '<div class="ambient-player__vol">' +
+      '<span class="voice-speed__label">Vol</span>' +
+      '<input type="range" class="voice-speed__slider" id="ambient-vol" min="0" max="1" step="0.05" value="0.3" aria-label="Ambient volume">' +
+      '</div></div>';
+    container.insertAdjacentHTML('beforeend', html);
+
+    var toggle = doc.getElementById('ambient-toggle');
+    var volSlider = doc.getElementById('ambient-vol');
+    var selected = (saved && saved.sound) || 'om-drone';
+
+    container.querySelectorAll('.ambient-chip').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        selected = chip.getAttribute('data-sound');
+        container.querySelectorAll('.ambient-chip').forEach(function (c) {
+          c.classList.toggle('is-active', c.getAttribute('data-sound') === selected);
+        });
+        if (ambientPlaying) { stopAmbient(); startAmbient(selected); }
+        try { global.localStorage.setItem(AMBIENT_KEY, JSON.stringify({ sound: selected, vol: ambientVolume })); } catch (e) {}
+      });
+      chip.classList.toggle('is-active', chip.getAttribute('data-sound') === selected);
+    });
+
+    toggle.addEventListener('click', function () {
+      if (ambientPlaying) { stopAmbient(); toggle.textContent = 'Off'; toggle.classList.remove('is-active'); }
+      else { startAmbient(selected); toggle.textContent = 'On'; toggle.classList.add('is-active'); }
+    });
+
+    if (volSlider) {
+      if (saved && saved.vol != null) { ambientVolume = saved.vol; volSlider.value = ambientVolume; }
+      volSlider.addEventListener('input', function () {
+        ambientVolume = parseFloat(this.value);
+        if (ambientNodes.gain) ambientNodes.gain.gain.value = ambientVolume;
+        try { global.localStorage.setItem(AMBIENT_KEY, JSON.stringify({ sound: selected, vol: ambientVolume })); } catch (e) {}
+      });
+    }
+  };
+
+  function getAmbientCtx() {
+    if (!ambientCtx) {
+      try { ambientCtx = new (global.AudioContext || global.webkitAudioContext)(); } catch (e) { return null; }
+    }
+    if (ambientCtx.state === 'suspended') ambientCtx.resume();
+    return ambientCtx;
+  }
+
+  function startAmbient(type) {
+    var ctx = getAmbientCtx();
+    if (!ctx) return;
+    stopAmbient();
+    ambientPlaying = true;
+
+    var gain = ctx.createGain();
+    gain.gain.value = ambientVolume;
+    gain.connect(ctx.destination);
+    ambientNodes.gain = gain;
+
+    if (type === 'om-drone') {
+      var osc1 = ctx.createOscillator(); osc1.type = 'sine'; osc1.frequency.value = 136.1;
+      var osc2 = ctx.createOscillator(); osc2.type = 'sine'; osc2.frequency.value = 272.2;
+      var g1 = ctx.createGain(); g1.gain.value = 0.5;
+      var g2 = ctx.createGain(); g2.gain.value = 0.15;
+      osc1.connect(g1); g1.connect(gain);
+      osc2.connect(g2); g2.connect(gain);
+      osc1.start(); osc2.start();
+      ambientNodes.sources = [osc1, osc2];
+    } else if (type === 'temple-bell') {
+      bellLoop(ctx, gain);
+    } else if (type === 'flowing-water') {
+      var bufSize = 2 * ctx.sampleRate;
+      var buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+      var data = buf.getChannelData(0);
+      for (var i = 0; i < bufSize; i++) data[i] = Math.random() * 2 - 1;
+      var noise = ctx.createBufferSource();
+      noise.buffer = buf; noise.loop = true;
+      var lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 600;
+      var bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 400; bp.Q.value = 0.8;
+      noise.connect(lp); lp.connect(bp); bp.connect(gain);
+      noise.start();
+      ambientNodes.sources = [noise];
+    }
+  }
+
+  function bellLoop(ctx, gain) {
+    if (!ambientPlaying) return;
+    var osc = ctx.createOscillator();
+    osc.type = 'sine'; osc.frequency.value = 880;
+    var g = ctx.createGain();
+    g.gain.setValueAtTime(0.6, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 3);
+    osc.connect(g); g.connect(gain);
+    osc.start(); osc.stop(ctx.currentTime + 3);
+    ambientNodes.bellTimer = setTimeout(function () { bellLoop(ctx, gain); }, 5000);
+  }
+
+  function stopAmbient() {
+    ambientPlaying = false;
+    if (ambientNodes.sources) {
+      ambientNodes.sources.forEach(function (s) { try { s.stop(); } catch (e) {} });
+    }
+    if (ambientNodes.bellTimer) clearTimeout(ambientNodes.bellTimer);
+    ambientNodes = {};
+  }
+
+  F.ambientStop = stopAmbient;
+
   /* ---- Auto-render credits + init ------------------------------------------- */
   function init() {
     F.renderCredits();
