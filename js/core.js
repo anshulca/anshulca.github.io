@@ -100,7 +100,9 @@
         toggle.innerHTML = next === 'dark' ? ICONS.sun : ICONS.moon;
       });
     }
-    slot.querySelector('#nav-open').addEventListener('click', toggleDrawer);
+    var navBtn = slot.querySelector('#nav-open');
+    navBtn.innerHTML = ICONS.menu;
+    navBtn.addEventListener('click', toggleDrawer);
   }
 function isDark() {
     return doc.documentElement.getAttribute('data-theme') === 'dark';
