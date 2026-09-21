@@ -389,16 +389,18 @@
       '<div class="ambient-player" id="ambient-player">' +
       '<div class="ambient-player__head">' +
       '<span class="ambient-player__title">Ambient sounds</span>' +
-      '<button type="button" class="ambient-player__toggle" id="ambient-toggle" aria-label="Toggle ambient sound">Off</button>' +
+      '<button type="button" class="ambient-player__toggle" id="ambient-toggle" aria-label="Toggle ambient sound">' +
+      '<span class="ambient-player__toggle-icon"></span><span class="ambient-player__toggle-label">Play</span></button>' +
       '</div>' +
       '<div class="ambient-player__sounds">' +
-      '<button type="button" class="ambient-chip" data-sound="om-drone">Om Drone</button>' +
-      '<button type="button" class="ambient-chip" data-sound="temple-bell">Temple Bell</button>' +
-      '<button type="button" class="ambient-chip" data-sound="flowing-water">Water Flow</button>' +
+      '<button type="button" class="ambient-chip" data-sound="om-drone"><span class="ambient-chip__icon">ॐ</span><span>Om Drone</span></button>' +
+      '<button type="button" class="ambient-chip" data-sound="temple-bell"><span class="ambient-chip__icon">🔔</span><span>Bell</span></button>' +
+      '<button type="button" class="ambient-chip" data-sound="flowing-water"><span class="ambient-chip__icon">〰</span><span>Water</span></button>' +
       '</div>' +
       '<div class="ambient-player__vol">' +
-      '<span class="voice-speed__label">Vol</span>' +
+      '<span class="ambient-player__vol-label">🔈</span>' +
       '<input type="range" class="voice-speed__slider" id="ambient-vol" min="0" max="1" step="0.05" value="0.3" aria-label="Ambient volume">' +
+      '<span class="ambient-player__vol-label">🔊</span>' +
       '</div></div>';
     container.insertAdjacentHTML('beforeend', html);
 
@@ -418,9 +420,10 @@
       chip.classList.toggle('is-active', chip.getAttribute('data-sound') === selected);
     });
 
+    var toggleLabel = toggle.querySelector('.ambient-player__toggle-label');
     toggle.addEventListener('click', function () {
-      if (ambientPlaying) { stopAmbient(); toggle.textContent = 'Off'; toggle.classList.remove('is-active'); }
-      else { startAmbient(selected); toggle.textContent = 'On'; toggle.classList.add('is-active'); }
+      if (ambientPlaying) { stopAmbient(); toggleLabel.textContent = 'Play'; toggle.classList.remove('is-active'); }
+      else { startAmbient(selected); toggleLabel.textContent = 'Stop'; toggle.classList.add('is-active'); }
     });
 
     if (volSlider) {
