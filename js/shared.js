@@ -398,9 +398,9 @@
       '<button type="button" class="ambient-chip" data-sound="flowing-water"><span class="ambient-chip__icon">〰</span><span>Water</span></button>' +
       '</div>' +
       '<div class="ambient-player__vol">' +
-      '<span class="ambient-player__vol-label">🔈</span>' +
+      '<span class="ambient-player__vol-label">Low</span>' +
       '<input type="range" class="voice-speed__slider" id="ambient-vol" min="0" max="1" step="0.05" value="0.3" aria-label="Ambient volume">' +
-      '<span class="ambient-player__vol-label">🔊</span>' +
+      '<span class="ambient-player__vol-label">High</span>' +
       '</div></div>';
     container.insertAdjacentHTML('beforeend', html);
 
@@ -428,8 +428,11 @@
 
     if (volSlider) {
       if (saved && saved.vol != null) { ambientVolume = saved.vol; volSlider.value = ambientVolume; }
+      var setVolFill = function (v) { volSlider.style.setProperty('--fill', (v * 100) + '%'); };
+      setVolFill(ambientVolume);
       volSlider.addEventListener('input', function () {
         ambientVolume = parseFloat(this.value);
+        setVolFill(ambientVolume);
         if (ambientNodes.gain) ambientNodes.gain.gain.value = ambientVolume;
         try { global.localStorage.setItem(AMBIENT_KEY, JSON.stringify({ sound: selected, vol: ambientVolume })); } catch (e) {}
       });
