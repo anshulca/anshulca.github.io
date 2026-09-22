@@ -94,10 +94,13 @@
   var progress = loadProgress();
   var lang = 'both';
 
+  var brandLine = '<p style="text-align:center;margin-top:var(--space-2);font-size:0.65rem;color:var(--ink-faint)">By <a href="/about/" style="color:var(--accent-strong);text-decoration:none;font-weight:500">CA Anshul Karwa</a></p>';
+
   var html = '<div class="reader-meta">' +
     '<p class="reader-meta__deity">' + esc(stotra.deityName) + ' · ' + esc(stotra.deityDev) + '</p>' +
     '<h1 class="reader-meta__title">' + esc(stotra.name) + '</h1>' +
     '<p class="reader-meta__title-dev">' + esc(stotra.nameDev) + '</p>' +
+    brandLine +
     '</div>' +
     '<div class="reader-lang" id="reader-lang">' +
     '<button type="button" class="reader-lang__btn is-active" data-lang="both">Both</button>' +
@@ -115,6 +118,8 @@
   });
 
   html += '</div>';
+
+  html += brandLine;
 
   html += '<div class="reader-tts" id="reader-tts">' +
     '<div class="reader-tts__head">' +
