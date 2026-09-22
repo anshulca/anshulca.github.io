@@ -54,7 +54,7 @@ User-agent: Meta-ExternalFetcher
 Disallow: /
 
 User-agent: facebookexternalhit
-Disallow: /
+Allow: /
 
 User-agent: FacebookBot
 Disallow: /
@@ -138,4 +138,4 @@ Allow: /
 User-agent: DuckDuckBot
 Allow: /
 
-Sitemap: https://www.studyfromnotes.com/sitemap_index.xml
+Sitemap: https://jap.studyfromnotes.com/sitemap.xml

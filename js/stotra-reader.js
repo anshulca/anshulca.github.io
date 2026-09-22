@@ -23,8 +23,16 @@
   }
 
   /* ---- Get stotra from URL ---------------------------------------------- */
-  var params = new URLSearchParams(global.location.search);
-  var stotraId = params.get('id');
+  var stotraId = global.__STOTRA_ID || null;
+  if (!stotraId) {
+    var params = new URLSearchParams(global.location.search);
+    stotraId = params.get('id');
+  }
+  if (!stotraId) {
+    var pathParts = global.location.pathname.replace(/\/+$/, '').split('/');
+    var lastPart = pathParts[pathParts.length - 1];
+    if (lastPart && lastPart !== 'read' && lastPart !== 'stotra') stotraId = lastPart;
+  }
   var stotra = null;
   for (var i = 0; i < STOTRAS.length; i++) {
     if (STOTRAS[i].id === stotraId) { stotra = STOTRAS[i]; break; }

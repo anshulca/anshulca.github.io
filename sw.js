@@ -5,7 +5,7 @@
    ========================================================================= */
 'use strict';
 
-var CACHE = 'naamjap-shell-v18';
+var CACHE = 'naamjap-shell-v19';
 
 var SHELL = [
   '/',
@@ -24,6 +24,36 @@ var SHELL = [
   '/journey/',
   '/stotra/',
   '/stotra/read/',
+  '/stotra/hanuman-chalisa/',
+  '/stotra/shiv-tandav/',
+  '/stotra/shiv-chalisa/',
+  '/stotra/rudrashtakam/',
+  '/stotra/vishnu-chalisa/',
+  '/stotra/vishnu-stuti/',
+  '/stotra/krishna-chalisa/',
+  '/stotra/madhurashtakam/',
+  '/stotra/achyutashtakam/',
+  '/stotra/ram-chalisa/',
+  '/stotra/ram-raksha/',
+  '/stotra/ram-stuti/',
+  '/stotra/ganesh-atharvashirsha/',
+  '/stotra/ganesh-chalisa/',
+  '/stotra/sankat-nashan/',
+  '/stotra/durga-chalisa/',
+  '/stotra/argala/',
+  '/stotra/lakshmi-chalisa/',
+  '/stotra/shri-suktam/',
+  '/stotra/mahalakshmi-ashtakam/',
+  '/stotra/saraswati-vandana/',
+  '/stotra/saraswati-stotram/',
+  '/stotra/kali-chalisa/',
+  '/stotra/kali-kavacham/',
+  '/stotra/shani-chalisa/',
+  '/stotra/shani-stotra/',
+  '/stotra/aditya-hridayam/',
+  '/stotra/surya-chalisa/',
+  '/stotra/tulsi-chalisa/',
+  '/stotra/tulsi-stotram/',
   '/tools/',
   '/about/',
   '/platform/',

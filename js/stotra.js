@@ -94,7 +94,7 @@
     container.querySelectorAll('[data-id]').forEach(function (card) {
       card.addEventListener('click', function (e) {
         if (e.target.closest('[data-fav]')) return;
-        global.location.href = '/stotra/read/?id=' + encodeURIComponent(card.getAttribute('data-id'));
+        global.location.href = '/stotra/' + encodeURIComponent(card.getAttribute('data-id')) + '/';
       });
     });
   }
