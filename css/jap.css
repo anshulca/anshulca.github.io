@@ -46,9 +46,9 @@
 /* ---- Ambient player --------------------------------------------------------- */
 .ambient-player {
   max-width: 340px; margin: 1.25rem auto 0;
-  background: var(--surface, #fff); border: 1px solid var(--line, #ddd);
+  background: var(--surface, #fff); border: 1.5px solid var(--line, #d4c4a0);
   border-radius: 16px; padding: 1rem 1.25rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
   text-align: center;
 }
 .ambient-player__head {

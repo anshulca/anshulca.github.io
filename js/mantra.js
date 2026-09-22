@@ -75,6 +75,7 @@
         '<span class="mantra-card__text" aria-hidden="true">' + esc(m.text) + '</span>' +
         '<span class="mantra-card__tr">' + esc(m.transliteration) + '</span>' +
         '<span class="mantra-card__view">Read &amp; jap →</span>' +
+        '<span class="mantra-card__brand">By CA Anshul Karwa</span>' +
         '</button>';
     }).join('');
     el.grid.querySelectorAll('[data-id]').forEach(function (b) {
@@ -107,7 +108,8 @@
       '<div class="btn-group" style="margin-top:var(--space-5)">' +
       '<button type="button" class="btn btn--primary" data-jap>Begin jap with this mantra</button>' +
       '<button type="button" class="btn btn--ghost" data-close>Close</button>' +
-      '</div>';
+      '</div>' +
+      '<p style="text-align:center;margin-top:var(--space-4);font-size:0.65rem;color:var(--ink-faint)">By CA Anshul Karwa</p>';
     md.panel.querySelector('[data-jap]').addEventListener('click', function () { beginJap(m); md.close(); });
     md.panel.querySelectorAll('[data-close]').forEach(function (c) { c.addEventListener('click', function () { md.close(); }); });
     md.open();
@@ -115,24 +117,14 @@
 
   /* ---- Hand the mantra to the jap counter -------------------------------------------- */
   function beginJap(m) {
-    var id = m.japId || 'custom';
     var d = NJ.store.load();
-    var valid = false;
-    var naams = (C.jap && C.jap.naams) || [];
-    for (var i = 0; i < naams.length; i++) if (naams[i].id === id) valid = true;
-    if (id === 'custom' || !valid) {
-      d.naamId = 'custom';
-      d.customNaam = '';
-      d.modules.custom.naam = m.name;      // custom jap counter will read this
-      NJ.store.save(d);
-      F.toast('Naam carried to the custom counter');
-      global.location.href = '/jap/custom-naam-jap/';
-      return;
-    }
-    d.naamId = id;
+    d.naamId = 'custom';
     d.customNaam = '';
+    if (!d.modules) d.modules = {};
+    if (!d.modules.custom) d.modules.custom = {};
+    d.modules.custom.naam = m.text || m.name;
     NJ.store.save(d);
-    global.location.href = '/jap/naam-jap/';
+    global.location.href = '/jap/custom-naam-jap/';
   }
 
   /* ---- Init --------------------------------------------------------------------------- */

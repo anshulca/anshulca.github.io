@@ -11,57 +11,63 @@
 .stotra-deities .chip { min-width: 80px; justify-content: center; }
 
 /* ---- Card grid --------------------------------------------------------- */
-.stotra-grid { display: grid; gap: var(--card-gap); grid-template-columns: 1fr; }
-@media (min-width: 640px) { .stotra-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1020px) { .stotra-grid { grid-template-columns: repeat(3, 1fr); } }
+.stotra-grid { display: grid; gap: var(--space-3); grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 768px) { .stotra-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 340px) { .stotra-grid { grid-template-columns: 1fr; } }
 
 .stotra-card {
-  display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-5) var(--space-5);
-  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-3) var(--space-4);
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-md);
   box-shadow: var(--shadow-xs); text-align: left; cursor: pointer;
   transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out), border-color var(--dur);
   width: 100%; font: inherit; text-decoration: none; color: inherit;
 }
-.stotra-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--line-strong); }
+.stotra-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--accent); }
 
 .stotra-card__top { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
 .stotra-card__type {
-  font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--ink-faint); background: var(--surface-sunken); padding: 0.2em 0.6em; border-radius: var(--radius-pill);
+  font-size: 0.55rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-faint); background: var(--surface-sunken); padding: 0.15em 0.5em; border-radius: var(--radius-pill);
 }
 .stotra-card__fav {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 28px; height: 28px; border-radius: 50%; border: none; background: none;
-  color: var(--ink-faint); font-size: 1rem; cursor: pointer; transition: color var(--dur-fast);
+  width: 24px; height: 24px; border-radius: 50%; border: none; background: none;
+  color: var(--ink-faint); font-size: 0.85rem; cursor: pointer; transition: color var(--dur-fast);
   flex-shrink: 0; padding: 0;
 }
 .stotra-card__fav.is-fav { color: var(--accent); }
 
 .stotra-card__name-dev {
-  font-family: var(--font-dev); font-size: clamp(1.15rem, 3vw, 1.5rem);
-  line-height: 1.5; color: var(--primary);
+  font-family: var(--font-dev); font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  line-height: 1.4; color: var(--primary);
 }
-.stotra-card h3 { font-family: var(--font-display); font-size: var(--text-base); font-weight: var(--display-weight); }
-.stotra-card__deity { font-size: var(--text-xs); color: var(--ink-muted); }
-.stotra-card__cta { margin-top: auto; font-size: var(--text-xs); color: var(--accent-strong); font-weight: var(--label-weight); letter-spacing: 0.04em; }
+.stotra-card h3 { font-family: var(--font-display); font-size: var(--text-sm); font-weight: var(--display-weight); margin: 0; }
+.stotra-card__deity { font-size: 0.65rem; color: var(--ink-muted); display: block; }
+.stotra-card__cta {
+  margin-top: var(--space-1); font-size: 0.65rem; color: var(--on-accent); font-weight: 600;
+  background: var(--accent); padding: 0.35em 0.8em; border-radius: var(--radius-pill);
+  display: inline-block; align-self: flex-start; letter-spacing: 0.02em;
+}
+.stotra-card:hover .stotra-card__cta { background: var(--accent-strong); }
+.stotra-card__brand { font-size: 0.6rem; color: var(--ink-faint); margin-top: var(--space-1); }
 
 /* ---- Section headers --------------------------------------------------- */
-.stotra-section { margin-top: var(--space-7); }
+.stotra-section { margin-top: var(--space-5); }
 .stotra-section__head {
-  display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-5);
-  padding-bottom: var(--space-3); border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2); border-bottom: 1px solid var(--line);
 }
 .stotra-section__icon {
-  font-family: var(--font-dev); font-size: 1.6rem; line-height: 1;
+  font-family: var(--font-dev); font-size: 1.3rem; line-height: 1;
   color: var(--accent-strong); flex-shrink: 0;
 }
-.stotra-section__title { font-family: var(--font-display); font-size: var(--text-lg); font-weight: var(--display-weight); }
-.stotra-section__subtitle { font-size: var(--text-xs); color: var(--ink-muted); margin-left: auto; }
+.stotra-section__title { font-family: var(--font-display); font-size: var(--text-base); font-weight: var(--display-weight); }
+.stotra-section__subtitle { font-size: 0.65rem; color: var(--ink-muted); margin-left: auto; }
 
 /* ---- Recently read / Favourites --------------------------------------- */
 .stotra-row { display: flex; gap: var(--space-3); overflow-x: auto; padding-bottom: var(--space-2); -webkit-overflow-scrolling: touch; }
 .stotra-row::-webkit-scrollbar { display: none; }
-.stotra-row .stotra-card { min-width: 240px; max-width: 280px; flex-shrink: 0; }
+.stotra-row .stotra-card { min-width: 200px; max-width: 240px; flex-shrink: 0; }
 
 /* ---- Reader page ------------------------------------------------------- */
 .reader-stage {
@@ -161,6 +167,15 @@
 
 /* ---- Responsive -------------------------------------------------------- */
 @media (max-width: 480px) {
-  .reader-stage { padding-inline: 1rem; }
-  .stotra-row .stotra-card { min-width: 200px; }
+  .reader-stage { padding-inline: 0.75rem; }
+  .stotra-row .stotra-card { min-width: 180px; }
+  .stotra-grid { gap: var(--space-2); }
+  .stotra-card { padding: var(--space-2) var(--space-3); }
+  .stotra-card__name-dev { font-size: 0.85rem; }
+  .stotra-card h3 { font-size: 0.75rem; }
+  .stotra-deities { gap: 6px; }
+  .stotra-deities .chip { min-width: 64px; font-size: 0.7rem; padding: 0.3em 0.6em; }
+  .stotra-search__input { font-size: 0.8rem; }
+  .reader-verse__dev { font-size: 1rem; line-height: 1.8; }
+  .reader-verse__en { font-size: 0.8rem; }
 }

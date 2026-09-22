@@ -28,6 +28,7 @@
 .mantra-card__text { font-family: var(--font-dev); font-size: clamp(1.2rem, 3.4vw, 1.65rem); line-height: 1.75; color: var(--primary); }
 .mantra-card__tr { font-style: italic; color: var(--ink-muted); font-size: var(--text-sm); }
 .mantra-card__view { margin-top: auto; font-size: var(--text-xs); color: var(--accent-strong); font-weight: var(--label-weight); letter-spacing: 0.04em; }
+.mantra-card__brand { font-size: 0.6rem; color: var(--ink-faint); margin-top: var(--space-1); }
 
 /* ---- Modal detail ---------------------------------------------------------- */
 .mantra-detail__glyph { font-family: var(--font-dev); font-size: clamp(1.9rem, 6vw, 2.6rem); line-height: 1.75; color: var(--primary); text-align: center; }

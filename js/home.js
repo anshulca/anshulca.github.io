@@ -33,6 +33,26 @@
       '<span class="pill pill--good">See sadhana</span>';
   }
 
+  /* ---- PWA install prompt --------------------------------------------------- */
+  var deferredPrompt = null;
+  global.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    deferredPrompt = e;
+    var btn = doc.getElementById('pwa-install-btn');
+    if (btn) {
+      btn.style.display = '';
+      btn.addEventListener('click', function () {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(function () { deferredPrompt = null; btn.style.display = 'none'; });
+      });
+    }
+  });
+
+  if (global.matchMedia && global.matchMedia('(display-mode: standalone)').matches) {
+    var sec = doc.getElementById('install-section');
+    if (sec) sec.style.display = 'none';
+  }
+
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', render);
   else render();
 

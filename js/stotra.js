@@ -70,7 +70,7 @@
   /* ---- Card HTML -------------------------------------------------------- */
   function cardHTML(s, compact) {
     var f = isFav(s.id);
-    return '<button type="button" class="stotra-card' + (compact ? '' : '') + '" data-id="' + esc(s.id) + '">' +
+    return '<div class="stotra-card" data-id="' + esc(s.id) + '">' +
       '<div class="stotra-card__top">' +
       '<span class="stotra-card__type">' + esc(s.type) + '</span>' +
       '<button type="button" class="stotra-card__fav' + (f ? ' is-fav' : '') + '" data-fav="' + esc(s.id) + '" aria-label="' + (f ? 'Remove from' : 'Add to') + ' favourites">' + (f ? '★' : '☆') + '</button>' +
@@ -78,8 +78,9 @@
       '<span class="stotra-card__name-dev">' + esc(s.nameDev) + '</span>' +
       '<h3>' + esc(s.name) + '</h3>' +
       '<span class="stotra-card__deity">' + esc(s.deityName) + ' · ' + esc(s.deityDev) + '</span>' +
-      '<span class="stotra-card__cta">Read & recite →</span>' +
-      '</button>';
+      '<span class="stotra-card__cta">Read &amp; recite →</span>' +
+      '<span class="stotra-card__brand">By CA Anshul Karwa</span>' +
+      '</div>';
   }
 
   /* ---- Bind card events ------------------------------------------------- */
