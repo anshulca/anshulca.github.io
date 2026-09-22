@@ -18,6 +18,7 @@
 
   var mantras = (C.mantras && C.mantras.length) ? C.mantras : [];
   var activeCat = 'all';
+  var searchQuery = '';
 
   function esc(s) {
     return String(s === undefined || s === null ? '' : s).replace(/[&<>"']/g, function (c) {
@@ -51,9 +52,20 @@
   }
 
   /* ---- Cards --------------------------------------------------------------------- */
+  function matchesSearch(m, q) {
+    if (!q) return true;
+    var lq = q.toLowerCase();
+    return (m.name && m.name.toLowerCase().indexOf(lq) >= 0) ||
+      (m.text && m.text.indexOf(q) >= 0) ||
+      (m.dev && m.dev.indexOf(q) >= 0) ||
+      (m.transliteration && m.transliteration.toLowerCase().indexOf(lq) >= 0) ||
+      (m.category && m.category.toLowerCase().indexOf(lq) >= 0) ||
+      (m.meaning && m.meaning.toLowerCase().indexOf(lq) >= 0);
+  }
+
   function renderGrid() {
     if (!el.grid) return;
-    var list = mantras.filter(function (m) { return activeCat === 'all' || m.category === activeCat; });
+    var list = mantras.filter(function (m) { return (activeCat === 'all' || m.category === activeCat) && matchesSearch(m, searchQuery); });
     if (!list.length) { el.grid.innerHTML = '<p class="muted" style="text-align:center;padding:var(--space-7)">Nothing here yet.</p>'; return; }
     el.grid.innerHTML = list.map(function (m) {
       return '<button type="button" class="mantra-card" data-id="' + esc(m.id) + '">' +
@@ -125,6 +137,13 @@
 
   /* ---- Init --------------------------------------------------------------------------- */
   function init() {
+    var searchInput = $('mnt-search');
+    if (searchInput) {
+      searchInput.addEventListener('input', function () {
+        searchQuery = this.value.trim();
+        renderGrid();
+      });
+    }
     renderFilters();
     renderGrid();
   }

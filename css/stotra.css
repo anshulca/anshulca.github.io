@@ -1,0 +1,166 @@
+/* =========================================================================
+   NAAM JAP · STOTRA / CHALISA LIBRARY + READER
+   ========================================================================= */
+
+/* ---- Search ------------------------------------------------------------ */
+.stotra-search { max-width: 420px; margin-inline: auto; }
+.stotra-search__input { width: 100%; text-align: center; font-size: var(--text-sm); }
+
+/* ---- Deity chips ------------------------------------------------------- */
+.stotra-deities { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; }
+.stotra-deities .chip { min-width: 80px; justify-content: center; }
+
+/* ---- Card grid --------------------------------------------------------- */
+.stotra-grid { display: grid; gap: var(--card-gap); grid-template-columns: 1fr; }
+@media (min-width: 640px) { .stotra-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1020px) { .stotra-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.stotra-card {
+  display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-5) var(--space-5);
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs); text-align: left; cursor: pointer;
+  transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out), border-color var(--dur);
+  width: 100%; font: inherit; text-decoration: none; color: inherit;
+}
+.stotra-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--line-strong); }
+
+.stotra-card__top { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.stotra-card__type {
+  font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-faint); background: var(--surface-sunken); padding: 0.2em 0.6em; border-radius: var(--radius-pill);
+}
+.stotra-card__fav {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%; border: none; background: none;
+  color: var(--ink-faint); font-size: 1rem; cursor: pointer; transition: color var(--dur-fast);
+  flex-shrink: 0; padding: 0;
+}
+.stotra-card__fav.is-fav { color: var(--accent); }
+
+.stotra-card__name-dev {
+  font-family: var(--font-dev); font-size: clamp(1.15rem, 3vw, 1.5rem);
+  line-height: 1.5; color: var(--primary);
+}
+.stotra-card h3 { font-family: var(--font-display); font-size: var(--text-base); font-weight: var(--display-weight); }
+.stotra-card__deity { font-size: var(--text-xs); color: var(--ink-muted); }
+.stotra-card__cta { margin-top: auto; font-size: var(--text-xs); color: var(--accent-strong); font-weight: var(--label-weight); letter-spacing: 0.04em; }
+
+/* ---- Section headers --------------------------------------------------- */
+.stotra-section { margin-top: var(--space-7); }
+.stotra-section__head {
+  display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-5);
+  padding-bottom: var(--space-3); border-bottom: 1px solid var(--line);
+}
+.stotra-section__icon {
+  font-family: var(--font-dev); font-size: 1.6rem; line-height: 1;
+  color: var(--accent-strong); flex-shrink: 0;
+}
+.stotra-section__title { font-family: var(--font-display); font-size: var(--text-lg); font-weight: var(--display-weight); }
+.stotra-section__subtitle { font-size: var(--text-xs); color: var(--ink-muted); margin-left: auto; }
+
+/* ---- Recently read / Favourites --------------------------------------- */
+.stotra-row { display: flex; gap: var(--space-3); overflow-x: auto; padding-bottom: var(--space-2); -webkit-overflow-scrolling: touch; }
+.stotra-row::-webkit-scrollbar { display: none; }
+.stotra-row .stotra-card { min-width: 240px; max-width: 280px; flex-shrink: 0; }
+
+/* ---- Reader page ------------------------------------------------------- */
+.reader-stage {
+  max-width: 680px; margin-inline: auto;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius-xl); box-shadow: var(--shadow-md);
+  padding: var(--space-6) clamp(1.2rem, 5vw, 2.5rem); overflow: hidden;
+}
+
+.reader-meta { text-align: center; margin-bottom: var(--space-6); }
+.reader-meta__deity { font-size: var(--text-xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); font-weight: var(--label-weight); }
+.reader-meta__title { font-family: var(--font-display); font-size: var(--text-xl); margin-top: var(--space-2); }
+.reader-meta__title-dev { font-family: var(--font-dev); font-size: var(--text-lg); color: var(--accent-strong); margin-top: var(--space-1); }
+
+/* ---- Language toggle --------------------------------------------------- */
+.reader-lang {
+  display: flex; justify-content: center; gap: 0; margin-bottom: var(--space-5);
+  background: var(--surface-sunken); border-radius: var(--radius-pill); padding: 3px;
+  max-width: 280px; margin-inline: auto;
+}
+.reader-lang__btn {
+  flex: 1; font-size: var(--text-sm); font-weight: 500; padding: 0.5em 1em;
+  border: none; border-radius: var(--radius-pill); background: none;
+  color: var(--ink-muted); cursor: pointer; transition: all var(--dur-fast);
+}
+.reader-lang__btn.is-active {
+  background: var(--surface); color: var(--ink); box-shadow: var(--shadow-xs); font-weight: 600;
+}
+
+/* ---- Verses ------------------------------------------------------------ */
+.reader-verses { }
+.reader-verse {
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--line);
+}
+.reader-verse:last-child { border-bottom: none; }
+.reader-verse__label {
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent-strong); margin-bottom: var(--space-2); display: inline-block;
+  background: rgba(185,138,58,.08); padding: 0.15em 0.55em; border-radius: var(--radius-sm);
+}
+.reader-verse__dev {
+  font-family: var(--font-dev); font-size: clamp(1.15rem, 3.5vw, 1.5rem);
+  line-height: 2; color: var(--primary); white-space: pre-line;
+}
+.reader-verse__en {
+  font-style: italic; font-size: var(--text-sm); line-height: 1.8;
+  color: var(--ink-muted); white-space: pre-line; margin-top: var(--space-2);
+}
+.reader-verse__dev[hidden], .reader-verse__en[hidden] { display: none; }
+
+/* ---- Reader actions ---------------------------------------------------- */
+.reader-actions {
+  display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center;
+  margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--line);
+}
+
+/* ---- TTS controls ------------------------------------------------------ */
+.reader-tts {
+  max-width: 340px; margin: var(--space-5) auto 0;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 16px; padding: 1rem 1.25rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04); text-align: center;
+}
+.reader-tts__head {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;
+}
+.reader-tts__title {
+  font-size: 0.7rem; font-weight: 600; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.08em;
+}
+.reader-tts__toggle {
+  display: inline-flex; align-items: center; gap: 0.35em;
+  font-size: 0.8rem; font-weight: 600; padding: 0.35em 0.9em; border-radius: 999px;
+  border: 1.5px solid var(--line); background: var(--surface-sunken);
+  color: var(--ink-muted); cursor: pointer; transition: all 0.2s ease;
+}
+.reader-tts__toggle:hover { border-color: var(--accent); color: var(--accent); }
+.reader-tts__toggle.is-active {
+  background: var(--accent); color: var(--on-accent);
+  border-color: var(--accent); box-shadow: 0 2px 8px rgba(185,138,58,.3);
+}
+.reader-tts__track {
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.reader-tts__label { font-size: 0.72rem; font-weight: 500; color: var(--ink-muted); flex-shrink: 0; }
+
+/* ---- Progress tracker -------------------------------------------------- */
+.reader-progress {
+  text-align: center; margin-top: var(--space-5);
+  padding: var(--space-4); background: var(--accent-soft); border-radius: var(--radius-md);
+}
+.reader-progress__count {
+  font-family: var(--font-display); font-variant-numeric: tabular-nums;
+  font-size: var(--text-lg); color: var(--accent-strong); font-weight: var(--number-weight);
+}
+.reader-progress__label { font-size: var(--text-xs); color: var(--ink-muted); margin-top: var(--space-1); }
+
+/* ---- Responsive -------------------------------------------------------- */
+@media (max-width: 480px) {
+  .reader-stage { padding-inline: 1rem; }
+  .stotra-row .stotra-card { min-width: 200px; }
+}

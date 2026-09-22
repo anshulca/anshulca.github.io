@@ -63,6 +63,7 @@
         { label: 'Lekhan', url: '/lekh/', devanagari: 'लेखन' },
         { label: 'Sadhana', url: '/sadhana/', devanagari: 'साधना' },
         { label: 'Mantra', url: '/mantra/', devanagari: 'मंत्र' },
+        { label: 'Stotra', url: '/stotra/', devanagari: 'स्तोत्र' },
         { label: 'Journey', url: '/journey/' }
       ],
       cta: { label: 'Begin Jap', url: '/jap/' },
@@ -96,6 +97,7 @@
             { label: 'Lekhan', url: '/lekh/' },
             { label: 'Sadhana', url: '/sadhana/' },
             { label: 'Mantra', url: '/mantra/' },
+            { label: 'Stotra', url: '/stotra/' },
             { label: 'Journey', url: '/journey/' }
           ]
         },
@@ -356,6 +358,70 @@
         transliteration: 'Om',
         meaning: 'The primal sound - the seed of all mantras and all speech. The universe is said to have emerged from it, and all mantras dissolve back into it.',
         note: 'Chanted slowly, aloud or in silence - one Om repeated is worth a full mala of concentration.'
+      },
+      {
+        id: 'vasudeva', name: 'Om Namo Bhagavate Vasudevaya', dev: 'ॐ नमो भगवते वासुदेवाय', japId: 'krishna',
+        category: 'Devotion',
+        text: 'ॐ नमो भगवते वासुदेवाय',
+        transliteration: 'Om Namo Bhagavate Vāsudevāya',
+        meaning: 'I bow to Lord Vasudeva (Krishna) - the twelve-syllable liberation mantra, the Dvadasakshari mantra of the Bhagavata tradition.',
+        note: 'One of the most powerful moksha mantras, prescribed in the Bhagavata Purana for liberation.'
+      },
+      {
+        id: 'rama-namah', name: 'Om Shri Ramaya Namah', dev: 'ॐ श्री रामाय नमः', japId: 'ram',
+        category: 'Devotion',
+        text: 'ॐ श्री रामाय नमः',
+        transliteration: 'Om Śrī Rāmāya Namaḥ',
+        meaning: 'Salutations to the blessed Lord Rama - the embodiment of dharma and the ideal of righteous living.',
+        note: 'A formal mantra salutation to Lord Rama, used in daily puja and jap practice.'
+      },
+      {
+        id: 'krishna-namah', name: 'Om Krishnaya Namah', dev: 'ॐ कृष्णाय नमः', japId: 'krishna',
+        category: 'Devotion',
+        text: 'ॐ कृष्णाय नमः',
+        transliteration: 'Om Kṛṣṇāya Namaḥ',
+        meaning: 'Salutations to Krishna - the dark one, the all-attractive, the supreme personality of Godhead.',
+        note: 'A simple seed mantra for daily Krishna devotion and meditation.'
+      },
+      {
+        id: 'hanumate-namah', name: 'Om Hanumate Namah', dev: 'ॐ हनुमते नमः', japId: 'hanuman',
+        category: 'Protection',
+        text: 'ॐ हनुमते नमः',
+        transliteration: 'Om Hanumate Namaḥ',
+        meaning: 'Salutations to Hanuman - the ever-devoted, the fearless, the embodiment of selfless service.',
+        note: 'A direct invocation of Hanuman for strength, courage and devotion.'
+      },
+      {
+        id: 'durga-namah', name: 'Om Dum Durgayai Namah', dev: 'ॐ दुं दुर्गायै नमः', japId: 'durga',
+        category: 'Devi',
+        text: 'ॐ दुं दुर्गायै नमः',
+        transliteration: 'Om Duṁ Durgāyai Namaḥ',
+        meaning: 'Salutations to Durga with her seed syllable - the invincible protectress who removes all difficulties.',
+        note: 'Chanted for protection and removal of obstacles, especially during Navratri.'
+      },
+      {
+        id: 'surya', name: 'Om Suryaya Namah', dev: 'ॐ सूर्याय नमः', japId: 'custom',
+        category: 'Universal',
+        text: 'ॐ सूर्याय नमः',
+        transliteration: 'Om Sūryāya Namaḥ',
+        meaning: 'Salutations to the Sun - the visible form of the divine, the source of light, life and consciousness.',
+        note: 'Chanted during Surya Namaskar and at sunrise for health, vitality and spiritual illumination.'
+      },
+      {
+        id: 'shani', name: 'Om Sham Shanicharaya Namah', dev: 'ॐ शं शनैश्चराय नमः', japId: 'custom',
+        category: 'Protection',
+        text: 'ॐ शं शनैश्चराय नमः',
+        transliteration: 'Om Śaṁ Śanaiścarāya Namaḥ',
+        meaning: 'Salutations to Shani Dev - the slow-moving one, the planet of discipline, karma and justice.',
+        note: 'Chanted on Saturdays for relief from Shani Dasha and karmic difficulties.'
+      },
+      {
+        id: 'shanti', name: 'Shanti Mantra', dev: 'ॐ शान्तिः', japId: 'custom',
+        category: 'Universal',
+        text: 'ॐ शान्तिः शान्तिः शान्तिः',
+        transliteration: 'Om Śāntiḥ Śāntiḥ Śāntiḥ',
+        meaning: 'Om, peace, peace, peace - three-fold peace to calm the disturbances of body, mind and spirit; the outer world, the inner world, and the divine.',
+        note: 'The universal closing of Vedic prayers and Upanishadic teachings. Three repetitions address the three sources of suffering.'
       }
     ],
 

@@ -5,7 +5,7 @@
    ========================================================================= */
 'use strict';
 
-var CACHE = 'naamjap-shell-v15';
+var CACHE = 'naamjap-shell-v16';
 
 var SHELL = [
   '/',
@@ -22,6 +22,8 @@ var SHELL = [
   '/mantra/',
   '/sadhana/',
   '/journey/',
+  '/stotra/',
+  '/stotra/read/',
   '/tools/',
   '/about/',
   '/platform/',
@@ -42,6 +44,7 @@ var SHELL = [
   '/css/mantra.css',
   '/css/lekhan.css',
   '/css/journey.css',
+  '/css/stotra.css',
   '/js/site.config.js',
   '/js/ui.js',
   '/js/store.js',
@@ -60,6 +63,9 @@ var SHELL = [
   '/js/mantra.js',
   '/js/sadhana.js',
   '/js/journey.js',
+  '/js/stotra-data.js',
+  '/js/stotra.js',
+  '/js/stotra-reader.js',
   '/js/tools.js',
   '/js/home.js',
   '/assets/logo.svg',

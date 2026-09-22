@@ -35,6 +35,12 @@
       "short_name": "Journey",
       "url": "/journey/",
       "icons": [{ "src": "/assets/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Chalisa & Stotra",
+      "short_name": "Stotra",
+      "url": "/stotra/",
+      "icons": [{ "src": "/assets/icon-192.png", "sizes": "192x192" }]
     }
   ]
 }
