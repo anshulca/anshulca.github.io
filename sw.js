@@ -5,7 +5,7 @@
    ========================================================================= */
 'use strict';
 
-var CACHE = 'naamjap-shell-v20';
+var CACHE = 'naamjap-shell-v21';
 
 var SHELL = [
   '/',
@@ -54,6 +54,9 @@ var SHELL = [
   '/stotra/surya-chalisa/',
   '/stotra/tulsi-chalisa/',
   '/stotra/tulsi-stotram/',
+  '/stotra/vishnu-aarti/',
+  '/stotra/shiv-aarti/',
+  '/stotra/ganesh-aarti/',
   '/tools/',
   '/about/',
   '/platform/',

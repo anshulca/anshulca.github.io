@@ -861,6 +861,67 @@
         { dev: 'तुलस्यमृतजन्मासि सदा त्वं केशवप्रिये ।\nकेशवार्थे चिनोमि त्वां वरदा भव शोभने ॥', en: 'Tulasyamṛtajanmāsi sadā tvaṁ Keśavapriye,\nKeśavārthe chinomi tvāṁ varadā bhava śobhane.' },
         { dev: 'त्वदंगसम्भवैर्नित्यं पूजयामि यथा हरिम् ।\nतथा कुरु पवित्रांगि कलौ मलविनाशिनि ॥', en: 'Tvadaṅgasambhavairnityaṁ pūjayāmi yathā Harim,\nTathā kuru pavitrāṅgi kalau malavināśini.' }
       ]
+    },
+
+    /* ==================================================================
+       AARTI
+       ================================================================== */
+    {
+      id: 'vishnu-aarti',
+      name: 'Vishnu Ji Ki Aarti',
+      nameDev: 'विष्णु जी की आरती',
+      deity: 'vishnu',
+      deityName: 'Lord Vishnu',
+      deityDev: 'विष्णु',
+      type: 'aarti',
+      verses: [
+        { dev: 'ॐ जय जगदीश हरे, स्वामी! जय जगदीश हरे।\nभक्तजनों के संकट, दासजनों के संकट, क्षण में दूर करे ॥\nॐ जय जगदीश हरे...', en: 'Om Jaya Jagadīśa Hare, Svāmī! Jaya Jagadīśa Hare,\nBhaktajanon ke saṅkaṭa, dāsajanon ke saṅkaṭa, kṣaṇa meṁ dūra kare.\nOm Jaya Jagadīśa Hare...' },
+        { dev: 'जो ध्यावे फल पावे, दुख बिनसे मन का।\nसुख-सम्पत्ति घर आवे, कष्ट मिटे तन का ॥\nॐ जय जगदीश हरे...', en: 'Jo dhyāve phala pāve, dukha binase mana kā,\nSukha-sampatti ghara āve, kaṣṭa miṭe tana kā.\nOm Jaya Jagadīśa Hare...' },
+        { dev: 'तुम करुणा के सागर तुम पालनकर्ता।\nमैं मूरख खल कामी, कृपा करो भर्ता ॥\nॐ जय जगदीश हरे...', en: 'Tuma karuṇā ke sāgara tuma pālanakartā,\nMaiṁ mūrakha khala kāmī, kṛpā karo bhartā.\nOm Jaya Jagadīśa Hare...' },
+        { dev: 'माता-पिता तुम मेरे, शरण गहूँ किसकी।\nतुम बिन और न दूजा, आस करूँ जिसकी ॥\nॐ जय जगदीश हरे...', en: 'Mātā-pitā tuma mere, śaraṇa gahūṁ kisakī,\nTuma bina aura na dūjā, āsa karūṁ jisakī.\nOm Jaya Jagadīśa Hare...' },
+        { dev: 'तुम पूरण परमात्मा, तुम अन्तर्यामी।\nपारब्रह्म परमेश्वर, तुम सबके स्वामी ॥\nॐ जय जगदीश हरे...', en: 'Tuma pūraṇa Paramātmā, tuma Antaryāmī,\nPārabrahma Parameśvara, tuma sabake Svāmī.\nOm Jaya Jagadīśa Hare...' },
+        { dev: 'तुम हो एक अगोचर, सबके प्राणपति।\nकिस विध मिलूँ दयामय! तुमको मैं कुमति ॥\nॐ जय जगदीश हरे...', en: 'Tuma ho eka agochara, sabake prāṇapati,\nKisa vidha milūṁ dayāmaya! tumako maiṁ kumati.\nOm Jaya Jagadīśa Hare...' },
+        { dev: 'दीनबन्धु दुखहर्ता, तुम ठाकुर मेरे।\nअपने हाथ उठाओ, द्वार पड़ा तेरे ॥\nॐ जय जगदीश हरे...', en: 'Dīnabandhu dukhahartā, tuma Ṭhākura mere,\nApane hātha uṭhāo, dvāra paḍā tere.\nOm Jaya Jagadīśa Hare...' },
+        { dev: 'विषय विकार मिटाओ, पाप हरो देवा।\nश्रद्धा-भक्ति बढ़ाओ, संतन की सेवा ॥\nॐ जय जगदीश हरे...', en: 'Viṣaya vikāra miṭāo, pāpa haro Devā,\nŚraddhā-bhakti baḍhāo, santana kī sevā.\nOm Jaya Jagadīśa Hare...' },
+        { dev: 'तन-मन-धन और सम्पत्ति, सब कुछ है तेरा।\nतेरा तुझको अर्पण क्या लागे मेरा ॥\nॐ जय जगदीश हरे...', en: 'Tana-mana-dhana aura sampatti, saba kuchha hai terā,\nTerā tujhako arpaṇa kyā lāge merā.\nOm Jaya Jagadīśa Hare...' },
+        { dev: 'जगदीशुरजी की आरती जो कोई नर गावे।\nकहत शिवानन्द स्वामी, मनवांछित फल पावे ॥\nॐ जय जगदीश हरे...', en: 'Jagadīśurajī kī āratī jo koī nara gāve,\nKahata Śivānanda Svāmī, manavāṅchhita phala pāve.\nOm Jaya Jagadīśa Hare...' }
+      ]
+    },
+    {
+      id: 'shiv-aarti',
+      name: 'Shiv Ji Ki Aarti',
+      nameDev: 'शिव जी की आरती',
+      deity: 'shiva',
+      deityName: 'Lord Shiva',
+      deityDev: 'शिव',
+      type: 'aarti',
+      verses: [
+        { dev: 'ॐ जय शिव ओंकारा, स्वामी जय शिव ओंकारा।\nब्रह्मा, विष्णु, सदाशिव, अर्द्धांगी धारा ॥\nॐ जय शिव ओंकारा...', en: 'Om Jaya Śiva Oṅkārā, Svāmī Jaya Śiva Oṅkārā,\nBrahmā, Viṣṇu, Sadāśiva, arddhāṅgī dhārā.\nOm Jaya Śiva Oṅkārā...' },
+        { dev: 'एकानन चतुरानन पंचानन राजे,\nहंसानन गरुड़ासन वृषवाहन साजे ॥\nॐ जय शिव ओंकारा...', en: 'Ekānana chaturānana pañchānana rāje,\nHaṁsānana Garuḍāsana vṛṣavāhana sāje.\nOm Jaya Śiva Oṅkārā...' },
+        { dev: 'दो भुज चार चतुर्भुज दस भुज अति सोहे,\nत्रिगुण रूप निरखते, त्रिभुवन जन मोहे ॥\nॐ जय शिव ओंकारा...', en: 'Do bhuja chāra chaturbhuja dasa bhuja ati sohe,\nTriguṇa rūpa nirakhate, tribhuvana jana mohe.\nOm Jaya Śiva Oṅkārā...' },
+        { dev: 'अक्षमाला वनमाला मुण्डमाला धारी,\nत्रिपुरारी कंसारी कर माला धारी ॥\nॐ जय शिव ओंकारा...', en: 'Akṣamālā vanamālā muṇḍamālā dhārī,\nTripurārī Kaṁsārī kara mālā dhārī.\nOm Jaya Śiva Oṅkārā...' },
+        { dev: 'श्वेताम्बर पीताम्बर बाघम्बर अंगे,\nसनकादिक गरुणादिक भूतादिक संगे ॥\nॐ जय शिव ओंकारा...', en: 'Śvetāmbara pītāmbara bāghambara aṅge,\nSanakādika Garuṇādika bhūtādika saṅge.\nOm Jaya Śiva Oṅkārā...' },
+        { dev: 'कर के मध्य कमण्डलु चक्र त्रिशूल धर्ता,\nजगकर्ता जगभर्ता जग संहारकर्ता ॥\nॐ जय शिव ओंकारा...', en: 'Kara ke madhya kamaṇḍalu chakra triśūla dhartā,\nJagakartā Jagabhartā jaga saṁhārakartā.\nOm Jaya Śiva Oṅkārā...' },
+        { dev: 'ब्रह्मा विष्णु सदाशिव जानत अविवेका,\nप्रणवाक्षर में शोभित यह तीनों एका ॥\nॐ जय शिव ओंकारा...', en: 'Brahmā Viṣṇu Sadāśiva jānata avivekā,\nPraṇavākṣara meṁ śobhita yaha tīnoṁ ekā.\nOm Jaya Śiva Oṅkārā...' },
+        { dev: 'काशी में विश्वनाथ विराजत, नन्दी ब्रह्मचारी।\nनित उठ दर्शन पावत, महिमा अति भारी ॥\nॐ जय शिव ओंकारा...', en: 'Kāśī meṁ Viśvanātha virājata, Nandī brahmachārī,\nNita uṭha darśana pāvata, mahimā ati bhārī.\nOm Jaya Śiva Oṅkārā...' },
+        { dev: 'त्रिगुण स्वामी जी की आरती जो कोई नर गावे,\nकहत शिवानन्द स्वामी, मनवांछित फल पावे ॥\nॐ जय शिव ओंकारा...', en: 'Triguṇa Svāmī jī kī āratī jo koī nara gāve,\nKahata Śivānanda Svāmī, manavāṅchhita phala pāve.\nOm Jaya Śiva Oṅkārā...' }
+      ]
+    },
+    {
+      id: 'ganesh-aarti',
+      name: 'Ganesh Ji Ki Aarti',
+      nameDev: 'गणेश जी की आरती',
+      deity: 'ganesha',
+      deityName: 'Lord Ganesha',
+      deityDev: 'गणेश',
+      type: 'aarti',
+      verses: [
+        { dev: 'जय गणेश जय गणेश जय गणेश देवा।\nमाता जाकी पार्वती पिता महादेवा ॥\nजय गणेश जय गणेश जय गणेश देवा...', en: 'Jaya Gaṇeśa Jaya Gaṇeśa Jaya Gaṇeśa Devā,\nMātā jākī Pārvatī pitā Mahādevā.\nJaya Gaṇeśa Jaya Gaṇeśa Jaya Gaṇeśa Devā...' },
+        { dev: 'एक दंत दयावंत चार भुजा धारी।\nमाथे पर तिलक सोहे मूसे की सवारी ॥\nजय गणेश जय गणेश जय गणेश देवा...', en: 'Eka daṁta dayāvaṁta chāra bhujā dhārī,\nMāthe para tilaka sohe mūse kī savārī.\nJaya Gaṇeśa Jaya Gaṇeśa Jaya Gaṇeśa Devā...' },
+        { dev: 'पान चढ़े फूल चढ़े और चढ़े मेवा।\nलड्डुअन का भोग लगे सन्त करें सेवा ॥\nजय गणेश जय गणेश जय गणेश देवा...', en: 'Pāna chaḍhe phūla chaḍhe aura chaḍhe mevā,\nLaḍḍuana kā bhoga lage santa kareṁ sevā.\nJaya Gaṇeśa Jaya Gaṇeśa Jaya Gaṇeśa Devā...' },
+        { dev: 'अंधे को आँख देत कोढ़िन को काया।\nबाँझन को पुत्र देत निर्धन को माया ॥\nजय गणेश जय गणेश जय गणेश देवा...', en: 'Andhe ko āṅkha deta koḍhina ko kāyā,\nBāṅjhana ko putra deta nirdhana ko māyā.\nJaya Gaṇeśa Jaya Gaṇeśa Jaya Gaṇeśa Devā...' },
+        { dev: 'सूर श्याम शरण आए, सफल कीजे सेवा।\nमाता जाकी पार्वती पिता महादेवा ॥\nजय गणेश जय गणेश जय गणेश देवा...', en: 'Sūra Śyāma śaraṇa āe, saphala kīje sevā,\nMātā jākī Pārvatī pitā Mahādevā.\nJaya Gaṇeśa Jaya Gaṇeśa Jaya Gaṇeśa Devā...' }
+      ]
     }
   ];
 
