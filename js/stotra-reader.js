@@ -174,29 +174,56 @@
     if (btn) setLang(btn.getAttribute('data-lang'));
   });
 
-  /* ---- TTS (Web Speech API — works offline on most devices) ------------- */
+  /* ---- TTS (Web Speech API) -------------------------------------------- */
   var ttsPlaying = false;
   var ttsUtterance = null;
   var ttsVerseIdx = 0;
+  var hindiVoice = null;
+  var chromeBugTimer = null;
 
-  function getAllText() {
-    var parts = [];
-    stotra.verses.forEach(function (v) {
-      parts.push(v.dev);
-    });
-    return parts.join('\n\n');
+  function pickHindiVoice() {
+    if (!('speechSynthesis' in global)) return;
+    var voices = global.speechSynthesis.getVoices();
+    if (!voices.length) return;
+    var hindi = [];
+    for (var i = 0; i < voices.length; i++) {
+      if (voices[i].lang === 'hi-IN' || voices[i].lang === 'hi' || voices[i].lang.indexOf('hi-') === 0) {
+        hindi.push(voices[i]);
+      }
+    }
+    if (!hindi.length) return;
+    for (var j = 0; j < hindi.length; j++) {
+      if (hindi[j].name.indexOf('Google') >= 0) { hindiVoice = hindi[j]; return; }
+    }
+    for (var k = 0; k < hindi.length; k++) {
+      if (hindi[k].localService) { hindiVoice = hindi[k]; return; }
+    }
+    hindiVoice = hindi[0];
+  }
+
+  pickHindiVoice();
+  if ('speechSynthesis' in global) {
+    global.speechSynthesis.onvoiceschanged = pickHindiVoice;
+  }
+
+  function cleanForTTS(text) {
+    return text
+      .replace(/[।॥]+/g, ',')
+      .replace(/\n/g, ' ')
+      .replace(/\s+/g, ' ')
+      .replace(/,\s*$/, '')
+      .trim();
   }
 
   function speakVerse(idx) {
-    if (idx >= stotra.verses.length) {
-      stopTTS();
-      return;
-    }
+    if (idx >= stotra.verses.length) { stopTTS(); return; }
     ttsVerseIdx = idx;
-    var text = stotra.verses[idx].dev;
+    var text = cleanForTTS(stotra.verses[idx].dev);
     var u = new SpeechSynthesisUtterance(text);
     u.lang = 'hi-IN';
+    if (hindiVoice) u.voice = hindiVoice;
     u.rate = parseFloat(($('tts-rate') || {}).value || 0.8);
+    u.pitch = 1.0;
     u.onend = function () {
       highlightVerse(-1);
       speakVerse(idx + 1);
@@ -221,12 +248,18 @@
 
   function startTTS() {
     if (!('speechSynthesis' in global)) {
-      if (NJ.feature && NJ.feature.toast) NJ.feature.toast('Text-to-speech not supported on this device');
+      if (NJ.feature && NJ.feature.toast) NJ.feature.toast('Text-to-speech not supported on this device.');
       return;
     }
     global.speechSynthesis.cancel();
     ttsPlaying = true;
     updateTTSBtn();
+    chromeBugTimer = setInterval(function () {
+      if (ttsPlaying && global.speechSynthesis.speaking) {
+        global.speechSynthesis.pause();
+        global.speechSynthesis.resume();
+      }
+    }, 10000);
     speakVerse(0);
   }
 
@@ -236,6 +269,7 @@
     ttsUtterance = null;
     highlightVerse(-1);
     updateTTSBtn();
+    if (chromeBugTimer) { clearInterval(chromeBugTimer); chromeBugTimer = null; }
   }
 
   function updateTTSBtn() {

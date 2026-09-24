@@ -50,15 +50,44 @@
   var VOICE_KEY = 'nj:jap:voice';
   var SPEED_KEY = 'nj:jap:speed';
   var voiceEnabled = true;
-  var naamAudioCache = {};
+  var naamAudioBuf = {};
   var synth = global.speechSynthesis || null;
   var speedRate = 1.0;
+  var hindiVoice = null;
 
-  function preloadAudio(id) {
-    if (naamAudioCache[id]) return;
-    var a = new Audio('/assets/audio/' + id + '.mp3');
-    a.preload = 'auto';
-    naamAudioCache[id] = a;
+  function loadHindiVoice() {
+    if (!synth) return;
+    var voices = synth.getVoices();
+    if (!voices.length) return;
+    for (var i = 0; i < voices.length; i++) {
+      var v = voices[i];
+      if ((v.lang === 'hi-IN' || v.lang.indexOf('hi-') === 0) && v.name.indexOf('Google') >= 0) { hindiVoice = v; return; }
+    }
+    for (var j = 0; j < voices.length; j++) {
+      if (voices[j].lang === 'hi-IN' || voices[j].lang.indexOf('hi-') === 0) { hindiVoice = voices[j]; return; }
+    }
+    for (var k = 0; k < voices.length; k++) {
+      if (voices[k].lang === 'en-IN') { hindiVoice = voices[k]; return; }
+    }
+  }
+
+  function preloadAudioBuffer(id) {
+    if (naamAudioBuf[id] || !audioCtx) return;
+    fetch('/assets/audio/' + id + '.mp3')
+      .then(function (r) { return r.arrayBuffer(); })
+      .then(function (buf) { return audioCtx.decodeAudioData(buf); })
+      .then(function (decoded) { naamAudioBuf[id] = decoded; })
+      .catch(function () {});
+  }
+
+  function playAudioBuffer(buf) {
+    if (!audioCtx) return;
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    var src = audioCtx.createBufferSource();
+    src.buffer = buf;
+    src.playbackRate.value = speedRate;
+    src.connect(audioCtx.destination);
+    src.start(0);
   }
 
   function speakCustom(text) {
@@ -70,22 +99,8 @@
     u.rate = speedRate;
     u.pitch = 1;
     u.volume = 1;
-    var voices = synth.getVoices();
-    var preferred = null;
-    for (var i = 0; i < voices.length; i++) {
-      if (voices[i].lang === 'hi-IN' || voices[i].lang === 'hi-IN-x-hin-local') { preferred = voices[i]; break; }
-    }
-    if (!preferred) {
-      for (var j = 0; j < voices.length; j++) {
-        if (voices[j].lang.indexOf('hi') === 0) { preferred = voices[j]; break; }
-      }
-    }
-    if (!preferred) {
-      for (var k = 0; k < voices.length; k++) {
-        if (voices[k].lang === 'en-IN') { preferred = voices[k]; break; }
-      }
-    }
-    if (preferred) u.voice = preferred;
+    if (hindiVoice && isHindi) u.voice = hindiVoice;
+    else if (hindiVoice) u.voice = hindiVoice;
     synth.speak(u);
   }
 
@@ -110,9 +125,9 @@
       voiceEnabled = stored === null ? true : stored === '1';
     } catch (e) { voiceEnabled = true; }
     updateVoiceBtn();
-    for (var i = 0; i < JAP.naams.length; i++) preloadAudio(JAP.naams[i].id);
-    if (synth && synth.getVoices().length === 0) {
-      synth.onvoiceschanged = function () {};
+    if (synth) {
+      loadHindiVoice();
+      synth.onvoiceschanged = loadHindiVoice;
     }
   }
   function toggleVoice() {
@@ -154,18 +169,15 @@
       speakCustom(data.customNaam || '');
       return;
     }
-    var rate = speedRate;
-    var cached = naamAudioCache[id];
-    if (cached) {
-      cached.playbackRate = rate;
-      cached.currentTime = 0;
-      cached.play().catch(function () {});
-    } else {
-      var a = new Audio('/assets/audio/' + id + '.mp3');
-      a.playbackRate = rate;
-      a.play().catch(function () {});
-      naamAudioCache[id] = a;
+    if (!audioCtx) initAudio();
+    if (audioCtx && naamAudioBuf[id]) {
+      playAudioBuffer(naamAudioBuf[id]);
+      return;
     }
+    var a = new Audio('/assets/audio/' + id + '.mp3');
+    a.playbackRate = speedRate;
+    a.play().catch(function () {});
+    if (audioCtx && !naamAudioBuf[id]) preloadAudioBuffer(id);
   }
 
   /* ---- Naam lookup ------------------------------------------------------- */
@@ -391,6 +403,7 @@
     try {
       audioCtx = new (global.AudioContext || global.webkitAudioContext)();
       if (audioCtx.state === 'suspended') audioCtx.resume();
+      for (var i = 0; i < JAP.naams.length; i++) preloadAudioBuffer(JAP.naams[i].id);
     } catch (e) { audioCtx = null; }
   }
   function beep() {
