@@ -251,6 +251,7 @@
       if (NJ.feature && NJ.feature.toast) NJ.feature.toast('Text-to-speech not supported on this device.');
       return;
     }
+    if (!hindiVoice) pickHindiVoice();
     global.speechSynthesis.cancel();
     ttsPlaying = true;
     updateTTSBtn();

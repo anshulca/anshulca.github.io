@@ -75,8 +75,11 @@
     if (naamAudioBuf[id] || !audioCtx) return;
     fetch('/assets/audio/' + id + '.mp3')
       .then(function (r) { return r.arrayBuffer(); })
-      .then(function (buf) { return audioCtx.decodeAudioData(buf); })
-      .then(function (decoded) { naamAudioBuf[id] = decoded; })
+      .then(function (buf) {
+        audioCtx.decodeAudioData(buf, function (decoded) {
+          naamAudioBuf[id] = decoded;
+        }, function () {});
+      })
       .catch(function () {});
   }
 
@@ -88,6 +91,26 @@
     src.playbackRate.value = speedRate;
     src.connect(audioCtx.destination);
     src.start(0);
+  }
+
+  function fetchAndPlay(id) {
+    if (!audioCtx) return;
+    fetch('/assets/audio/' + id + '.mp3')
+      .then(function (r) { return r.arrayBuffer(); })
+      .then(function (buf) {
+        return new Promise(function (resolve, reject) {
+          audioCtx.decodeAudioData(buf, resolve, reject);
+        });
+      })
+      .then(function (decoded) {
+        naamAudioBuf[id] = decoded;
+        playAudioBuffer(decoded);
+      })
+      .catch(function () {
+        var a = new Audio('/assets/audio/' + id + '.mp3');
+        a.playbackRate = speedRate;
+        a.play().catch(function () {});
+      });
   }
 
   function speakCustom(text) {
@@ -170,14 +193,18 @@
       return;
     }
     if (!audioCtx) initAudio();
+    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
     if (audioCtx && naamAudioBuf[id]) {
       playAudioBuffer(naamAudioBuf[id]);
+      return;
+    }
+    if (audioCtx) {
+      fetchAndPlay(id);
       return;
     }
     var a = new Audio('/assets/audio/' + id + '.mp3');
     a.playbackRate = speedRate;
     a.play().catch(function () {});
-    if (audioCtx && !naamAudioBuf[id]) preloadAudioBuffer(id);
   }
 
   /* ---- Naam lookup ------------------------------------------------------- */
