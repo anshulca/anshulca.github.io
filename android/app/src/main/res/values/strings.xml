@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Dhun: Naam Jap &amp; Sadhana</string>
+    <string name="title_activity_main">Dhun: Naam Jap &amp; Sadhana</string>
+    <string name="package_name">com.caanshulkarwa.dhun</string>
+    <string name="custom_url_scheme">com.caanshulkarwa.dhun</string>
+</resources>

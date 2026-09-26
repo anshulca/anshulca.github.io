@@ -101,6 +101,7 @@ var SHELL = [
   '/js/stotra-reader.js',
   '/js/tools.js',
   '/js/home.js',
+  '/js/admob.js',
   '/assets/logo.svg',
   '/assets/favicon.svg',
   '/assets/og-image.svg',

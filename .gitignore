@@ -3,3 +3,17 @@ tests/
 
 # Claude Code config
 .claude/
+
+# Node
+node_modules/
+
+# Capacitor build output
+www/
+
+# Android build artifacts (keep source, ignore build output)
+android/.gradle/
+android/app/build/
+android/build/
+android/capacitor-cordova-android-plugins/build/
+*.apk
+*.aab
