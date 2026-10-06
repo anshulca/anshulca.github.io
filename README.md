@@ -1,4 +1,4 @@
-# Naam Jap
+# Naam Jap Developed by CA Anshul Karwa
 
 **Pause. Remember. Repeat.**
 
