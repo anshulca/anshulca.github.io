@@ -51,7 +51,7 @@
         '</div></div>';
       return;
     }
-    doc.title = m.name + ' - Japna: Naam Jap by CA Anshul Karwa - Pause. Remember. Repeat';
+    doc.title = m.name + ' - Japna by CA Anshul Karwa - Pause. Remember. Repeat';
     mount.innerHTML =
       '<div class="card mantra-detail-page">' +
       '<p class="eyebrow" style="text-align:center">' + esc(m.category || 'Mantra') + ' · मंत्र</p>' +

@@ -297,7 +297,7 @@
       var file = new File([blob], 'dhun-badge-' + ms.id + '.png', { type: 'image/png' });
       var shareData = {
         title: ms.label + ' — Japna',
-        text: 'I reached the "' + ms.label + '" milestone on Japna: Naam Jap, Mala & Sadhana! 🙏\n' + ms.desc + '\n\nby CA Anshul Karwa',
+        text: 'I reached the "' + ms.label + '" milestone on Japna by CA Anshul Karwa! 🙏\n' + ms.desc + '\n\nby CA Anshul Karwa',
         files: [file]
       };
       if (navigator.canShare && navigator.canShare(shareData)) {
@@ -337,7 +337,7 @@
   }
 
   function shareText(msg) {
-    var full = msg + ' on Japna: Naam Jap, Mala & Sadhana by CA Anshul Karwa 🙏\n\njap.studyfromnotes.com';
+    var full = msg + ' on Japna by CA Anshul Karwa by CA Anshul Karwa 🙏\n\njap.studyfromnotes.com';
     if (navigator.share) {
       navigator.share({ title: 'Japna — Naam Jap', text: full }).catch(function () {});
     } else {

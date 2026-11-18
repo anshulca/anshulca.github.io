@@ -5,7 +5,7 @@
    ========================================================================= */
 'use strict';
 
-var CACHE = 'naamjap-shell-v25';
+var CACHE = 'naamjap-shell-v26';
 
 var SHELL = [
   '/',

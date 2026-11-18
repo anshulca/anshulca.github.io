@@ -16,10 +16,10 @@
        BRAND
        ------------------------------------------------------------------ */
     brand: {
-      /* Brand name is "Japna" (matching the Android app "Japna: Naam Jap,
-         Mala & Sadhana"); "Naam Jap" is the practice it is named for and
+      /* Brand name is "Japna by CA Anshul Karwa" (owner, 18 Nov 2026,
+         website only); "Naam Jap" is the practice it is named for and
          stays as the wordmark descriptor. */
-      name: 'Japna',
+      name: 'Japna by CA Anshul Karwa',
       shortName: 'Japna',
       devanagari: 'नाम जप',
       byline: 'Naam Jap',
