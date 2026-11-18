@@ -68,7 +68,8 @@
         { label: 'Sadhana', url: '/sadhana/', devanagari: 'साधना' },
         { label: 'Mantra', url: '/mantra/', devanagari: 'मंत्र' },
         { label: 'Stotra', url: '/stotra/', devanagari: 'स्तोत्र' },
-        { label: 'Journey', url: '/journey/' }
+        { label: 'Journey', url: '/journey/' },
+        { label: 'Astro', url: '/astro/', devanagari: 'ज्योतिष' }
       ],
       cta: { label: 'Begin Jap', url: '/jap/' },
 
