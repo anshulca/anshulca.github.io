@@ -16,13 +16,14 @@
        BRAND
        ------------------------------------------------------------------ */
     brand: {
-      /* Brand name is "Japna by CA Anshul Karwa" (owner, 18 Nov 2026,
-         website only); "Naam Jap" is the practice it is named for and
-         stays as the wordmark descriptor. */
-      name: 'Japna by CA Anshul Karwa',
+      /* Header wordmark (owner, 19 Nov 2026): name "Japna", byline
+         "by Anshul Karwa" — no "Naam Jap", no "CA" in the header.
+         The full site name "Japna by CA Anshul Karwa" stays in the
+         title / manifest / JSON-LD. */
+      name: 'Japna',
       shortName: 'Japna',
       devanagari: 'नाम जप',
-      byline: 'Naam Jap',
+      byline: 'by Anshul Karwa',
       creator: {
         name: 'CA Anshul Karwa',
         url: 'https://www.linkedin.com/in/anshulkarwa/'
