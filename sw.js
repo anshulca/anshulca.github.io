@@ -5,7 +5,7 @@
    ========================================================================= */
 'use strict';
 
-var CACHE = 'naamjap-shell-v27';
+var CACHE = 'naamjap-shell-v28';
 
 var SHELL = [
   '/',
@@ -59,6 +59,7 @@ var SHELL = [
   '/stotra/ganesh-aarti/',
   '/tools/',
   '/about/',
+  '/astro/',
   '/platform/',
   '/privacy/',
   '/terms/',

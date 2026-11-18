@@ -75,6 +75,7 @@
       // Full menu (mobile drawer + footer secondary)
       secondary: [
         { label: 'Tools', url: '/tools/' },
+        { label: 'Astro', url: '/astro/' },
         { label: 'About Me', url: '/about/' },
         { label: 'About the Platform', url: '/platform/' }
       ],
@@ -102,7 +103,8 @@
             { label: 'Sadhana', url: '/sadhana/' },
             { label: 'Mantra', url: '/mantra/' },
             { label: 'Stotra', url: '/stotra/' },
-            { label: 'Journey', url: '/journey/' }
+            { label: 'Journey', url: '/journey/' },
+            { label: 'Astro', url: '/astro/' }
           ]
         },
         {
