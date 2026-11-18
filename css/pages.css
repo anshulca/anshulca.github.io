@@ -4,6 +4,12 @@
 
 /* ---- HOME · Hero ------------------------------------------------------------ */
 .hero { position: relative; padding-block: clamp(0.75rem, 2vw, 1.25rem) var(--space-4); overflow: hidden; }
+/* The hero used to leave ~250px of dead space before the next section:
+   the section gap plus the next section's own top padding stacked. */
+.site-main > .hero + section { margin-top: var(--space-7); }
+.site-main > .hero + section.gutter-y { padding-block-start: 0; }
+/* Anchor targets sit clear of the sticky header. */
+.tool-panel, .jap-stage { scroll-margin-top: calc(var(--header-h) + var(--space-3)); }
 .hero__inner { display: grid; gap: var(--space-5); align-items: center; }
 .hero .eyebrow { margin-bottom: var(--space-2); display: flex; align-items: center; gap: var(--space-2); }
 .hero h1 { max-width: 15ch; margin-top: var(--space-1); }
@@ -11,14 +17,13 @@
 .hero__cta { margin-top: var(--space-4); }
 .hero__mala { justify-self: center; }
 
-/* ---- HOME · Play Store coming-soon badge -------------------------------------- */
-.play-coming { display: flex; align-items: center; gap: var(--space-3); margin-top: var(--space-4); flex-wrap: wrap; }
+/* ---- HOME · Play Store badge -------------------------------------------------- */
+.play-coming { display: inline-flex; align-items: center; gap: var(--space-3); margin-top: var(--space-4); flex-wrap: wrap; text-decoration: none; color: inherit; }
 .play-coming__badge { display: inline-flex; align-items: center; gap: 12px; background: #000; color: #fff; border-radius: 12px; padding: 8px 18px 8px 14px; line-height: 1.1; }
 .play-coming__icon { width: 30px; height: 30px; flex: none; }
 .play-coming__text { display: flex; flex-direction: column; }
 .play-coming__text small { font-size: 11px; letter-spacing: 0.08em; opacity: 0.85; }
 .play-coming__text strong { font-size: 22px; font-weight: 600; letter-spacing: 0.01em; }
-.play-coming__note { font-size: var(--text-sm); color: var(--ink-muted); font-weight: 600; letter-spacing: 0.02em; }
 
 /* Aura behind mala - subtle radial glow, discovered not forced */
 .hero__aura { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(42% 46% at 74% 40%, var(--accent-glow), transparent 70%); }

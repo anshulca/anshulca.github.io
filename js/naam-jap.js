@@ -331,6 +331,22 @@
 
   /* ---- Naam selection ------------------------------------------------------ */
   function selectNaam(id) {
+    if (id === data.naamId) return;
+    if (data.session.inMala > 0) {
+      /* Changing the naam mid-mala used to silently carry the count over.
+         Confirm first: switching starts a fresh mala from 0. */
+      F.confirm({
+        title: 'Start a fresh mala with this naam?',
+        message: 'You are ' + data.session.inMala + ' / 108 into this mala. Changing the naam starts a fresh mala from 0.',
+        confirmText: 'Start fresh mala', cancelText: 'Keep current naam',
+        onConfirm: function () { data.session.inMala = 0; switchNaam(id); },
+        onCancel: function () { updateChips(); }
+      });
+      return;
+    }
+    switchNaam(id);
+  }
+  function switchNaam(id) {
     data.naamId = id;
     if (id !== 'custom') { data.customNaam = ''; }
     persistMerge();
@@ -363,13 +379,6 @@
     if (data.today.key !== tk) { data.today.key = tk; data.today.jap = 0; data.today.malas = 0; }
     persistMerge();
   }
-  function addToday(jap, malas) {
-    var tk = NJ.store.todayKey();
-    if (data.today.key !== tk) { data.today.key = tk; data.today.jap = 0; data.today.malas = 0; }
-    data.today.jap += jap;
-    data.today.malas += malas;
-  }
-
   /* ---- Counting ------------------------------------------------------------- */
   function countOne() {
     initAudio();
@@ -377,8 +386,10 @@
     if (data.session.inMala >= MALA) rollover();
     data.session.inMala++;
     data.session.sessionJap++;
-    data.stats.totalJap++;
-    addToday(1, 0);
+    /* One shared total: addJap updates the lifetime total and today's
+       count in storage; sync the in-memory copy before persisting. */
+    var nd = NJ.store.addJap(1, 0);
+    data.stats = nd.stats; data.today = nd.today;
     persist();
     updateBeads();
     render();
@@ -395,8 +406,8 @@
 
   function completeMala() {
     data.session.completed++;
-    data.stats.malas++;
-    addToday(0, 1);
+    var nd = NJ.store.addJap(0, 1);
+    data.stats = nd.stats; data.today = nd.today;
     persist();
     alertComplete();
     completedAtMala = data.session.mala;

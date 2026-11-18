@@ -16,10 +16,13 @@
        BRAND
        ------------------------------------------------------------------ */
     brand: {
-      name: 'Naam Jap',
-      shortName: 'NaamJap',
+      /* Brand name is "Japna" (matching the Android app "Japna: Naam Jap,
+         Mala & Sadhana"); "Naam Jap" is the practice it is named for and
+         stays as the wordmark descriptor. */
+      name: 'Japna',
+      shortName: 'Japna',
       devanagari: 'नाम जप',
-      byline: 'by CA Anshul Karwa',
+      byline: 'Naam Jap',
       creator: {
         name: 'CA Anshul Karwa',
         url: 'https://www.linkedin.com/in/anshulkarwa/'
@@ -30,7 +33,7 @@
       // Visual logo mark (inline SVG, mala-bead inspired). Swap via assets/logo.svg when a real logo is ready.
       logo: {
         src: '/assets/logo.svg',
-        alt: 'Naam Jap - a circle of mala beads'
+        alt: 'Japna - a circle of mala beads'
       },
       favicon: '/assets/favicon.svg',
       // Canonical base URL - update once a real domain is chosen (used for SEO + sitemap).
@@ -88,7 +91,7 @@
       note:
         'A small digital space to pause, remember and return - a private companion for daily jap and sadhana.',
       blurb:
-        'Naam Jap keeps your practice close, calm and yours. Your data stays on your device, private by design.',
+        'Japna keeps your practice close, calm and yours. Your data stays on your device, private by design.',
       cols: [
         {
           heading: 'Practice',
@@ -104,11 +107,11 @@
         {
           heading: 'Tools',
           links: [
-            { label: 'Mala Calculator', url: '/tools/' },
-            { label: 'Jap Goal Calculator', url: '/tools/' },
-            { label: '1 Lakh Challenge', url: '/tools/' },
-            { label: '108 Calculator', url: '/tools/' },
-            { label: 'Jap Timer', url: '/tools/' }
+            { label: 'Mala Calculator', url: '/tools/#tool-mala' },
+            { label: 'Jap Goal Calculator', url: '/tools/#tool-goal' },
+            { label: '1 Lakh Challenge', url: '/tools/#tool-lakh' },
+            { label: '108 Calculator', url: '/tools/#tool-108' },
+            { label: 'Jap Timer', url: '/tools/#tool-timer' }
           ]
         },
         {
@@ -122,7 +125,7 @@
           ]
         }
       ],
-      copyright: '© 2026 Naam Jap · Made with care, in silence by %CREATOR%'
+      copyright: '© 2026 Japna · Made with care, in silence by %CREATOR%'
     },
 /* ------------------------------------------------------------------
        SOCIAL / CONTACT  (configure when you have links)
@@ -236,7 +239,7 @@
       ],
       custom: {
         label: 'Custom Naam',
-        placeholder: 'e.g. Shamb Sadashiv',
+        placeholder: 'e.g. Shambhu Sadashiv',
         hint: 'Enter any naam - it becomes the active naam for this counter.'
       }
     },
@@ -422,6 +425,46 @@
         transliteration: 'Om Śāntiḥ Śāntiḥ Śāntiḥ',
         meaning: 'Om, peace, peace, peace - three-fold peace to calm the disturbances of body, mind and spirit; the outer world, the inner world, and the divine.',
         note: 'The universal closing of Vedic prayers and Upanishadic teachings. Three repetitions address the three sources of suffering.'
+      },
+      {
+        id: 'rudra', name: 'Om Rudraya Namah', dev: 'ॐ रुद्राय नमः', japId: 'custom',
+        category: 'Shiv',
+        text: 'ॐ रुद्राय नमः',
+        transliteration: 'Om Rudrāya Namaḥ',
+        meaning: 'Salutations to Rudra - the fierce, protecting form of Shiva who removes fear and negativity.',
+        note: 'Say it slowly on waking, one hand on the chest and one on the stomach, before checking the phone or asking for anything.'
+      },
+      {
+        id: 'kaal-bhairav', name: 'Om Kaal Bhairavaya Namah', dev: 'ॐ कालभैरवाय नमः', japId: 'custom',
+        category: 'Shiv',
+        text: 'ॐ कालभैरवाय नमः',
+        transliteration: 'Om Kāla Bhairavāya Namaḥ',
+        meaning: 'Salutations to Kaal Bhairav - the guardian of time, who protects the day from unseen trouble.',
+        note: 'Say it slowly on waking, one hand on the chest and one on the stomach, before checking the phone or asking for anything.'
+      },
+      {
+        id: 'tryambakeshwar', name: 'Om Tryambakeshwaraya Namah', dev: 'ॐ त्र्यम्बकेश्वराय नमः', japId: 'custom',
+        category: 'Shiv',
+        text: 'ॐ त्र्यम्बकेश्वराय नमः',
+        transliteration: 'Om Tryambakeśvarāya Namaḥ',
+        meaning: 'Salutations to Tryambakeshwar - the three-eyed Lord of Trimbak, who watches over health and the home.',
+        note: 'Say it slowly on waking, one hand on the chest and one on the stomach, before checking the phone or asking for anything.'
+      },
+      {
+        id: 'gopala', name: 'Om Gopalaaya Uttardhvajaaya Namah', dev: 'ॐ गोपालाय उत्तरध्वजाय नमः', japId: 'custom',
+        category: 'Krishna',
+        text: 'ॐ गोपालाय उत्तरध्वजाय नमः',
+        transliteration: 'Om Gopālāya Uttardhvajāya Namaḥ',
+        meaning: 'Salutations to Gopala, the exalted-bannered one - the Moon-sign mantra for Taurus, for steady, protected growth.',
+        note: 'Chant 108 times every morning. A nama mantra - a salutation by name - it needs no initiation.'
+      },
+      {
+        id: 'panchamukhi-hanuman', name: 'Panchamukhi Hanuman', dev: 'ॐ दक्षिणमुखाय पञ्चमुख हनुमते करालवदनाय नारसिंहाय ॐ ह्रां ह्रीं ह्रूं ह्रैं ह्रौं ह्रः सकल भूत प्रेत दमनाय स्वाहा', japId: 'custom',
+        category: 'Hanuman',
+        text: 'ॐ दक्षिणमुखाय पञ्चमुख हनुमते करालवदनाय नारसिंहाय ॐ ह्रां ह्रीं ह्रूं ह्रैं ह्रौं ह्रः सकल भूत प्रेत दमनाय स्वाहा',
+        transliteration: 'Om Dakṣiṇamukhāya Pañcamukha Hanumate Karālavadanāya Nārasiṁhāya Om Hrāṁ Hrīṁ Hrūṁ Hraiṁ Hrauṁ Hraḥ Sakala Bhūta Preta Damanāya Svāhā',
+        meaning: 'Salutations to the five-faced Hanuman - the mantra of protection against negative forces, black magic, fear and the evil eye.',
+        note: 'Chant 11 or 108 times on Tuesdays and Saturdays. From the Panchamukha Hanuman Kavacham.'
       }
     ],
 
@@ -430,7 +473,7 @@
        ------------------------------------------------------------------ */
     sadhana: {
       targets: {
-        jap: { label: 'Jap', max: 5000, step: 108, unit: 'naam' },
+        jap: { label: 'Jap', max: 5000, step: 108, unit: 'jap' },
         malas: { label: 'Malas of 108', max: 50, step: 1, unit: 'mala' },
         naam: { label: 'Naam lekhan', max: 500, step: 108, unit: 'naam written' }
       },

@@ -143,9 +143,12 @@
     if (cj.paused) { F.toast('Press Resume to continue.'); return; }
     var t = target();
     cj.count++;
-    cj.total = (cj.total || 0) + 1;
     persist();
-    NJ.store.addToday(1, 0);
+    /* One shared total: the tap counts into the shared lifetime total
+       (addJap), not a separate custom total. Re-sync afterwards so a
+       later whole-object persist does not clobber the shared total. */
+    var nd = NJ.store.addJap(1, 0);
+    data = nd; cj = nd.modules.custom;
     render();
     F.bump(el.count);
     haptic(10);

@@ -135,7 +135,7 @@
 
   function tapJap() {
     japCount++;
-    NJ.store.addToday(1, 0);
+    NJ.store.addJap(1, 0);
     renderJapCount();
     haptic(10);
     speakNaam();

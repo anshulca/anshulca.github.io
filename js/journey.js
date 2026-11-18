@@ -33,7 +33,7 @@
   function renderHeatmapYear() {
     if (!el.heatmapYear) return;
     var hist = F.history();
-    var days = F.lastNDays(365);
+    var days = F.lastNDays(365).filter(function (k) { return k <= NJ.store.todayKey(); });
     var active = 0, maxs = 0;
 
     for (var i = 0; i < days.length; i++) {
@@ -102,7 +102,9 @@
       '<span>More</span></div>';
 
     if (el.heatmapMeta) el.heatmapMeta.innerHTML =
-      '<span>' + F.humanDate(days[0]) + ' → ' + F.humanDate(days[days.length - 1]) + '</span>' +
+      /* Year-inclusive dates: without the year, a range that crosses into
+         a new year reads backwards ("Wed, Nov 19 → Wed, Nov 18"). */
+      '<span>' + F.humanDateLong(days[0]) + ' → ' + F.humanDateLong(days[days.length - 1]) + '</span>' +
       '<span>' + active + ' active day' + (active === 1 ? '' : 's') + ' of 365</span>';
   }
 
@@ -154,7 +156,7 @@
             '<button class="milestone__act" data-act="download" title="Download badge" aria-label="Download badge">⬇</button>' +
             '<button class="milestone__act" data-act="share" title="Share badge" aria-label="Share badge">↗</button>' +
             '</span>'
-          : '<span class="milestone__state">Next at ' + fmt(m.at) + '</span>') +
+          : '<span class="milestone__state">' + esc(m.next || ('Next at ' + fmt(m.at))) + '</span>') +
         '</div>';
     }).join('');
 
@@ -232,7 +234,7 @@
 
     ctx.fillStyle = '#31405f';
     ctx.font = 'bold 28px Georgia, serif';
-    ctx.fillText('Dhun', 400, 640);
+    ctx.fillText('Japna', 400, 640);
 
     ctx.fillStyle = '#888';
     ctx.font = '16px Inter, sans-serif';
@@ -294,8 +296,8 @@
       if (!blob) { F.toast('Could not generate badge'); return; }
       var file = new File([blob], 'dhun-badge-' + ms.id + '.png', { type: 'image/png' });
       var shareData = {
-        title: ms.label + ' — Dhun',
-        text: 'I reached the "' + ms.label + '" milestone on Dhun: Naam Jap Mala & Sadhana! 🙏\n' + ms.desc + '\n\nby CA Anshul Karwa',
+        title: ms.label + ' — Japna',
+        text: 'I reached the "' + ms.label + '" milestone on Japna: Naam Jap, Mala & Sadhana! 🙏\n' + ms.desc + '\n\nby CA Anshul Karwa',
         files: [file]
       };
       if (navigator.canShare && navigator.canShare(shareData)) {
@@ -335,9 +337,9 @@
   }
 
   function shareText(msg) {
-    var full = msg + ' on Dhun: Naam Jap Mala & Sadhana by CA Anshul Karwa 🙏\n\njap.studyfromnotes.com';
+    var full = msg + ' on Japna: Naam Jap, Mala & Sadhana by CA Anshul Karwa 🙏\n\njap.studyfromnotes.com';
     if (navigator.share) {
-      navigator.share({ title: 'Dhun — Naam Jap', text: full }).catch(function () {});
+      navigator.share({ title: 'Japna — Naam Jap', text: full }).catch(function () {});
     } else {
       try {
         navigator.clipboard.writeText(full);

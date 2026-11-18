@@ -14,7 +14,7 @@
   color: var(--ink-faint);
 }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--header-h) + var(--space-3)); }
 
 body {
   font-family: var(--font-body);

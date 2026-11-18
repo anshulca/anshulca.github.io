@@ -245,9 +245,11 @@
     if (completed) return;
     if (m.ses.in >= MALA) return;
     m.ses.in++;
-    m.stat.total++;
     persist();
-    NJ.store.addToday(1, 0);
+    /* One shared total: addJap updates the lifetime total and today's
+       count in storage; re-sync the in-memory refs afterwards. */
+    var nd = NJ.store.addJap(1, 0);
+    data = nd; m = nd.modules.mala;
     render();
     bumpCount();
     haptic(10);
@@ -256,9 +258,10 @@
   }
 
   function completeMala() {
-    m.ses.malas++; m.stat.malas++;
+    m.ses.malas++;
     persist();
-    NJ.store.addToday(0, 1);
+    var nd = NJ.store.addJap(0, 1);
+    data = nd; m = nd.modules.mala;
     haptic([100, 50, 100, 50, 200]);
     F.sound('complete');
     completed = true;
@@ -321,6 +324,12 @@
     });
   }
 
+  function switchNaam(id) {
+    m.naamId = id; if (id !== 'custom') m.cust = '';
+    persist(); render();
+    if (id === 'custom' && !m.cust) setTimeout(function () { el.customInput.focus(); }, 40);
+  }
+
   /* ---- Init ---------------------------------------------------------------- */
   function init() {
     var d = NJ.store.load(); m = d.modules.mala; data = d;
@@ -328,13 +337,24 @@
     buildMala(); wire();
     loadVoice(); loadSpeed(); loadHaptic();
 
-    F.naamPicker(el.naams, {
+    var picker = F.naamPicker(el.naams, {
       naams: F.naams(), selected: m.naamId, includeCustom: true,
       customWrap: el.custom, customLabel: 'Custom Naam',
       onSelect: function (id) {
-        m.naamId = id; if (id !== 'custom') m.cust = '';
-        persist(); render();
-        if (id === 'custom' && !m.cust) setTimeout(function () { el.customInput.focus(); }, 40);
+        if (id === m.naamId) return;
+        if (m.ses.in > 0) {
+          /* Changing the naam mid-mala used to silently carry the count
+             over. Confirm first: switching starts a fresh mala from 0. */
+          F.confirm({
+            title: 'Start a fresh mala with this naam?',
+            message: 'You are ' + m.ses.in + ' / 108 into this mala. Changing the naam starts a fresh mala from 0.',
+            confirmText: 'Start fresh mala', cancelText: 'Keep current naam',
+            onConfirm: function () { m.ses.in = 0; switchNaam(id); },
+            onCancel: function () { picker.set(m.naamId); }
+          });
+          return;
+        }
+        switchNaam(id);
       }
     });
     render();

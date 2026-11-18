@@ -6,10 +6,10 @@
 
 /* ---- Naam selector (chips, horizontally scrollable on mobile) ------------ */
 .naam-select {
-  display: flex; gap: var(--space-2); overflow-x: auto; padding-bottom: var(--space-2);
-  scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  /* Wrapping grid, not a hidden horizontal scroll: all nine naam pills
+     are visible at once, with no scroll hint needed. */
+  display: flex; flex-wrap: wrap; gap: var(--space-2); padding-bottom: var(--space-2);
 }
-.naam-select::-webkit-scrollbar { display: none; }
 .naam-select .chip { flex: none; }
 .chip.is-selected { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
 .chip.is-selected .dev-caret { color: var(--on-accent); }

@@ -25,8 +25,10 @@
   <link rel="stylesheet" href="/css/layout.css">
   <link rel="stylesheet" href="/css/components.css">
   <link rel="stylesheet" href="/css/pages.css">
+  <link rel="stylesheet" href="/css/mantra.css">
+  <link rel="stylesheet" href="/css/stotra.css">
   <script type="application/ld+json">
-  [{"@context":"https://schema.org","@type":"WebSite","name":"Naam Jap","alternateName":"Naam Jap by CA Anshul Karwa","url":"https://jap.studyfromnotes.com/","description":"A calm, private digital companion for Naam Jap, Naam Lekhan, mantra jap and daily sadhana.","inLanguage":["en","hi"],"publisher":{"@type":"Person","name":"CA Anshul Karwa","url":"https://jap.studyfromnotes.com/about/"}},{"@context":"https://schema.org","@type":"WebApplication","name":"Naam Jap","url":"https://jap.studyfromnotes.com/","applicationCategory":"LifestyleApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"author":{"@type":"Person","name":"CA Anshul Karwa"},"description":"Digital mala, jap counter, naam lekhan, chalisa and stotra library for daily Hindu devotional practice.","inLanguage":["en","hi"]}]
+  [{"@context":"https://schema.org","@type":"WebSite","name":"Japna","alternateName":"Naam Jap by CA Anshul Karwa","url":"https://jap.studyfromnotes.com/","description":"A calm, private digital companion for Naam Jap, Naam Lekhan, mantra jap and daily sadhana.","inLanguage":["en","hi"],"publisher":{"@type":"Person","name":"CA Anshul Karwa","url":"https://jap.studyfromnotes.com/about/"}},{"@context":"https://schema.org","@type":"WebApplication","name":"Japna","url":"https://jap.studyfromnotes.com/","applicationCategory":"LifestyleApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"author":{"@type":"Person","name":"CA Anshul Karwa"},"description":"Digital mala, jap counter, naam lekhan, chalisa and stotra library for daily Hindu devotional practice.","inLanguage":["en","hi"]}]
   </script>
 </head>
 <body>
@@ -43,16 +45,15 @@
           <h1 id="hero-title">Pause.<br>Remember.<br>Repeat.</h1>
           <p class="lead">A quiet place to turn towards the Name - to do jap, write the naam, keep a daily sadhana and return, day after day.</p>
           <div class="hero__cta btn-group">
-            <a class="btn btn--primary btn--lg" href="/jap/">Begin Naam Jap</a>
+            <a class="btn btn--primary btn--lg" href="/jap/naam-jap/">Begin Naam Jap</a>
             <a class="btn btn--ghost btn--lg" href="/lekh/">Begin Naam Lekhan</a>
           </div>
-          <div class="play-coming" aria-label="Launching on Google Play this Diwali 2026">
+          <a class="play-coming" href="https://play.google.com/store/apps/details?id=com.dhun.jap" target="_blank" rel="noopener" aria-label="Get Japna on Google Play">
             <span class="play-coming__badge" aria-hidden="true">
               <svg class="play-coming__icon" viewBox="0 0 24 24" focusable="false"><path fill="#00D2FF" d="M3.6 2.3 13.5 12l-9.9 9.7z"/><path fill="#00F076" d="M3.6 2.3 17.5 9.5 13.5 12z"/><path fill="#FFE000" d="M17.5 9.5 20.4 12l-2.9 2.5-4-2.5z"/><path fill="#FF3A44" d="M3.6 21.7l13.9-7.2-4-2.5z"/></svg>
-              <span class="play-coming__text"><small>LAUNCHING ON</small><strong>Google Play</strong></span>
+              <span class="play-coming__text"><small>GET IT ON</small><strong>Google Play</strong></span>
             </span>
-            <span class="play-coming__note">Diwali 2026</span>
-          </div>
+          </a>
         </div>
         <div class="hero__mala" data-reveal>
           <div class="mala" role="img" aria-label="A digital mala - a circle of beads for counting jap">
@@ -86,8 +87,8 @@
         <a class="today__row card card--link" href="/sadhana/" id="today-card">
           <span class="today__day" aria-hidden="true">॥</span>
           <span class="today__mid">
-            <strong>Your practice begins here</strong>
-            <span>Daily sadhana, sankalp and streak - live from your practice.</span>
+            <strong>A moment for today</strong>
+            <span>0 jap · 0 malas · 0 written</span>
           </span>
           <span class="pill pill--good">See sadhana</span>
         </a>
@@ -134,13 +135,7 @@
         </div>
         <a class="muted" href="/mantra/" style="font-size:var(--text-sm)">Browse mantras →</a>
       </div>
-      <div class="card card--tint" style="text-align:center;padding:var(--space-8) var(--space-6)">
-        <p class="mantra-tease dev" aria-hidden="true">ॐ श्री रामाय नमः</p>
-        <p class="muted" style="margin-top:var(--space-3);font-size:var(--text-sm)">Mantras across Ram, Radha, Krishna, Shiv, Hanuman, Ganesh, Durga, Lakshmi, Saraswati and more - with Devanagari text, transliteration and meaning.</p>
-        <div class="btn-group" style="justify-content:center;margin-top:var(--space-5)">
-          <a class="btn btn--soft" href="/mantra/">Open the mantra library</a>
-        </div>
-      </div>
+      <div class="mantra-grid" id="home-mantra-grid"></div>
     </section>
 
     <!-- Why 108 -->
@@ -185,13 +180,8 @@
         </div>
         <a class="muted" href="/stotra/" style="font-size:var(--text-sm)">Browse all →</a>
       </div>
-      <div class="card card--tint" style="text-align:center;padding:var(--space-8) var(--space-6)">
-        <p class="mantra-tease dev" aria-hidden="true">हनुमान चालीसा · शिव ताण्डव · दुर्गा चालीसा</p>
-        <p class="muted" style="margin-top:var(--space-3);font-size:var(--text-sm)">30+ sacred texts across 13 deities - Chalisa, Stotra and Stuti in Devanagari with English transliteration. Read, recite and track your progress.</p>
-        <div class="btn-group" style="justify-content:center;margin-top:var(--space-5)">
-          <a class="btn btn--soft" href="/stotra/">Open the library</a>
-        </div>
-      </div>
+      <p class="muted" style="margin-top:var(--space-3);font-size:var(--text-sm)">33 sacred texts across 13 deities - Chalisa, Stotra and Stuti in Devanagari with English transliteration. Read, recite and track your progress.</p>
+      <div class="stotra-grid" id="home-stotra-grid" style="margin-top:var(--space-6)"></div>
     </section>
 
 
@@ -223,6 +213,7 @@
   <script src="/js/store.js"></script>
   <script src="/js/db.js"></script>
   <script src="/js/shared.js"></script>
+  <script src="/js/stotra-data.js"></script>
   <script src="/js/core.js"></script>
   <script src="/js/home.js"></script>
   <script src="/js/admob.js"></script>

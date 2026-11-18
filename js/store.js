@@ -29,7 +29,7 @@
 
   function defaults() {
     return {
-      v: 2,
+      v: 3,
       naamId: 'ram',             // counter selected naam id, or 'custom'
       customNaam: '',
       session: {                 // counter current-session state
@@ -47,7 +47,7 @@
         lekhan: { page: 1, naamId: 'ram', custom: '', pageSize: 108, written: 0, strokes: [] },
         custLekhan: { page: 1, naam: '', naamId: 'custom', naamDev: '', pageSize: 108, written: 0 },
         sadhana: { target: { jap: 108, malas: 1, naam: 0 }, sankalp: '', manual: {} },
-        lakh: { count: 0, target: 100000, started: '' },
+        lakh: { count: 0, base: 0, target: 100000, started: '' },
         challenges: [],
         notebook: []
       }
@@ -115,6 +115,27 @@
         base.prefs.sound = stored.prefs.sound !== false;
       }
       mergeModules(base, stored.modules);
+
+      /* One-time migration (v2 -> v3): fold the old per-tool lifetime
+         counts into the single shared total in stats. Never reset or
+         lose a user's counts - the fold is additive, and the old
+         per-tool counters are zeroed so they are never counted twice. */
+      if (!stored.v || stored.v < 3) {
+        var foldedJap = 0, foldedMalas = 0;
+        if (base.modules.mala && base.modules.mala.stat) {
+          foldedJap += base.modules.mala.stat.total || 0;
+          foldedMalas += base.modules.mala.stat.malas || 0;
+        }
+        if (base.modules.custom) foldedJap += base.modules.custom.total || 0;
+        if (base.modules.lakh) foldedJap += base.modules.lakh.count || 0;
+        if (foldedJap || foldedMalas) {
+          base.stats.totalJap = (base.stats.totalJap || 0) + foldedJap;
+          base.stats.malas = (base.stats.malas || 0) + foldedMalas;
+          if (base.modules.mala && base.modules.mala.stat) { base.modules.mala.stat.total = 0; base.modules.mala.stat.malas = 0; }
+          if (base.modules.custom) base.modules.custom.total = 0;
+          if (base.modules.lakh) { base.modules.lakh.count = 0; base.modules.lakh.base = 0; }
+        }
+      }
     }
     // roll today's counters if the day changed - the old day is archived
     var tk = todayKey();
@@ -146,7 +167,7 @@
 
   function save(data) {
     var out = defaults();
-    out.v = 2;
+    out.v = 3;
     out.naamId = data.naamId; out.customNaam = data.customNaam || '';
     out.session = data.session; out.stats = data.stats; out.today = data.today;
     out.history = data.history || {};
@@ -181,6 +202,25 @@
     return data.today;
   }
 
+  /* Single entry point for counting jap. Every counter (counter, mala,
+     custom, timer, 1 Lakh Challenge) goes through here so the lifetime
+     total and today's count stay in sync. Supports negative deltas for
+     undo; totals never go below zero. Returns the fresh stored data. */
+  function addJap(jap, malas) {
+    var data = load();
+    if (jap) {
+      data.stats.totalJap = Math.max(0, (data.stats.totalJap || 0) + jap);
+      data.today.jap = Math.max(0, (data.today.jap || 0) + jap);
+    }
+    if (malas) {
+      data.stats.malas = Math.max(0, (data.stats.malas || 0) + malas);
+      data.today.malas = Math.max(0, (data.today.malas || 0) + malas);
+    }
+    archiveDay(data, data.today.key, data.today);
+    save(data);
+    return data;
+  }
+
   function getToday() {
     var data = load();
     if (data.today.key !== todayKey()) return { key: todayKey(), jap: 0, malas: 0, naam: 0 };
@@ -207,6 +247,7 @@
     clear: clear,
     todayKey: todayKey,
     addToday: addToday,
+    addJap: addJap,
     getToday: getToday,
     history: history,
     archiveDay: archiveDay,

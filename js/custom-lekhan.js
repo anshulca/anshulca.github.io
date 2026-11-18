@@ -33,7 +33,7 @@
     { id: 'ram', english: 'Ram', dev: 'राम' },
     { id: 'radha', english: 'Radha', dev: 'राधा' },
     { id: 'shree-ram', english: 'Shree Ram', dev: 'श्री राम' },
-    { id: 'shamb-sadashiv', english: 'Shamb Sadashiv', dev: 'शम्भ सदाशिव' },
+    { id: 'shamb-sadashiv', english: 'Shambhu Sadashiv', dev: 'शम्भू सदाशिव' },
     { id: 'om-namah-shivay', english: 'Om Namah Shivay', dev: 'ॐ नमः शिवाय' },
     { id: 'krishna', english: 'Krishna', dev: 'कृष्ण' }
   ];

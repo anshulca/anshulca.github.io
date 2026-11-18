@@ -113,7 +113,13 @@
     var valEl = key === 'jap' ? el.japVal : key === 'malas' ? el.malasVal : el.naamVal;
     var barEl = key === 'jap' ? el.barJap : key === 'malas' ? el.barMalas : el.barNaam;
     if (valEl) {
-      valEl.innerHTML = (v > 0 ? fmt(v) : '<span class="target-zero">not set</span>') + ' <small>' + label + (v > 0 ? ' · ' + fmt(got) + ' ' + unit + ' today' : '') + '</small>';
+      /* A zero target reads as a plain sentence, not a bare "not set"
+         floating before the label ("not set Naam lekhan"). */
+      if (v > 0) {
+        valEl.innerHTML = fmt(v) + ' <small>' + label + ' · ' + fmt(got) + ' ' + unit + ' today</small>';
+      } else {
+        valEl.innerHTML = '<span class="target-zero">' + label + ' target not set</span>';
+      }
     }
     if (barEl) {
       var ratio = v > 0 ? Math.min(1, got / v) : 0;

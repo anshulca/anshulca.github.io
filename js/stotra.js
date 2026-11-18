@@ -158,7 +158,7 @@
       return (activeDeity === 'all' || s.deity === activeDeity) && matchesSearch(s, searchQuery);
     });
     if (!list.length) {
-      el.grid.innerHTML = '<p class="muted" style="text-align:center;padding:var(--space-7)">No stotras found.</p>';
+      el.grid.innerHTML = '<p class="muted" style="text-align:center;padding:var(--space-7)">No texts match that search.</p>';
       return;
     }
 

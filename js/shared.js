@@ -80,7 +80,7 @@
       { id: 'ram', english: 'Ram', dev: 'राम' },
       { id: 'radha', english: 'Radha', dev: 'राधा' },
       { id: 'shree-ram', english: 'Shree Ram', dev: 'श्री राम' },
-      { id: 'shamb-sadashiv', english: 'Shamb Sadashiv', dev: 'शम्भ सदाशिव' },
+      { id: 'shamb-sadashiv', english: 'Shambhu Sadashiv', dev: 'शम्भू सदाशिव' },
       { id: 'om-namah-shivay', english: 'Om Namah Shivay', dev: 'ॐ नमः शिवाय' },
       { id: 'krishna', english: 'Krishna', dev: 'कृष्ण' }
     ];
@@ -251,6 +251,12 @@
     try { return F.parseKey(key).toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' }); }
     catch (e) { return key; }
   };
+  /* Year-inclusive form, for ranges that cross a year boundary - without
+     the year, "Wed, Nov 19 -> Wed, Nov 18" reads backwards. */
+  F.humanDateLong = function (key) {
+    try { return F.parseKey(key).toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }); }
+    catch (e) { return key; }
+  };
   F.lastNDays = function (n) {
     var out = [], tk = NJ.store.todayKey();
     for (var i = n - 1; i >= 0; i--) out.push(F.addDaysKey(tk, -i));
@@ -259,11 +265,14 @@
 
   /* ---- Totals (aggregated across all modules) ------------------------------- */
   // Returns lifetime numbers: { jap, malas, naam, pages, sessions }
+  // jap and malas come from the single shared lifetime total in stats.
+  // The old per-tool counters were folded into it by the store's v2 -> v3
+  // migration, so they are never summed here (that would double-count).
   F.totals = function () {
     var d = NJ.store.load();
     var m = d.modules;
-    var jap = (d.stats.totalJap || 0) + (m.mala.stat.total || 0) + (m.custom.total || 0);
-    var malas = (d.stats.malas || 0) + (m.mala.stat.malas || 0);
+    var jap = d.stats.totalJap || 0;
+    var malas = d.stats.malas || 0;
     var pages = 0, naam = m.lekhan.written || 0;
     var idx = F.nb.idx();
     for (var i = 0; i < idx.length; i++) {
@@ -339,7 +348,15 @@
     var vals = { jap: t.jap, mala: t.malas, page: t.pages, streak: s.best };
     return conf.map(function (ml) {
       var value = vals[ml.kind] !== undefined ? vals[ml.kind] : 0;
-      return { id: ml.id, label: ml.label, dev: ml.dev, desc: ml.desc, at: ml.at, value: value, done: value >= (ml.at || 1) };
+      var at = ml.at || 1;
+      /* The pending label says what the next milestone IS, not just a bare
+         number - "Next at 1" for a mala meant nothing on its own. */
+      var next;
+      if (ml.kind === 'mala') next = 'Next: ' + at.toLocaleString() + ' full mala' + (at > 1 ? 's' : '') + ' (' + (at * 108).toLocaleString() + ' jap)';
+      else if (ml.kind === 'page') next = 'Next: ' + at.toLocaleString() + ' page' + (at > 1 ? 's' : '');
+      else if (ml.kind === 'streak') next = 'Next: ' + at.toLocaleString() + '-day streak';
+      else next = 'Next: ' + at.toLocaleString() + ' jap';
+      return { id: ml.id, label: ml.label, dev: ml.dev, desc: ml.desc, at: at, value: value, done: value >= at, next: next };
     });
   };
 

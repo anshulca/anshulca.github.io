@@ -1,8 +1,9 @@
 /* =========================================================================
    NAAM JAP · MANTRA LIBRARY  (/mantra/)
-   Renders the mantra cards and filters from site.config.js (`mantras`),
-   opens a detail view with text, transliteration and meaning, and can
-   hand the selected mantra straight to the jap counter.
+   Renders the mantra cards and filters from site.config.js (`mantras`).
+   Each card links to its own page (/mantra/<id>/) with the full text,
+   transliteration, meaning and a Begin-jap button. The detail page is
+   implemented in js/mantra-detail.js.
    ========================================================================= */
 (function (global) {
   'use strict';
@@ -14,7 +15,7 @@
   if (!C || !NJ.store || !F) { if (console) console.error('mantra: config/store/shared missing.'); return; }
 
   var $ = function (id) { return doc.getElementById(id); };
-  var el = { filters: $('mnt-filters'), grid: $('mnt-grid'), modal: $('mnt-modal') };
+  var el = { filters: $('mnt-filters'), grid: $('mnt-grid') };
 
   var mantras = (C.mantras && C.mantras.length) ? C.mantras : [];
   var activeCat = 'all';
@@ -66,65 +67,22 @@
   function renderGrid() {
     if (!el.grid) return;
     var list = mantras.filter(function (m) { return (activeCat === 'all' || m.category === activeCat) && matchesSearch(m, searchQuery); });
-    if (!list.length) { el.grid.innerHTML = '<p class="muted" style="text-align:center;padding:var(--space-7)">Nothing here yet.</p>'; return; }
+    if (!list.length) { el.grid.innerHTML = '<p class="muted" style="text-align:center;padding:var(--space-7)">No mantras match that search.</p>'; return; }
+    /* Cards are plain links to each mantra's own page, so a mantra can be
+       shared, bookmarked and indexed. The one-line meaning is shown on
+       the card itself. */
     el.grid.innerHTML = list.map(function (m) {
-      return '<button type="button" class="mantra-card" data-id="' + esc(m.id) + '">' +
+      return '<a class="mantra-card" href="/mantra/' + esc(m.id) + '/">' +
         '<span class="mantra-card__top"><span class="mantra-card__glyph" aria-hidden="true">' + esc(m.dev) + '</span>' +
         '<span class="mantra-card__cat">' + esc(m.category) + '</span></span>' +
         '<h3>' + esc(m.name) + '</h3>' +
         '<span class="mantra-card__text" aria-hidden="true">' + esc(m.text) + '</span>' +
         '<span class="mantra-card__tr">' + esc(m.transliteration) + '</span>' +
+        '<span class="mantra-card__mean">' + esc(m.meaning) + '</span>' +
         '<span class="mantra-card__view">Read &amp; jap →</span>' +
         '<span class="mantra-card__brand">By CA Anshul Karwa</span>' +
-        '</button>';
+        '</a>';
     }).join('');
-    el.grid.querySelectorAll('[data-id]').forEach(function (b) {
-      b.addEventListener('click', function () { openDetail(b.getAttribute('data-id')); });
-    });
-  }
-
-  /* ---- Detail modal ----------------------------------------------------------------- */
-  var modal = null;
-  function getModal() {
-    if (!modal && NJ.Modal) modal = NJ.Modal('mnt-modal');
-    return modal;
-  }
-
-  function openDetail(id) {
-    var m = null;
-    for (var i = 0; i < mantras.length; i++) if (mantras[i].id === id) { m = mantras[i]; break; }
-    if (!m) { F.toast('Mantra not found'); return; }
-    var md = getModal();
-    if (!md) { F.toast('Detail view unavailable'); return; }
-    md.panel.innerHTML =
-      '<div class="modal__head"><h3>' + esc(m.name) + '</h3>' +
-      '<button type="button" class="icon-btn" data-close aria-label="Close">✕</button></div>' +
-      '<div class="mantra-detail">' +
-      '<p class="mantra-detail__glyph" aria-hidden="true">' + esc(m.text) + '</p>' +
-      '<p class="mantra-detail__tr">' + esc(m.transliteration) + '</p>' +
-      '<div class="mantra-detail__mean"><b>Meaning</b><p>' + esc(m.meaning) + '</p></div>' +
-      (m.note ? '<div class="mantra-detail__note">' + esc(m.note) + '</div>' : '') +
-      '</div>' +
-      '<div class="btn-group" style="margin-top:var(--space-5)">' +
-      '<button type="button" class="btn btn--primary" data-jap>Begin jap with this mantra</button>' +
-      '<button type="button" class="btn btn--ghost" data-close>Close</button>' +
-      '</div>' +
-      '<p style="text-align:center;margin-top:var(--space-4);font-size:0.65rem;color:var(--ink-faint)">By CA Anshul Karwa</p>';
-    md.panel.querySelector('[data-jap]').addEventListener('click', function () { beginJap(m); md.close(); });
-    md.panel.querySelectorAll('[data-close]').forEach(function (c) { c.addEventListener('click', function () { md.close(); }); });
-    md.open();
-  }
-
-  /* ---- Hand the mantra to the jap counter -------------------------------------------- */
-  function beginJap(m) {
-    var d = NJ.store.load();
-    d.naamId = 'custom';
-    d.customNaam = '';
-    if (!d.modules) d.modules = {};
-    if (!d.modules.custom) d.modules.custom = {};
-    d.modules.custom.naam = m.text || m.name;
-    NJ.store.save(d);
-    global.location.href = '/jap/custom-naam-jap/';
   }
 
   /* ---- Init --------------------------------------------------------------------------- */

@@ -84,13 +84,22 @@
       '<small>= ' + (total / MALA).toFixed(2) + ' malas</small>');
   }
 
-  /* ---- 4. 1 Lakh Challenge ------------------------------------------------ */
+  /* ---- 4. 1 Lakh Challenge ------------------------------------------------
+     Progress is derived from the ONE shared lifetime total: the challenge
+     remembers the shared total it started from (base), and progress is
+     shared total minus base. Adding jap counts into the shared total;
+     undo raises the base (lifetime is never reduced); reset re-bases to
+     the current shared total. */
   function lakhData() {
     var d = NJ.store.load();
     return { data: d, lakh: d.modules.lakh };
   }
   function lakhSave(data) { NJ.store.save(data); }
   function lakhTarget() { return lakhData().lakh.target || 100000; }
+  function lakhProgress() {
+    var o = lakhData();
+    return Math.max(0, (F.totals().jap || 0) - (o.lakh.base || 0));
+  }
   function lakhSince() {
     var started = lakhData().lakh.started;
     if (!started) return 0;
@@ -104,17 +113,18 @@
     var o = lakhData();
     var l = o.lakh;
     var t = l.target || 100000;
-    var remaining = Math.max(0, t - l.count);
-    el.lakhNum.innerHTML = fmt(l.count) + ' <small>/ ' + fmt(t) + '</small>';
+    var cur = lakhProgress();
+    var remaining = Math.max(0, t - cur);
+    el.lakhNum.innerHTML = fmt(cur) + ' <small>/ ' + fmt(t) + '</small>';
     el.lakhLabel.textContent = 'naam of jap counted';
-    el.lakhRemain.textContent = fmt(remaining) + ' remaining · ' + fmt(Math.round(l.count / t * 100)) + '%';
-    F.progress(el.lakhBar, t > 0 ? l.count / t : 0);
-    var done = l.count >= t && t > 0;
+    el.lakhRemain.textContent = fmt(remaining) + ' remaining · ' + fmt(Math.round(cur / t * 100)) + '%';
+    F.progress(el.lakhBar, t > 0 ? cur / t : 0);
+    var done = cur >= t && t > 0;
     el.lakhFace.style.display = done ? 'none' : '';
     if (el.lakhState) el.lakhState.style.display = done ? '' : 'none';
     if (el.lakhPace) {
       var days = lakhSince();
-      var pace = days > 0 ? (l.count / days) : 0;
+      var pace = days > 0 ? (cur / days) : 0;
       el.lakhPace.innerHTML = 'begun ' + (days > 0 ? days + ' day' + (days === 1 ? '' : 's') + ' ago' : 'today') + ' · avg ' + fmt(Math.round(pace)) + ' / day';
     }
   }
@@ -123,21 +133,22 @@
     if (n <= 0) { F.toast('Enter a number first.'); return; }
     var o = lakhData();
     var t = o.lakh.target || 100000;
-    if (o.lakh.count >= t) { F.toast('Sankalp already complete - reset to begin again.'); return; }
-    if (o.lakh.count + n > t) { n = t - o.lakh.count; F.toast('Added the remaining ' + n + ' to complete the sankalp'); }
-    o.lakh.count += n;
-    if (!o.lakh.started) o.lakh.started = NJ.store.nowISO();
-    lakhSave(o.data);
-    NJ.store.addToday(n, 0);
-    F.bump(el.lakhNum); F.haptic(10); F.sound(o.lakh.count >= t ? 'complete' : 'short');
+    var cur = lakhProgress();
+    if (cur >= t) { F.toast('Sankalp already complete - reset to begin again.'); return; }
+    if (cur + n > t) { n = t - cur; F.toast('Added the remaining ' + n + ' to complete the sankalp'); }
+    if (!o.lakh.started) { o.lakh.started = NJ.store.nowISO(); lakhSave(o.data); }
+    NJ.store.addJap(n, 0);
+    F.bump(el.lakhNum); F.haptic(10); F.sound(cur + n >= t ? 'complete' : 'short');
     lakhRender();
-    if (o.lakh.count >= t) { F.haptic([12, 40, 12]); F.sound('complete'); F.toast('One lakh of the Name - sankalp complete · ॥', 'success'); }
+    if (cur + n >= t) { F.haptic([12, 40, 12]); F.sound('complete'); F.toast('One lakh of the Name - sankalp complete · ॥', 'success'); }
   }
   function lakhUndo() {
     var o = lakhData();
-    var n = Math.min(o.lakh.count, MALA);
+    var n = Math.min(lakhProgress(), MALA);
     if (n <= 0) { F.toast('Nothing to undo.'); return; }
-    o.lakh.count -= n;
+    /* Raise the start base so progress drops, without touching the
+       lifetime total. Today drops by the same amount, never below 0. */
+    o.lakh.base = (o.lakh.base || 0) + n;
     lakhSave(o.data);
     var todayJap = NJ.store.getToday().jap;
     NJ.store.addToday(-Math.min(n, Math.max(0, todayJap)), 0);
@@ -148,17 +159,17 @@
     if (t <= 0) { F.toast('Enter a valid target'); return; }
     var o = lakhData();
     o.lakh.target = t;
-    if (o.lakh.count > t) o.lakh.count = t;
     lakhSave(o.data); lakhRender(); F.toast('Target set to ' + fmt(t));
   }
   function lakhReset() {
     F.confirm({
       title: 'Reset the lakh challenge?',
-      message: 'This clears the current lakh count and starts a fresh sankalp. Your lifetime and today\u2019s totals are kept.',
+      message: 'This starts a fresh sankalp from your current lifetime total. Your lifetime and today\u2019s totals are kept.',
       confirmText: 'Start fresh', cancelText: 'Keep counting',
       onConfirm: function () {
         var o = lakhData();
-        o.lakh.count = 0; o.lakh.started = NJ.store.nowISO();
+        o.lakh.base = F.totals().jap || 0;
+        o.lakh.started = NJ.store.nowISO();
         lakhSave(o.data); lakhRender(); F.toast('A fresh lakh begins', 'success');
       }
     });

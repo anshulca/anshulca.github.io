@@ -5,7 +5,7 @@
    ========================================================================= */
 'use strict';
 
-var CACHE = 'naamjap-shell-v24';
+var CACHE = 'naamjap-shell-v25';
 
 var SHELL = [
   '/',
@@ -94,6 +94,7 @@ var SHELL = [
   '/js/notebook.js',
   '/js/challenges.js',
   '/js/mantra.js',
+  '/js/mantra-detail.js',
   '/js/sadhana.js',
   '/js/journey.js',
   '/js/stotra-data.js',
